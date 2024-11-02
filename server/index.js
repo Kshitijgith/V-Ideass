@@ -34,10 +34,10 @@ app.get('/', (req, res) => {
 
 // Start Server
 const PORT = process.env.PORT || 5000;
+const LOCALIP = process.env.LOCAL_IP
+ ; // Example local IP address
 
-const LOCAL_IP = '192.168.0.105'; // Example local IP address
-
-app.listen(PORT, LOCAL_IP, () => {
-  console.log(`Server running at http://${LOCAL_IP}:${PORT}`);
+app.listen(PORT, LOCALIP, () => {
+  console.log(`Server running at http://${LOCALIP}:${PORT}`);
 });
 
