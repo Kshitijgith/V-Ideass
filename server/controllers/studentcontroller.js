@@ -4,16 +4,18 @@ const Project = require('../models/group'); // Import your Project model
 exports.getProjectGroup = async (req, res) => {
   try {
     const student = await Student.findOne({ email: req.email });
-  
+       
     if (!student) {
       return res.status(404).json({ message: 'Student not found' });
     }
   
     // Get the groupid array from the student
     const { groupid } = student;
-  
+      
     if (!groupid || groupid.length === 0) {
+      
       return res.status(404).json({ message: 'Student is not part of any project group' });
+      
     }
   
     // Find all projects that match any groupId in the groupid array
@@ -22,6 +24,8 @@ exports.getProjectGroup = async (req, res) => {
     });
   
     if (!projects || projects.length === 0) {
+      console.log(typeof(groupid));
+      console.log(groupid);
       return res.status(404).json({ message: 'No projects found for this student' });
     }
   

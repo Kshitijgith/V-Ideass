@@ -2,8 +2,8 @@ import React, { useEffect, useState,  } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import FetchGroups from './components/student/FetchGroups';
 import { useNavigate } from 'react-router-dom';
-
-
+import FetchAll from './components/common/Allgroups';
+import GroupActions from './components/student/GroupAction';
 const StudentDashboard = () => {
   const navigate=useNavigate();
   const go=()=>{
@@ -38,8 +38,11 @@ navigate('/');
 
 
       <div className='h-90p w-100p bg-blue-400 flex flex-col'>
+      
         <Routes>
+        <Route path="/" element={<FetchAll />} />
           <Route path="FetchGroups" element={<FetchGroups />} />
+          <Route path="FetchGroups/GroupActions" element={<GroupActions />} />
         </Routes>
       </div>
     </div>

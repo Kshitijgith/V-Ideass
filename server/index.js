@@ -27,6 +27,7 @@ app.use('/admin', require('./routes/adminRoutes'))
 app.use('/auth', require('./routes/authroutes')); // Authentication Routes
 app.use('/teacher', require('./routes/teacherroute')); // Teacher Management Routes
 app.use('/student', require('./routes/studentroute'));
+app.use('/all', require('./routes/CommonRoutes'));
 // Default Route
 app.get('/', (req, res) => {
   res.json({ message: 'MERN Auth App Backend' });

@@ -1,31 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { Link } from 'react-router-dom';
-const FetchGroups = () => {
-  
+const FetchAll = () => {
   const [groupInfo, setGroupInfo] = useState([]);
   const [error, setError] = useState('');
-  const [group, setgroup] = useState('');
   
-  const set =(val)=>{
-    setgroup(val);
-    console.log(group);
   
-  }
   
-   // Only run once on component mount
 
   const fetchGroups = async () => {
     try {
-      const t = `Bearer ${localStorage.getItem('token')}`;
+      
       const response = await axios({
         method: 'POST',
-        url: `http://192.168.0.105:3000/student/find-group`, // Use the email in the route
-        headers: {
-          'Authorization': t
-        }
-      });
+        url: `http://192.168.0.105:3000/all/all-groups`, 
+    
+      })
 
       if (response.data.success) {
         setGroupInfo(response.data.data);
@@ -35,8 +25,6 @@ const FetchGroups = () => {
     } catch (err) {
       if (err.response && err.response.status === 404) {
         setError('Not Part of any Group');
-      } else if (err.response && err.response.status === 401) {
-        setError('Not Authorized');
       } else {
         console.error('Error fetching groups:', err);
       }
@@ -48,16 +36,12 @@ const FetchGroups = () => {
   
 
   return (
-    <div className="h-100p w-100p flex flex-col justify-center items-start bg-red-100 overflow-y-auto">
+    <div className="h-100p w-100p flex flex-col justify-center items-start overflow-y-auto">
   {error && <p className="text-red-500 font-semibold text-lg">{error}</p>}
 
   <div className="flex flex-wrap h-100p w-100p">
     {groupInfo && groupInfo.length > 0 && groupInfo.map((group, index) => (
-      <Link 
-      to="GroupActions" 
-      state={{ groupId: group.groupId }} // Pass groupId in the state
-      key={index} className="w-1/4 p-4 mt-4">
-
+      <div key={index} className="w-1/4 p-4 mt-4">
         <div className="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 h-full">
           <h2 className="text-3xl font-bold text-gray-800 mb-2">Group Information</h2>
           <p className="text-gray-700 mb-1"><strong className="font-semibold">Group ID:</strong> {group.groupId}</p>
@@ -67,7 +51,7 @@ const FetchGroups = () => {
           <p className="text-gray-700 mb-1"><strong className="font-semibold">Year:</strong> {group.year}</p>
           <p className="text-gray-700 mb-1"><strong className="font-semibold">Status:</strong> {group.status ? 'Active' : 'Inactive'}</p>
         </div>
-      </Link>
+      </div>
     ))}
   </div>
 
@@ -77,4 +61,4 @@ const FetchGroups = () => {
   );
 };
 
-export default FetchGroups;
+export default FetchAll;

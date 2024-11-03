@@ -37,6 +37,9 @@ const TeacherSchema = new mongoose.Schema(
       trim: true,
       default: 'N/A',
     },
+    groupID:{
+      type:[String]
+    }
     // Add other teacher-specific fields if necessary
   },
   { timestamps: true }

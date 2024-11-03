@@ -2,17 +2,18 @@
 
 const Group = require('../models/group');
 const Student = require('../models/student'); // Import the student model
-
+const Teacher=require('../models/teacher')
 /**
  * @desc    Create a project group
  * @route   POST /api/teacher/groups
  * @access  Private (only authenticated teachers can access this)
  */
-exports.createGroup = async (req, res) => {
+const createGroup = async (req, res) => {
   const { groupId, groupMembers, year,guideName} = req.body;
-  console.log(groupId)
+  // console.log(groupId)
+  // console.log(guideName);
     //console.log(groupMembers)
-    console.log(year)
+    
 
 
   // Basic validation
@@ -52,7 +53,7 @@ exports.createGroup = async (req, res) => {
       // Add any additional required fields here
     });
     for (const memberName of groupMembers) {
-      console.log(memberName)
+      // console.log(memberName)
       // Find the student by name and update their groupId
       const updatedStudent = await Student.findOneAndUpdate(
         { studentName: memberName },
@@ -61,6 +62,12 @@ exports.createGroup = async (req, res) => {
       );
       
     }
+    const updateGuide = await Teacher.findOneAndUpdate(
+      { name: req.user.name },
+      { $push: { groupID: groupId } },
+      { new: true }
+    );
+    console.log('Guide updated:', req.user.name);
     return res.status(201).json(group); // Return the created group
   
 }
@@ -69,3 +76,44 @@ exports.createGroup = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+const Getgroups = async (req, res) => {
+  try {
+    const guide = await Teacher.findOne({ email: req.email });
+       
+    if (!guide) {
+      return res.status(404).json({ message: 'Teacher not found' });
+    }
+  
+    // Get the groupid array from the student
+    const {groupID} = guide;
+      
+    if (!groupID || groupID.length === 0) {
+      
+      return res.status(404).json({ message: 'Student is not part of any project group' });
+      
+    }
+  
+    // Find all projects that match any groupId in the groupid array
+    const projects = await Group.find({
+      groupId: { $in: groupID }
+    });
+  
+    if (!projects || projects.length === 0) {
+      console.log(typeof(groupID));
+      console.log(groupID);
+      return res.status(404).json({ message: 'No projects found for this teachet' });
+    }
+  
+    return res.status(200).json({
+      success: true,
+      data: projects,
+    });
+  } catch (error) {
+    console.error('Error fetching project groups:', error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+  
+}
+module.exports = {createGroup,Getgroups};
+
+

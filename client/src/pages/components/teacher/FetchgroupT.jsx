@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import { Link } from 'react-router-dom';
-const FetchGroups = () => {
+const FetchGroupsT = () => {
   
   const [groupInfo, setGroupInfo] = useState([]);
   const [error, setError] = useState('');
@@ -21,7 +21,7 @@ const FetchGroups = () => {
       const t = `Bearer ${localStorage.getItem('token')}`;
       const response = await axios({
         method: 'POST',
-        url: `http://192.168.0.105:3000/student/find-group`, // Use the email in the route
+        url: `http://192.168.0.105:3000/teacher/find-group`, // Use the email in the route
         headers: {
           'Authorization': t
         }
@@ -54,7 +54,7 @@ const FetchGroups = () => {
   <div className="flex flex-wrap h-100p w-100p">
     {groupInfo && groupInfo.length > 0 && groupInfo.map((group, index) => (
       <Link 
-      to="GroupActions" 
+      to="GroupActionsT" 
       state={{ groupId: group.groupId }} // Pass groupId in the state
       key={index} className="w-1/4 p-4 mt-4">
 
@@ -77,4 +77,4 @@ const FetchGroups = () => {
   );
 };
 
-export default FetchGroups;
+export default FetchGroupsT;

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import { AnimatePresence, motion } from 'framer-motion';
 import Home from './pages/Home';
 import StudentInput from './pages/StudentInput';
-import Guide from './pages/Guide';
+import GuideDashboard from './pages/Guide'
 import Admin from './pages/Admin';
 import StudentDashboard from './pages/StudentDashboard';
 import CreateStudent from './pages/components/admin/CreateStudent';
@@ -66,13 +66,13 @@ const App = () => {
         
             <Routes>
               <Route path="/" element={<Home />} />        
-              <Route path={`/admin/${nemail}`} element={<Admin />} />
+              <Route path={`admin/${nemail}`} element={<Admin />} />
 
               <Route path={`/admin/${nemail}/CreateStudent`} element={<CreateStudent />} />
               <Route path={`admin/${nemail}/CreateTeacher`} element={<CreateTeacher />} />
 {/* <Route path={`${nemail}/studentdashboard/*`} element={<StudentDashboard />} /> */}
 <Route path="/StudentDashBoard/*" element={<StudentDashboard />} />
-
+<Route path="/guide/*" element={<GuideDashboard />} />
             </Routes>
             
     
