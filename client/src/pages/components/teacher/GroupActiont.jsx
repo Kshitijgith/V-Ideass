@@ -42,8 +42,8 @@ const GroupActionsT = () => {
       {error && <p className="text-red-500 font-semibold text-lg">{error}</p>}
 
       {groupInfo ? (
-        <div className="w-60p h-100p">
-          <div className="bg-slate-200 flex flex-col overflow-y-auto shadow-md  h-full items-center">
+        <div className="w-60p h-100p flex flex-col overflow-y-auto shadow-md   items-center">
+          <div className=" ">
             <h2 className="text-3xl font-bold text-gray-800 mb-2">Group Information</h2>
             <p className="text-gray-700 mb-1"><strong className="font-semibold">Group ID:</strong> {groupInfo.groupId}</p>
             <p className="text-gray-700 mb-1"><strong className="font-semibold">Group Leader:</strong> {groupInfo.groupLeader}</p>
@@ -55,6 +55,7 @@ const GroupActionsT = () => {
       ) : (
         <p className="text-gray-500">Loading group information...</p>
       )}
+      
     </div>
   );
 };

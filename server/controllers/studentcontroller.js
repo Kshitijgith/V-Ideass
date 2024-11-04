@@ -1,7 +1,10 @@
 const Student = require('../models/student'); // Import your Student model
 const Project = require('../models/group'); // Import your Project model
 
-exports.getProjectGroup = async (req, res) => {
+
+// Configure Multer to store files temporarily
+
+const getProjectGroup= async (req, res) => {
   try {
     const student = await Student.findOne({ email: req.email });
        
@@ -39,3 +42,41 @@ exports.getProjectGroup = async (req, res) => {
   }
   
 }; 
+
+const UpdateGroup = async (req, res) => {
+  try {
+    // Extract project information from the request
+    const { groupid, projectname, projecttechnology, projectinfo,photos} = req.body;
+    
+    // Convert uploaded files to base64 strings
+    
+      console.log(typeof(photos));
+      console.log(typeof(groupid));
+    // Update the group in MongoDB
+    const group = await Project.findOneAndUpdate(
+      { groupId: groupid },
+      {
+        projectName: projectname,
+        projectTechnology: projecttechnology,
+        projectinfo: projectinfo,
+        $set: { photos }, // Add photos array to existing ones
+      },
+      { new: true }
+    );
+
+    if (!group) {
+      return res.status(404).json({ message: 'Group not found' });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: group,
+    });
+  } catch (error) {
+    console.error('Error updating project group:', error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+module.exports={getProjectGroup,UpdateGroup}

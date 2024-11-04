@@ -45,6 +45,13 @@ const groupSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  photos:{
+    type:[String]
+  },
+  projectinfo:{
+    type:String,
+    required:false
+  },
   groupMaterial: {
     type: String,
     required: false
