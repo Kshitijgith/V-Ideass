@@ -114,6 +114,22 @@ const Getgroups = async (req, res) => {
   }
   
 }
-module.exports = {createGroup,Getgroups};
+const Approve = async (req, res) => {
+  try{
+    const ApproveGrouped = await Group.findOneAndUpdate(
+      { groupId: req.body.groupid },
+      { status: true },
+      { new: true }
+    );
+    console.log('Project Approved:',);
+    return res.status(201).json(ApproveGrouped);
+  }
+  catch{
+    console.error('Error  approving groups:', error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+}
+
+module.exports = {createGroup,Getgroups,Approve};
 
 

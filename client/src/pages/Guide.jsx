@@ -4,7 +4,7 @@ import GroupActionsT from './components/teacher/GroupActiont';
 import CreateGroup from './components/teacher/CreateGroups';
 import FetchGroupsT from './components/teacher/FetchgroupT';
 import { useNavigate } from 'react-router-dom';
-
+import FetchAll from './components/common/Allgroups';
 
 const GuideDashboard = () => {
   const navigate=useNavigate();
@@ -45,6 +45,7 @@ navigate('/');
       <div className='h-90p w-100p bg-blue-400 flex flex-col'>
         
         <Routes>
+        <Route path="/" element={<FetchAll />} />
           <Route path="CreateGroup" element={<CreateGroup />} />
           <Route path="FetchGroupsT" element={<FetchGroupsT />} />
           <Route path="FetchGroupsT/GroupActionsT" element={<GroupActionsT />} />

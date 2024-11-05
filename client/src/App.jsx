@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Home from './pages/Home';
-import StudentInput from './pages/StudentInput';
 import GuideDashboard from './pages/Guide'
 import Admin from './pages/Admin';
 import StudentDashboard from './pages/StudentDashboard';

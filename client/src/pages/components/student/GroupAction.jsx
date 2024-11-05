@@ -35,12 +35,21 @@ const GroupActions = () => {
     }
   };
 
-  useEffect(() => {
-    if (groupId) {
-      fetchGroupById(); // Fetch group info when the component mounts
-      
-    }
-  }, [groupId]);
+  // useEffect(() => {
+  //   if (groupId) {
+  //     fetchGroupById(); // Fetch group info when the component mounts
+  //     const intervalId = setInterval(fetchGroupById(), 1000); // Run every 1000ms (1 second)
+
+  //   // Cleanup the interval on component unmount
+  //   return () => clearInterval(intervalId);
+  //   }
+  // }, [groupId]);
+  if (groupId) {
+    fetchGroupById(); // Fetch group info when the component mounts
+    const intervalId = setInterval(fetchGroupById(), 1000); // Run every 1000ms (1 second)
+
+  // Cleanup the interval on component unmount
+  }
 
   return (
     <div className="h-100p w-100p flex items-center justify-center overflow-y-auto">

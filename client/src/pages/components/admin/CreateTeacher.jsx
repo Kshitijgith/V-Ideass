@@ -27,7 +27,7 @@ const CreateTeacher = () => {
     try {
         const response = await axios({
             method: 'POST',
-            url: 'http://localhost:3000/admin/create-teacher',
+            url: 'http://192.168.0.105:3000/admin/create-teacher',
             data: formData,
             headers: { 'Authorization': t }
           });

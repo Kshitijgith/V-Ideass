@@ -4,7 +4,7 @@ const Showgroups = async (req, res) => {
   try {
     // Find all groups with active status (status: true)
     const activeGroups = await Project.find({ status: true });
-    console.log(activeGroups)
+
     // Send the response with the list of active groups
     res.json({ success: true, data: activeGroups });
   } catch (error) {
@@ -17,7 +17,7 @@ const IDgroups = async (req, res) => {
     // Find all groups with active status (status: true)
     const  {id}  = req.body;
     const activeGroups = await Project.find({ groupId: id });
-    console.log(id)
+
     
     // Send the response with the list of active groups
     res.json({ success: true, data: activeGroups });
