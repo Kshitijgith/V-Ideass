@@ -115,19 +115,20 @@ const Getgroups = async (req, res) => {
   
 }
 const Approve = async (req, res) => {
-  try{
-    const ApproveGrouped = await Group.findOneAndUpdate(
-      { groupId: req.body.groupid },
-      { status: true },
-      { new: true }
-    );
-    console.log('Project Approved:',);
-    return res.status(201).json(ApproveGrouped);
+  try {
+    const group = await Group.findOne({ groupId: req.body.groupid });
+    if (group) {
+      group.status = !group.status; // Toggle the status
+      await group.save(); // Save the updated status
+      res.status(200).json({ success: true, data: group });
+    } else {
+      res.status(404).json({ success: false, message: "Group not found" });
+    }
+  } catch (error) {
+    console.error("Error toggling status:", error);
+    res.status(500).json({ success: false, message: "Server error" });
   }
-  catch{
-    console.error('Error  approving groups:', error);
-    return res.status(500).json({ message: 'Server error' });
-  }
+  
 }
 
 module.exports = {createGroup,Getgroups,Approve};

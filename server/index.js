@@ -14,7 +14,7 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: 'http://192.168.0.105:5173', // Step 3: Allow your frontend origin
+  origin: 'http://192.168.29.220:5173', // Step 3: Allow your frontend origin
   credentials: true, // Optional: If you are using cookies
 }));
 

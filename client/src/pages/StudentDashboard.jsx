@@ -4,6 +4,7 @@ import FetchGroups from './components/student/FetchGroups';
 import { useNavigate } from 'react-router-dom';
 import FetchAll from './components/common/Allgroups';
 import GroupActions from './components/student/GroupAction';
+import EachGroup from './components/common/Eachgroup';
 import { Menu, X, Search, User, Key, LogOut } from 'lucide-react';
 const StudentDashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -86,6 +87,7 @@ navigate('/');
       
         <Routes>
         <Route path="/" element={<FetchAll />} />
+        <Route path="/EachGroup" element={< EachGroup/>} />
           <Route path="FetchGroups" element={<FetchGroups />} />
           <Route path="FetchGroups/GroupActions" element={<GroupActions />} />
         </Routes>

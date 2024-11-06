@@ -66,7 +66,7 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />        
               <Route path={`admin/${nemail}`} element={<Admin />} />
-
+ 
               <Route path={`/admin/${nemail}/CreateStudent`} element={<CreateStudent />} />
               <Route path={`admin/${nemail}/CreateTeacher`} element={<CreateTeacher />} />
 {/* <Route path={`${nemail}/studentdashboard/*`} element={<StudentDashboard />} /> */}

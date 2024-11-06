@@ -29,7 +29,7 @@ const CreateStudent = () => {
     try {
       const response = await axios({
         method: 'POST',
-        url: 'http://192.168.0.105:3000/admin/create-student',
+        url: 'http://192.168.29.220:3000/admin/create-student',
         data: formData,
         headers: { 'Authorization': t }
       });

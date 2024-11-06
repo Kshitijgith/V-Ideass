@@ -12,7 +12,7 @@ const GroupActions = () => {
 
   const fetchGroupById = async () => {
     try {
-      const response = await axios.post(`http://192.168.0.105:3000/all/Id`, {
+      const response = await axios.post(`http://192.168.29.220:3000/all/Id`, {
         id: groupId, // Send the groupId in the request body
       });
 
@@ -35,21 +35,13 @@ const GroupActions = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (groupId) {
-  //     fetchGroupById(); // Fetch group info when the component mounts
-  //     const intervalId = setInterval(fetchGroupById(), 1000); // Run every 1000ms (1 second)
-
-  //   // Cleanup the interval on component unmount
-  //   return () => clearInterval(intervalId);
-  //   }
-  // }, [groupId]);
-  if (groupId) {
-    fetchGroupById(); // Fetch group info when the component mounts
-    const intervalId = setInterval(fetchGroupById(), 1000); // Run every 1000ms (1 second)
-
-  // Cleanup the interval on component unmount
-  }
+  useEffect(() => {
+    if (groupId) {
+      fetchGroupById(); // Fetch group info when the component mounts
+      
+    }
+  }, [groupId]);
+  
 
   return (
     <div className="h-100p w-100p flex items-center justify-center overflow-y-auto">

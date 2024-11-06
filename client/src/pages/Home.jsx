@@ -40,9 +40,9 @@ export default function LoginPage() {
     else{
       setIsLoading(true);
       const loginUrlMap = {
-        student: 'http://192.168.0.105:3000/auth/student/login',
-        teacher: 'http://192.168.0.105:3000/auth/teacher/login',
-        admin: 'http://192.168.0.105:3000/auth/admin/login',
+        student: 'http://192.168.29.220:3000/auth/student/login',
+        teacher: 'http://192.168.29.220:3000/auth/teacher/login',
+        admin: 'http://192.168.29.220:3000/auth/admin/login',
       };
   
       try {
