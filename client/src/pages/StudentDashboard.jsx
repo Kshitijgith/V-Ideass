@@ -45,31 +45,37 @@ navigate('/');
         </div>
         
       )}
-        <div className='h-10p w-100p   bg-slate-500 hidden md:flex items-center'>
-        <div className='text-2xl h-100p w-20p text-white font-extrabold flex items-center justify-center'>
+        <div className='h-8p w-100p bg-yellow-400 hidden md:flex items-center'>
+        <div className=' h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
           {username}
         </div>
         
-        <div className='h-100p w-40p relative'>
+        <div className='h-100p w-30p relative'>
           <input 
             type='text' 
             placeholder='Search Projects' 
-            className='h-100p w-100p pl-10 pr-4 text-xl font-bold text-center bg-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-400'
+            className='h-100p w-100p pl-10 pr-4 text-xl font-bold text-center bg-white '
           />
           <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400' size={24} />
         </div>
+        <div className='h-100p w-50p flex justify-between'>
+        <Link to="FetchGroups" className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
+          Departments
+        </Link>
         
-        <Link to="FetchGroups" className="h-100p w-10p font-extrabold border-zinc-700 border-solid border-4 flex items-center justify-center bg-purple-500 text-white hover:bg-purple-600 transition text-center">
+        <Link to="FetchGroups" className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
           Your Group
         </Link>
         
-        <Link to="FetchGroups" className="h-100p w-10p font-extrabold border-zinc-700 border-solid border-4 flex items-center justify-center bg-purple-500 text-white hover:bg-purple-600 transition text-center">
+        <Link to="FetchGroups" className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
           Update Password
         </Link>
         
-        <button onClick={go} className='h-100p w-20p font-extrabold border-zinc-700 border-solid border-4 flex items-center justify-center bg-white hover:bg-gray-100 transition'>
+        <button onClick={go} className='h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
           Logout
         </button>
+        </div>
+        
         </div>
        
       
@@ -83,7 +89,7 @@ navigate('/');
         </button>
       </div>
   
-      <div className='h-90p w-100p bg-blue-400 flex flex-col'>
+      <div className='h-92p w-100p bg-slate-200 flex flex-col'>
       
         <Routes>
         <Route path="/" element={<FetchAll />} />

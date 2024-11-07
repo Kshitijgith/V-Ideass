@@ -46,10 +46,10 @@ const GroupActions = () => {
   return (
     <div className="h-100p w-100p flex items-center justify-center overflow-y-auto">
       {error && <p className="text-red-500 font-semibold text-lg">{error}</p>}
-
+<div className='h-100p w-60p flex justify-center items-center'>
       {groupInfo ? (
-        <div className="bg-slate-500 h-90p w-60p rounded-lg shadow-md flex flex-col overflow-y-auto">
-          <h2 className="text-3xl font-bold text-white mb-4 px-4 pt-4">{groupInfo.projectName}</h2>
+        <div className="bg-gray-200 h-100p w-100p rounded-lg shadow-md flex flex-col overflow-y-auto">
+          <h2 className="text-3xl font-bold text-black mb-4 px-4 pt-4">{groupInfo.projectName}</h2>
           
           <div className="bg-white rounded-md shadow mx-4 mb-4 p-4">
             <p className="text-gray-700 mb-1"><span className="font-semibold">Group ID:</span> {groupInfo.groupId}</p>
@@ -98,12 +98,16 @@ const GroupActions = () => {
           </div>
         </div>
       ) : (
-        <p className="text-gray-500">Loading group information...</p>
+        <div className="h-50p w-50p flex space-x-2 justify-center items-center">
+    <div className="w-4 h-4 bg-blue-500 rounded-full animate-pulse"></div>
+    <div className="w-4 h-4 bg-blue-500 rounded-full animate-pulse animation-delay-200"></div>
+    <div className="w-4 h-4 bg-blue-500 rounded-full animate-pulse animation-delay-400"></div>
+  </div>
       )}
-      
+      </div>
       <div className="h-90p w-2"></div>
       
-      <div className="h-90p w-40p bg-gray-100 flex overflow-y-auto">
+      <div className="h-100p w-40p bg-gray-100 flex overflow-y-auto">
         <AddProject id={groupId} />
       </div> 
     </div>

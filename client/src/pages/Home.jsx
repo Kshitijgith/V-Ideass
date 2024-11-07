@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import sampleImage from '../assets/logo_vit.png';
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
-
+  
   
   const handleLogin = async (role) => {
     var decoded = 'a';
@@ -18,7 +18,7 @@ export default function LoginPage() {
     
         const nemail=decoded.email;
           const nrole=decoded.userType;
-      if (token&&role==nrole) {
+      if (token&&role==nrole&&email=='') {
         
           console.log(nemail);
           console.log(nrole)
@@ -67,7 +67,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="h-100p , w-10, flex items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4">
+    <div className="h-100p , w-10, flex flex-col items-center justify-center bg-slate-300 p-4">
+     
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-8">
         <h1 className="text-3xl font-bold text-center mb-2">Welcome to Videas</h1>
         <p className="text-center text-gray-600 mb-6">Enter your credentials to login</p>

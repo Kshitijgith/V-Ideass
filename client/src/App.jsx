@@ -7,6 +7,8 @@ import Admin from './pages/Admin';
 import StudentDashboard from './pages/StudentDashboard';
 import CreateStudent from './pages/components/admin/CreateStudent';
 import CreateTeacher from './pages/components/admin/CreateTeacher';
+import VITlogo from './assets/logo_vit.png';
+import VIT from './assets/VIT.png';
 const PageTransition = ({ children }) => {
   const location = useLocation();
   return (
@@ -55,13 +57,22 @@ const App = () => {
 
     <Router>
       
-      <div className='h-screen w-100p bg-black flex flex-col'>
-      <div className='h-10p w-100p bg-white text-bold text-center flex items-center justify-center shadow-lg rounded-lg'>
-  <p className='text-xl text-gray-800 font-extrabold'>
-    V-Ideas
-  </p>
+      <div className='h-screen w-100p bg-white flex flex-col'>
+      <div className='h-10p w-100p bg-blue-950 flex justify-evenly '>
+        <div className='w-30p h-100p flex items-center'>
+        <img className='h-60p w-40p ' src={VITlogo} alt="Toyota Background" />
+        </div>
+        <div className='h-100p w-50p flex justify-end items-center '>
+        <img className='h-60p w-40p ' src={VIT} alt="Toyota Background" />
+        </div>
+      
 </div>
-        <div className='h-90p w-100p bg-blue-400 flex flex-col'>
+      {/* <div
+  className="h-10p w-100p  text-bold text-center flex justify-center items-center  " >
+     <img className='h-100p w-50p bg-cover' src={sampleImage}  /> 
+     
+</div> */}
+        <div className='h-90p w-100p  bg-red-100  flex flex-col'>
         
             <Routes>
               <Route path="/" element={<Home />} />        

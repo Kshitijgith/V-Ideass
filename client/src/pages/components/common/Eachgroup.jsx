@@ -43,12 +43,12 @@ const EachGroup = () => {
   
 
   return (
-    <div className="h-100p w-100p flex items-center justify-center overflow-y-auto">
+    <div className="h-100p w-100p bg-slate-100 flex items-center justify-center overflow-y-auto">
       {error && <p className="text-red-500 font-semibold text-lg">{error}</p>}
 
       {groupInfo ? (
-        <div className="bg-slate-500 h-100p w-100p rounded-lg shadow-md flex flex-col overflow-y-auto">
-          <h2 className="text-3xl font-bold text-white mb-4 px-4 pt-4">{groupInfo.projectName}</h2>
+        <div className="bg-blue-400 h-100p w-100p rounded-lg shadow-md flex flex-col overflow-y-auto">
+          <h2 className="text-3xl font-bold  mb-4 px-4 pt-4">{groupInfo.projectName}</h2>
           
           <div className="bg-white rounded-md shadow mx-4 mb-4 p-4">
             <p className="text-gray-700 mb-1"><span className="font-semibold">Group ID:</span> {groupInfo.groupId}</p>
