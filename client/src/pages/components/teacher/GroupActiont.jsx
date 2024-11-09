@@ -114,8 +114,11 @@ const GroupActionsT = () => {
             </div>
             
           </div>
-          <button onClick={ApproveGroup} className='h-30p w-100p bg-yellow-400 hover:bg-zinc-200 text-center font-bold'>Approve</button>
-          <button onClick={ApproveGroup} className='h-30p w-100p bg-yellow-600 hover:bg-zinc-200 text-center font-bold'>Reject</button>
+          {groupInfo.status==false ? (<button onClick={ApproveGroup} className='h-30p w-100p bg-yellow-400 hover:bg-zinc-200 text-center font-bold'>Approve</button>):(
+            <button onClick={ApproveGroup} className='h-30p w-100p bg-yellow-400 hover:bg-zinc-200 text-center font-bold'>Reject</button>
+          )}
+          
+          
         </div>
       ) : (
         <p className="text-gray-500">Loading group information...</p>

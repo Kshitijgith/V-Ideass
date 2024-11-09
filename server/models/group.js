@@ -55,7 +55,18 @@ const groupSchema = new mongoose.Schema({
   groupMaterial: {
     type: String,
     required: false
-  }
+  },
+  Chats: {
+    type: [
+        {
+            senderName: { type: String, required: true }, 
+            message: { type: String, required: true },      
+            timestamp: { type: Date, default: Date.now }    
+        }
+    ],
+    default: []  // Initialize as an empty array by default
+}
+
 });
 
 module.exports = mongoose.model('Group', groupSchema);

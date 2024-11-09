@@ -28,6 +28,7 @@ const FetchGroups = () => {
       });
 
       if (response.data.success) {
+        console.log(typeof(response.data.data));
         setGroupInfo(response.data.data);
       } else {
         setError('Failed to fetch group information.');

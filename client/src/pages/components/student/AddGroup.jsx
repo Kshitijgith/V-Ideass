@@ -50,7 +50,7 @@ const AddProject = ({ id }) => {
       console.log(result);
       
       // Clear the form fields after submission if needed
-      setGroupId('');
+      
       setProjectName('');
       setProjectTechnology('');
       setProjectInfo('');
@@ -62,7 +62,7 @@ const AddProject = ({ id }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
+    <div className="h-90p w-100p">
       <h2 className="text-2xl font-bold mb-4">Add Project</h2>
       {error && <p className="text-red-500">{error}</p>}
       {successMessage && <p className="text-green-500">{successMessage}</p>}

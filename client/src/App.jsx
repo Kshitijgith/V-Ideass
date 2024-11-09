@@ -48,7 +48,6 @@ if(token){
   var decoded=decoded=JSON.parse(atob(token.split('.')[1]));
 }
  
-  const nemail=decoded.email;
   
 const App = () => {
   
@@ -76,11 +75,8 @@ const App = () => {
         
             <Routes>
               <Route path="/" element={<Home />} />        
-              <Route path={`admin/${nemail}`} element={<Admin />} />
+              <Route path={`admin/*`} element={<Admin />} />
  
-              <Route path={`/admin/${nemail}/CreateStudent`} element={<CreateStudent />} />
-              <Route path={`admin/${nemail}/CreateTeacher`} element={<CreateTeacher />} />
-{/* <Route path={`${nemail}/studentdashboard/*`} element={<StudentDashboard />} /> */}
 <Route path="/StudentDashBoard/*" element={<StudentDashboard />} />
 <Route path="/guide/*" element={<GuideDashboard />} />
             </Routes>

@@ -2,15 +2,26 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import AddProject from './AddGroup';
+import ChatRoom from './GroupChat';
 
 const GroupActions = () => {
+
   const location = useLocation();
   const { groupId } = location.state || {}; // Get the groupId from the location state
-  
+  const [val,setval]=useState(true);
   const [groupInfo, setGroupInfo] = useState(null); // Change to null initially since we're fetching one group
   const [error, setError] = useState('');
-
+const [username, setUsername] = useState('');
+  
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decoded = JSON.parse(atob(token.split('.')[1]));
+      setUsername(decoded.email);
+    }
+  }, []);
   const fetchGroupById = async () => {
+
     try {
       const response = await axios.post(`http://192.168.29.220:3000/all/Id`, {
         id: groupId, // Send the groupId in the request body
@@ -107,8 +118,22 @@ const GroupActions = () => {
       </div>
       <div className="h-90p w-2"></div>
       
-      <div className="h-100p w-40p bg-gray-100 flex overflow-y-auto">
-        <AddProject id={groupId} />
+      <div className="h-100p w-40p bg-gray-100 flex flex-col overflow-y-auto">
+         <div className='h-8p w-full flex justify-center '>
+         <button 
+  className="h-100p w-50p bg-green-500 text-white font-bold rounded-lg shadow-md hover:bg-green-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-300 transition duration-300 ease-in-out" 
+  onClick={() => setval(!val)}
+>
+{val ? ' Chat with Others' : 'Update Group'}
+</button>
+
+
+         </div>
+        {(val==true?(<AddProject id={groupId} />):(
+ <ChatRoom groupId={groupId} yourName={username}/>
+    ))}
+        
+
       </div> 
     </div>
   );

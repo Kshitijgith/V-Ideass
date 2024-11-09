@@ -45,13 +45,16 @@ const CreateTeacher = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-lg p-8 bg-white rounded-lg shadow-lg">
-        <h2 className="text-2xl font-semibold text-center text-gray-800">Create Teacher</h2>
-        
-        {message && <p className="mt-4 text-center text-green-500">{message}</p>}
-        
-        <form className="mt-6" onSubmit={handleSubmit}>
+    <div className="flex flex-col items-center justify-center h-100p w-100p bg-blue-300 ">
+    <div className='h-10p w-50p flex justify-center items-center font-medium'>
+    <h2>Create Teacher</h2>
+    </div>
+    
+    <div className="w-50p h-80p bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center ">
+
+{message && <p className="mb-4 text-center text-green-500">{message}</p>}
+
+<form className="w-100p space-y-4 overflow-y-auto" onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="name" className="block text-gray-700">Name</label>
             <input

@@ -47,7 +47,7 @@ const EachGroup = () => {
       {error && <p className="text-red-500 font-semibold text-lg">{error}</p>}
 
       {groupInfo ? (
-        <div className="bg-blue-400 h-100p w-100p rounded-lg shadow-md flex flex-col overflow-y-auto">
+        <div className="bg-gray-200 h-100p w-100p rounded-lg shadow-md flex flex-col overflow-y-auto">
           <h2 className="text-3xl font-bold  mb-4 px-4 pt-4">{groupInfo.projectName}</h2>
           
           <div className="bg-white rounded-md shadow mx-4 mb-4 p-4">

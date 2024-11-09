@@ -26,7 +26,7 @@ export default function LoginPage() {
           const routeMap = {
             student: '/StudentDashBoard',
             teacher: '/guide',
-            admin: `/admin/${(nemail)}`,
+            admin: `/admin`,
           };
           
           // Use decoded data to set user info or perform any other actions needed

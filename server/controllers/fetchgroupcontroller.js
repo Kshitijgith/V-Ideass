@@ -26,5 +26,51 @@ const IDgroups = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
+const GroupChat = async (req, res) => {
+  try {
+    const  {groupid}  = req.body;
+    console.log(groupid);
+    const group = await Project.findOne({ groupId: groupid });
 
-module.exports = {Showgroups,IDgroups};
+    if (!group) {
+      return res.status(404).json({ success: false, message: 'Group not found' });
+    }
+       
+    res.json({ success: true, data: group.Chats });
+    console.log(group.Chats);
+  } catch (error) {
+    console.log('not done')
+    console.error('Error fetching group chats:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+const Insertchat = async (req, res) => {
+  try {
+    const { groupid, senderName, message } = req.body;
+
+    const group = await Project.findOneAndUpdate(
+      { groupId: groupid },
+      {
+        $push: { Chats: { senderName: senderName, message: message, timestamp: new Date() } }
+      },
+      { new: true }
+    );
+
+    if (!group) {
+      return res.status(404).json({ message: 'Group not found' });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: group.Chats // Return updated chat array or entire group, as needed
+    });
+  } catch (error) {
+    console.error('Error adding chat message:', error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+
+module.exports = {Showgroups,IDgroups,GroupChat,Insertchat};

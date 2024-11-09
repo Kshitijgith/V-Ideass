@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import FetchAll from './components/common/Allgroups';
 import GroupActions from './components/student/GroupAction';
 import EachGroup from './components/common/Eachgroup';
+import Department from './components/common/Departments';
 import { Menu, X, Search, User, Key, LogOut } from 'lucide-react';
 const StudentDashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -59,9 +60,9 @@ navigate('/');
           <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400' size={24} />
         </div>
         <div className='h-100p w-50p flex justify-between'>
-        <Link to="FetchGroups" className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
-          Departments
-        </Link>
+        <button className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
+          <Department/>
+        </button>
         
         <Link to="FetchGroups" className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
           Your Group
