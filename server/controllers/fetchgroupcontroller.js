@@ -37,7 +37,6 @@ const GroupChat = async (req, res) => {
     }
        
     res.json({ success: true, data: group.Chats });
-    console.log(group.Chats);
   } catch (error) {
     console.log('not done')
     console.error('Error fetching group chats:', error);

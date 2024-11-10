@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import AddProject from './AddGroup';
-import ChatRoom from './GroupChat';
+import ChatRoom from '../common/GroupChat';
 
 const GroupActions = () => {
 
@@ -120,17 +120,15 @@ const [username, setUsername] = useState('');
       
       <div className="h-100p w-40p bg-gray-100 flex flex-col overflow-y-auto">
          <div className='h-8p w-full flex justify-center '>
-         <button 
-  className="h-100p w-50p bg-green-500 text-white font-bold rounded-lg shadow-md hover:bg-green-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-300 transition duration-300 ease-in-out" 
-  onClick={() => setval(!val)}
->
-{val ? ' Chat with Others' : 'Update Group'}
-</button>
+          <button onClick={() => setval(!val)} className='h-100p w-50p bg-blue-500 hover:bg-blue-300  text-white font-bold '>Update Group</button>
+          <button onClick={() => setval(!val)} className='h-100p w-50p  bg-yellow-200  hover:bg-blue-300  font-bold '>Chat</button>
+
 
 
          </div>
         {(val==true?(<AddProject id={groupId} />):(
- <ChatRoom groupId={groupId} yourName={username}/>
+  <ChatRoom groupId={groupId} yourName={username} role={'student'}/>
+
     ))}
         
 
