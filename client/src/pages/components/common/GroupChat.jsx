@@ -108,7 +108,7 @@ const ChatRoom = ({ groupId, yourName,role }) => {
 
   return (
     <div className="h-90p w-100p bg-gray-100 flex flex-col overflow-y-auto">
-      <div className="h-10p w-full bg-blue-600 text-white flex items-center justify-center font-semibold">
+      <div className="h-10p w-full bg-blue-500   flex items-center justify-center font-semibold">
         Chat Room
       </div>
 
@@ -123,6 +123,15 @@ const ChatRoom = ({ groupId, yourName,role }) => {
           >
             <p className="text-sm font-semibold">{msg.senderName}</p>
             <p>{msg.message}</p>
+            <p>{new Date(msg.timestamp).toLocaleString('en-US', { 
+  year: 'numeric', 
+  month: 'numeric', 
+  day: 'numeric', 
+  hour: 'numeric', 
+  minute: 'numeric',  
+  hour12: true 
+})}</p>
+
           </div>
         ))}
         {/* This is the reference for the last message */}

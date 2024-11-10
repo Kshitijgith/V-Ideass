@@ -47,13 +47,14 @@ const EachGroup = () => {
       {error && <p className="text-red-500 font-semibold text-lg">{error}</p>}
 
       {groupInfo ? (
-        <div className="bg-gray-200 h-100p w-100p rounded-lg shadow-md flex flex-col overflow-y-auto">
+        <div className="bg-gray-200 h-100p w-80p rounded-lg shadow-md flex flex-col   overflow-y-auto">
           <h2 className="text-3xl font-bold  mb-4 px-4 pt-4">{groupInfo.projectName}</h2>
           
           <div className="bg-white rounded-md shadow mx-4 mb-4 p-4">
             <p className="text-gray-700 mb-1"><span className="font-semibold">Group ID:</span> {groupInfo.groupId}</p>
             <p className="text-gray-700 mb-1"><span className="font-semibold">Project Technology:</span> {groupInfo.projectTechnology}</p>
             <p className="text-gray-700 mb-1"><span className="font-semibold">Year:</span> {groupInfo.year}</p>
+            
             <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${groupInfo.status ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}>
               {groupInfo.status ? 'Active' : 'Inactive'}
             </span>
@@ -77,7 +78,11 @@ const EachGroup = () => {
               ))}
             </ul>
           </div>
-
+          <div className="bg-white rounded-md shadow mx-4 mb-4 p-4 flex items-center justify-evenly">
+          <a href={groupInfo.PPT} className='h-100p w-30p bg-gray-400 text-center font-bold rounded-full'> Download PPT</a>
+          <a href={groupInfo.Report} className='h-100p w-30p bg-gray-400 text-center font-bold rounded-full'>Download Report</a>
+          </div>
+          <div className='h-20p w-full'></div>
           <div className="bg-white rounded-md shadow mx-4 mb-4 p-4 flex flex-col  ">
             <h3 className="text-lg font-semibold mb-2">Pictures</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -95,6 +100,7 @@ const EachGroup = () => {
               )}
             </div>
           </div>
+          
         </div>
       ) : (
         <p className="text-gray-500">Loading group information...</p>

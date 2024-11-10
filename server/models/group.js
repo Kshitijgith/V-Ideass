@@ -56,12 +56,21 @@ const groupSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  PPT:{
+    type:String,
+    required:false
+  },
+  Report:{
+    type:String,
+    required:false
+  },
   Chats: {
     type: [
         {
             senderName: { type: String, required: true }, 
             message: { type: String, required: true },      
-            timestamp: { type: Date, default: Date.now }    
+            timestamp: { type: Date, default: Date.now }
+               
         }
     ],
     default: []  // Initialize as an empty array by default

@@ -5,6 +5,7 @@ import CreateGroup from './components/teacher/CreateGroups';
 import FetchGroupsT from './components/teacher/FetchgroupT';
 import { useNavigate } from 'react-router-dom';
 import FetchAll from './components/common/Allgroups';
+import EachGroup from './components/common/Eachgroup';
 import { Menu, X, Search, User, Key, LogOut } from 'lucide-react';
 const GuideDashboard = () => {
   const navigate=useNavigate();
@@ -64,6 +65,8 @@ navigate('/');
         
         <Routes>
         <Route path="/" element={<FetchAll />} />
+        <Route path="/EachGroup" element={<EachGroup />} />
+        <Route path="CreateGroup" element={<CreateGroup />} />
           <Route path="CreateGroup" element={<CreateGroup />} />
           <Route path="FetchGroupsT" element={<FetchGroupsT />} />
           <Route path="FetchGroupsT/GroupActionsT" element={<GroupActionsT />} />

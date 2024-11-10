@@ -7,6 +7,8 @@ const AddProject = ({ id }) => {
   const [projectname, setProjectName] = useState('');
   const [projecttechnology, setProjectTechnology] = useState('');
   const [projectinfo, setProjectInfo] = useState('');
+  const [ppt, setppt] = useState('');
+  const [report, setreport] = useState('');
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -45,7 +47,7 @@ const AddProject = ({ id }) => {
       console.log(Array.isArray(photos)); // Confirm `photos` is an array
       console.log(photos); // Log `photos` to check content
 
-      const result = await updateGroup(groupid, projectname, projecttechnology, projectinfo, photos);
+      const result = await updateGroup(groupid, projectname, projecttechnology, projectinfo, photos,ppt,report);
       setSuccessMessage('Group updated successfully!');
       console.log(result);
       
@@ -54,6 +56,8 @@ const AddProject = ({ id }) => {
       setProjectName('');
       setProjectTechnology('');
       setProjectInfo('');
+      setppt('');
+      setreport('');
       setPhotos([]);
     } catch (err) {
       setError('Failed to update group. Please try again.');
@@ -62,11 +66,12 @@ const AddProject = ({ id }) => {
   };
 
   return (
-    <div className="h-90p w-100p">
-      <h2 className="text-2xl font-bold mb-4">Add Project</h2>
+    <div className="h-90p w-100p ">
+      <div  className="h-10p w-full bg-blue-500  flex items-center justify-center font-semibold">Add Project</div>
+      <div className='h-90p w-full flex flex-col overflow-y-auto'>
       {error && <p className="text-red-500">{error}</p>}
       {successMessage && <p className="text-green-500">{successMessage}</p>}
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
         
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="projectName">
@@ -109,6 +114,33 @@ const AddProject = ({ id }) => {
             required
           />
         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="ppt">
+            PPT Link
+          </label>
+          <input
+            type="text"
+            id="ppt"
+            value={ppt}
+            onChange={(e) => setppt(e.target.value)}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="report">
+            Report Link
+          </label>
+          <input
+            type="text"
+            id="report"
+            value={report}
+            onChange={(e) => setreport(e.target.value)}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
+        
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="photos">
@@ -131,6 +163,8 @@ const AddProject = ({ id }) => {
           Submit
         </button>
       </form>
+      </div>
+      
     </div>
   );
 };

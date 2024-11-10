@@ -89,7 +89,11 @@ const [username, setUsername] = useState('');
               ))}
             </ul>
           </div>
-
+          <div className="bg-white rounded-md shadow mx-4 mb-4 p-4 flex justify-around">
+          <a href={groupInfo.PPT} className='h-100p w-30p bg-gray-400 text-center font-bold rounded-full'> Download PPT</a>
+          <a href={groupInfo.Report} className='h-100p w-30p bg-gray-400 text-center font-bold rounded-full'>Download Report</a>
+          </div>
+          
           <div className="bg-white rounded-md shadow mx-4 mb-4 p-4 flex  ">
             <h3 className="text-lg font-semibold mb-2">${console.log(groupInfo.photos)}</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -119,9 +123,15 @@ const [username, setUsername] = useState('');
       <div className="h-90p w-2"></div>
       
       <div className="h-100p w-40p bg-gray-100 flex flex-col overflow-y-auto">
-         <div className='h-8p w-full flex justify-center '>
-          <button onClick={() => setval(!val)} className='h-100p w-50p bg-blue-500 hover:bg-blue-300  text-white font-bold '>Update Group</button>
-          <button onClick={() => setval(!val)} className='h-100p w-50p  bg-yellow-200  hover:bg-blue-300  font-bold '>Chat</button>
+         <div className='h-8p w-full flex justify-center bg-blue-300 '>
+          
+          <button onClick={() => setval(!val)} className={`h-100p w-50p ${
+    val==true ? 'bg-blue-500' : 'bg-blue-300'
+  }  text-white font-bold`}>Update Group</button>
+
+          <button onClick={() => setval(!val)} className={`h-100p w-50p ${
+    val==false ? 'bg-blue-500' :'bg-blue-300'
+  }  text-white font-bold`}>Chat</button>
 
 
 

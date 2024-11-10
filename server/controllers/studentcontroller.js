@@ -46,7 +46,7 @@ const getProjectGroup= async (req, res) => {
 const UpdateGroup = async (req, res) => {
   try {
     // Extract project information from the request
-    const { groupid, projectname, projecttechnology, projectinfo,photos} = req.body;
+    const { groupid, projectname, projecttechnology, projectinfo,photos,ppt,report} = req.body;
     
     // Convert uploaded files to base64 strings
     
@@ -59,6 +59,9 @@ const UpdateGroup = async (req, res) => {
         projectName: projectname,
         projectTechnology: projecttechnology,
         projectinfo: projectinfo,
+        PPT:ppt,
+        Report:report,
+
         $set: { photos }, // Add photos array to existing ones
       },
       { new: true }
