@@ -3,29 +3,7 @@ import axios from 'axios';
 import { io } from 'socket.io-client';
 
 const ChatRoom = ({ groupId, yourName,role }) => {
-  const startserver =  () => {
-    try {
-      const token = localStorage.getItem('token');
-    
-      const response =  axios.post(`http://192.168.29.220:3000/${role}/Run`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        }
-        
-      );
-      console.log('Socket server started:', response.data);
-    } catch (error) {
-      console.error('Error starting socket server:', error);
-    }
-  };
-
-  // Use useEffect to start the server only once on component mount
-  useEffect(() => {
-    startserver();
-  }, []);
+ 
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [socket, setSocket] = useState(null);
@@ -92,6 +70,7 @@ const ChatRoom = ({ groupId, yourName,role }) => {
       groupId,
       senderName: yourName,
       message: newMessage,
+    Date:Date.now
     };
 
     // Emit the message to the server
@@ -103,7 +82,7 @@ const ChatRoom = ({ groupId, yourName,role }) => {
 
   // Scroll to the last message whenever messages change
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
   }, [messages]);
 
   return (

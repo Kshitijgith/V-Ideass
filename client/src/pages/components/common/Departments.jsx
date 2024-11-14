@@ -1,20 +1,55 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import {Routes,Route,Link} from 'react-router-dom'
 
-const Department=()=> {
+const Department = () => {
   const [isDepartmentMenuOpen, setIsDepartmentMenuOpen] = useState(false);
-  const [openDepartment, setOpenDepartment] = useState(null); // Track which department is open
+  const [openDepartment, setOpenDepartment] = useState(null); // Track the index of the open department
+  const [result, setResult] = useState([]);
+  const [info,setinfo]=useState();
+  const fetchResult = async (deptName) => {
+    try {
+      const response = await axios.post('http://192.168.29.220:3000/all/Find-Teacher', {
+        dept: deptName,
+      });
+      if (response.data.success) {
+        setResult(response.data.data);
+        console.log(response.data.data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const departments = [
-    { name: 'Computer Science', teachers: ['Alice', 'Bob', 'Carol', 'Jake', 'Maria'] },
-    { name: 'Mechanical Engineering', teachers: ['David', 'Eve', 'Frank', 'Liam', 'Olivia'] },
-    { name: 'Electrical Engineering', teachers: ['Grace', 'Heidi', 'Ivan', 'Noah', 'Sophia'] },
-    { name: 'Civil Engineering', teachers: ['Emma', 'Liam', 'Charlotte', 'Henry', 'Amelia'] },
-    { name: 'Chemical Engineering', teachers: ['Lily', 'James', 'Mason', 'Zoe', 'Jack'] },
-    { name: 'Aerospace Engineering', teachers: ['Mila', 'Ethan', 'Lucas', 'Ava', 'Mia'] },
+    { name: 'Computer Science', teachers: result },
+    { name: 'Information Technology', teachers: result },
+    { name: 'Electronics and Telecommunication', teachers: result },
+    { name: 'Electronics', teachers: result },
+    { name: 'BioMedical', teachers: result },
     
-    
-];
+  ];
 
+  const handleDepartmentHover = (index) => {
+    const selectedDepartment = departments[index];
+     setOpenDepartment(index); // Update the open department
+    fetchResult(selectedDepartment.name); // Fetch teachers directly with the department name
+  };
+  const teacherinfo=async(val)=>{
+    try{
+      const response=await axios.post('http://192.168.29.220:3000/all/Teacher',{
+        teachername:val
+      })
+      if(response){
+        setinfo(response.data.data)
+        console.log(response.data.data)
+      }
+    }
+    catch(error){
+  console.error('Error getting info',error);
+    }
+    
+  }
 
   return (
     <div className="relative inline-block h-full w-full">
@@ -28,16 +63,16 @@ const Department=()=> {
 
       {isDepartmentMenuOpen && (
         <div
-          className="absolute  w-48 bg-white rounded-md shadow-lg z-10"
+          className="absolute w-48 bg-white rounded-md shadow-lg z-10"
           onMouseEnter={() => setIsDepartmentMenuOpen(true)}
           onMouseLeave={() => setIsDepartmentMenuOpen(false)}
         >
-          <ul className="h-30p w-full ">
+          <ul className="h-30p w-full">
             {departments.map((department, index) => (
               <li
                 key={index}
                 className="relative px-4 py-2 text-white hover:text-black bg-blue-950 hover:bg-blue-100 cursor-pointer"
-                onMouseEnter={() => setOpenDepartment(index)}
+                onMouseEnter={() => handleDepartmentHover(index)} // Use arrow function to avoid immediate execution
                 onMouseLeave={() => setOpenDepartment(null)}
               >
                 {department.name}
@@ -49,9 +84,13 @@ const Department=()=> {
                       {department.teachers.map((teacher, idx) => (
                         <li
                           key={idx}
-                          className="px-4 py-2 text-gray-700 hover:bg-blue-100 cursor-pointer"
+                          className="px-4 py-2 flex  text-gray-700 hover:bg-blue-100 cursor-pointer"
                         >
-                          {teacher}
+                         
+                          <Link to="TeacherInfo" state={{Name:teacher.name}} className='h-full w-full'>{teacher.name}</Link>
+                          
+                          
+                          
                         </li>
                       ))}
                     </ul>
@@ -64,6 +103,6 @@ const Department=()=> {
       )}
     </div>
   );
-}
+};
 
-export default Department;
+export default Department

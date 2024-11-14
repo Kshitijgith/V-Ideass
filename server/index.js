@@ -4,12 +4,14 @@ const express = require('express');
 const connectDB = require('./config/db');
 const dotenv = require('dotenv');
 const cors = require('cors');
-
+const Chat=require('./SocketServer/Sserver');
 // Load environment variables
 dotenv.config();
 
 // Connect to MongoDB
 connectDB();
+//run socket server
+Chat();
 
 const app = express();
 

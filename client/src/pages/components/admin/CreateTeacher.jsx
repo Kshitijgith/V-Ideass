@@ -1,4 +1,3 @@
-// CreateTeacher.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -9,9 +8,31 @@ const CreateTeacher = () => {
     password: '',
     qualification: '',
     branch: '',
+    photo: '', // Store single photo here
   });
-  
+
   const [message, setMessage] = useState('');
+
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const base64 = await convertToBase64(file);
+      setFormData((prevData) => ({
+        ...prevData,
+        photo: base64, // Store base64 photo in formData
+      }));
+      console.log(base64); // Log base64 photo data
+    }
+  };
+
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,12 +46,12 @@ const CreateTeacher = () => {
     e.preventDefault();
     const t = `Bearer ${localStorage.getItem('token')}`;
     try {
-        const response = await axios({
-            method: 'POST',
-            url: 'http://192.168.29.220:3000/admin/create-teacher',
-            data: formData,
-            headers: { 'Authorization': t }
-          });
+      const response = await axios({
+        method: 'POST',
+        url: 'http://192.168.29.220:3000/admin/create-teacher',
+        data: formData,
+        headers: { Authorization: t },
+      });
       setMessage(response.data.message);
       setFormData({
         name: '',
@@ -38,6 +59,7 @@ const CreateTeacher = () => {
         password: '',
         qualification: '',
         branch: '',
+        photo: '',
       });
     } catch (error) {
       setMessage('Failed to create teacher. Please try again.');
@@ -45,16 +67,15 @@ const CreateTeacher = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-100p w-100p bg-blue-300 ">
-    <div className='h-10p w-50p flex justify-center items-center font-medium'>
-    <h2>Create Teacher</h2>
-    </div>
-    
-    <div className="w-50p h-80p bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center ">
+    <div className="flex flex-col items-center justify-center h-100p w-100p bg-blue-300">
+      <div className="h-10p w-50p flex justify-center items-center font-medium">
+        <h2>Create Teacher</h2>
+      </div>
 
-{message && <p className="mb-4 text-center text-green-500">{message}</p>}
+      <div className="w-50p h-80p bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
+        {message && <p className="mb-4 text-center text-green-500">{message}</p>}
 
-<form className="w-100p space-y-4 overflow-y-auto" onSubmit={handleSubmit}>
+        <form className="w-100p space-y-4 overflow-y-auto" onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="name" className="block text-gray-700">Name</label>
             <input
@@ -114,6 +135,19 @@ const CreateTeacher = () => {
               className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="photo">
+              Upload Photo
+            </label>
+            <input
+              type="file"
+              id="photo"
+              onChange={handleFileChange}
+              accept="image/*"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
           
           <button
             type="submit"
@@ -128,4 +162,3 @@ const CreateTeacher = () => {
 };
 
 export default CreateTeacher;
-

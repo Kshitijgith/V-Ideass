@@ -7,7 +7,7 @@ const Student = require('../models/student');
 // @route   POST /api/admin/create-teacher
 // @access  Private/Admin
 exports.createTeacher = async (req, res) => {
-  const { name, email, password, qualification, branch } = req.body;
+  const { name, email, password, qualification, branch,photo } = req.body;
         console.log(name)
         console.log(email)
         console.log(password)
@@ -32,6 +32,7 @@ exports.createTeacher = async (req, res) => {
       password,
       qualification,
       branch,
+      photo
     });
 
     // Save Teacher to the database (password hashing is handled in the schema)
@@ -46,6 +47,7 @@ exports.createTeacher = async (req, res) => {
         email: teacher.email,
         qualification: teacher.qualification,
         branch: teacher.branch,
+        photo:teacher.photo
       },
     });
   } catch (error) {

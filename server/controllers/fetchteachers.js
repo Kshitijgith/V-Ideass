@@ -1,0 +1,31 @@
+const Teacher=require('../models/teacher');
+const FindTeacher=async(req,res)=>{
+   try{
+const {dept}=req.body;
+const Teachers=await Teacher.find({branch:dept})
+res.json({success:true,data:Teachers})
+   }
+   catch(error){
+console.error("Error occured",error);
+res.status(500).json({success:false,message:'Internal Server Error'})
+   }
+};
+const TeacherName=async(req,res)=>{
+    try{
+        const {teachername}=req.body;
+        const teacher=await Teacher.findOne({name:teachername})
+        if(teacher){
+            res.json({success:true,data:teacher});
+        }
+        else{
+            res.json('NO teacher Found')
+        }
+    }
+    catch(error){
+        console.error('Error ocured',error);
+        res.status(500).json({success:false,message:'Internal Server Error'})
+
+    }
+}
+  
+module.exports={FindTeacher,TeacherName}

@@ -28,15 +28,15 @@ const initializeSocketServer = (req,res) => {
       console.log(`User joined group: ${groupId}`);
     });
 
-    socket.on('groupMessage', async ({ groupId, senderName, message }) => {
+    socket.on('groupMessage', async ({ groupId, senderName, message,Date }) => {
       try {
         // Emit the message to the group
-        io.to(groupId).emit('newMessage', { senderName, message });
+        io.to(groupId).emit('newMessage', { senderName, message,Date });
 
         // Save the message to the database
         await Project.findOneAndUpdate(
           { groupId: groupId },
-          { $push: { Chats: { senderName, message } } }
+          { $push: { Chats: { senderName, message,Date } } }
         );
       } catch (error) {
         console.error('Error saving message:', error);
@@ -50,11 +50,11 @@ const initializeSocketServer = (req,res) => {
   const SOCKET_PORT =  5001;
   server.listen(SOCKET_PORT, () => {
     console.log(`Socket.IO server running on port ${SOCKET_PORT}`);
-    res.json('Socket.IO server running on port ${SOCKET_PORT}')
+    // res.json('Socket.IO server running on port ${SOCKET_PORT}')
   });
 
   ioInstance = io; // Store the instance to prevent multiple servers
   return ioInstance;
 };
 
-module.exports = { initializeSocketServer };
+module.exports =  initializeSocketServer ;

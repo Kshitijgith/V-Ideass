@@ -7,6 +7,9 @@ import GroupActions from './components/student/GroupAction';
 import EachGroup from './components/common/Eachgroup';
 import Department from './components/common/Departments';
 import { Menu, X, Search, User, Key, LogOut } from 'lucide-react';
+import  TeacherBoard  from './components/common/TeacherInfo';
+
+
 const StudentDashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate=useNavigate();
@@ -97,6 +100,7 @@ navigate('/');
         <Route path="/EachGroup" element={< EachGroup/>} />
           <Route path="FetchGroups" element={<FetchGroups />} />
           <Route path="FetchGroups/GroupActions" element={<GroupActions />} />
+          <Route path="/TeacherInfo" element={<TeacherBoard />} />
         </Routes>
       </div>
     </div>

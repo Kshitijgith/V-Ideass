@@ -10,6 +10,10 @@ const TeacherSchema = new mongoose.Schema(
       required: [true, 'Please add a teacher name'],
       trim: true,
     },
+    photo:{
+      type: String,
+      required:true
+    },
     email: {
       type: String,
       required: [true, 'Please add a teacher email'],
@@ -20,6 +24,9 @@ const TeacherSchema = new mongoose.Schema(
         /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
         'Please add a valid email',
       ],
+    },
+    journey:{
+      type:String,
     },
     password: {
       type: String,
