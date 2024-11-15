@@ -71,8 +71,8 @@ navigate('/');
           Your Group
         </Link>
         
-        <Link to="FetchGroups" className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
-          Update Password
+        <Link to="UpdateProfile" className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
+          Update Profile
         </Link>
         
         <button onClick={go} className='h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
@@ -101,6 +101,7 @@ navigate('/');
           <Route path="FetchGroups" element={<FetchGroups />} />
           <Route path="FetchGroups/GroupActions" element={<GroupActions />} />
           <Route path="/TeacherInfo" element={<TeacherBoard />} />
+        
         </Routes>
       </div>
     </div>

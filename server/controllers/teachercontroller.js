@@ -3,6 +3,7 @@
 const Group = require('../models/group');
 const Student = require('../models/student'); // Import the student model
 const Teacher=require('../models/teacher')
+const bcrypt = require('bcryptjs');
 /**
  * @desc    Create a project group
  * @route   POST /api/teacher/groups
@@ -130,7 +131,50 @@ const Approve = async (req, res) => {
   }
   
 }
+const UpdateProfile=async(req,res)=>{
+  try{
+    const{Name,password,journe,Photo,Qualification}=req.body;
+    const salt = await bcrypt.genSalt(10);
+    const Password = await bcrypt.hash(password, salt);
+    const response = await Teacher.findOneAndUpdate(
+      { email: Name }, // Query to find the document
+      { 
+        password: Password, 
+        qualification: Qualification, 
+        journey: journe, 
+        photo: Photo 
+      }, // Update object
+      { new: true } // Options, e.g., to return the updated document
+    );
+    
+    if(response){
+      res.json({success:true,data:'Profile Update Successfully'})
+    }
+    
+  }
+catch(error){
+console.error('Error Updating Profile',error);
+res.status(500).json({success:false,message:'Internal Server Error'})
+}  
+}
+const Teacherinfo=async(req,res)=>{
+  try{
+      const {Name}=req.body;
+      const teacher=await Teacher.findOne({email:Name})
+      if(teacher){
+          res.json({success:true,data:teacher});
+      }
+      else{
+          res.json('NO teacher Found')
+      }
+  }
+  catch(error){
+      console.error('Error ocured',error);
+      res.status(500).json({success:false,message:'Internal Server Error'})
 
-module.exports = {createGroup,Getgroups,Approve};
+  }
+}
+
+module.exports = {createGroup,Getgroups,Approve,UpdateProfile,Teacherinfo};
 
 

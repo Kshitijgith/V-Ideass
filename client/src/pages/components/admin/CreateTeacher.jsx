@@ -8,32 +8,9 @@ const CreateTeacher = () => {
     password: '',
     qualification: '',
     branch: '',
-    photo: '', // Store single photo here
   });
 
   const [message, setMessage] = useState('');
-
-  const handleFileChange = async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const base64 = await convertToBase64(file);
-      setFormData((prevData) => ({
-        ...prevData,
-        photo: base64, // Store base64 photo in formData
-      }));
-      console.log(base64); // Log base64 photo data
-    }
-  };
-
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-  };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -59,7 +36,6 @@ const CreateTeacher = () => {
         password: '',
         qualification: '',
         branch: '',
-        photo: '',
       });
     } catch (error) {
       setMessage('Failed to create teacher. Please try again.');
@@ -136,18 +112,7 @@ const CreateTeacher = () => {
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="photo">
-              Upload Photo
-            </label>
-            <input
-              type="file"
-              id="photo"
-              onChange={handleFileChange}
-              accept="image/*"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            />
-          </div>
+          
           
           <button
             type="submit"

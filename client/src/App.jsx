@@ -7,6 +7,7 @@ import Admin from './pages/Admin';
 import StudentDashboard from './pages/StudentDashboard';
 import CreateStudent from './pages/components/admin/CreateStudent';
 import CreateTeacher from './pages/components/admin/CreateTeacher';
+import EachGroup from './pages/components/common/Eachgroup';
 import VITlogo from './assets/logo_vit.png';
 import VIT from './assets/VIT.png';
 const PageTransition = ({ children }) => {
@@ -74,7 +75,8 @@ const App = () => {
         <div className='h-90p w-100p  bg-red-100  flex flex-col'>
         
             <Routes>
-              <Route path="/" element={<Home />} />        
+              <Route path="/" element={<Home />} /> 
+              <Route path="/Eachgroup" element={<EachGroup />} />        
               <Route path={`admin/*`} element={<Admin />} />
  
 <Route path="/StudentDashBoard/*" element={<StudentDashboard />} />

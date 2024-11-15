@@ -1,4 +1,5 @@
 const Teacher=require('../models/teacher');
+const Project=require('../models/group')
 const FindTeacher=async(req,res)=>{
    try{
 const {dept}=req.body;
@@ -27,5 +28,24 @@ const TeacherName=async(req,res)=>{
 
     }
 }
+
+const FindProjects=async(req,res)=>{
+    try{
+       const {teachername}=req.body
+       const response=await Project.find({guideName:teachername,status:true})
+       if(response){
+        res.json({success:true,data:response})
+       }
+       else{
+        res.json('Not Part of Any Group')
+       }
+
+    }
+    catch(error){
+        console.error('Error Finding Project',error);
+        res.status(500).json({success:false,message:"Internal Server Error"})
+    }
+
+}
   
-module.exports={FindTeacher,TeacherName}
+module.exports={FindTeacher,TeacherName,FindProjects}

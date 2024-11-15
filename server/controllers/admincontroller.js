@@ -2,12 +2,12 @@
 
 const Teacher = require('../models/teacher');
 const Student = require('../models/student');
-
+const SendEmail=require('./Message')
 // @desc    Create a new Teacher account
 // @route   POST /api/admin/create-teacher
 // @access  Private/Admin
 exports.createTeacher = async (req, res) => {
-  const { name, email, password, qualification, branch,photo } = req.body;
+  const { name, email, password, qualification, branch } = req.body;
         console.log(name)
         console.log(email)
         console.log(password)
@@ -32,13 +32,17 @@ exports.createTeacher = async (req, res) => {
       password,
       qualification,
       branch,
-      photo
     });
 
     // Save Teacher to the database (password hashing is handled in the schema)
-    await teacher.save();
-
-    // Respond with the created Teacher details (excluding password)
+   
+    await SendEmail(
+      email,  // recipient email
+      'Update Your Password',  // subject
+      `Update Your Password by Logging In. Your Credentials are: Email: ${email}, Password: ${password}`  // dynamic email content
+  );
+  await teacher.save();
+    //Respond with the created Teacher details (excluding password)
     res.status(201).json({
       message: 'Teacher created successfully',
       teacher: {
@@ -47,7 +51,6 @@ exports.createTeacher = async (req, res) => {
         email: teacher.email,
         qualification: teacher.qualification,
         branch: teacher.branch,
-        photo:teacher.photo
       },
     });
   } catch (error) {

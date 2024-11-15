@@ -9,7 +9,9 @@
     "mogodb": "^0.0.1-security",
     "mongoose": "^8.7.1",
     "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.16",
     "nodemon": "^3.1.7",
+    "sib-api-v3-sdk": "^8.5.0",
     "socket.io": "^4.8.1"
   },
   "scripts": {
