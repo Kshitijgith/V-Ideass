@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const UpdateGroup = async (groupid, projectname, projecttechnology, projectinfo,photos,ppt,report) => {
+const UpdateGroup = async (groupid, projectname, projecttechnology, projectinfo,photos,ppt,report,tags) => {
   try {
     const token = localStorage.getItem('token'); // Retrieve token from local storage
 
@@ -10,6 +10,7 @@ const UpdateGroup = async (groupid, projectname, projecttechnology, projectinfo,
       projectname,
       projecttechnology,
       projectinfo,
+      tags,
       photos,
       ppt,
       report

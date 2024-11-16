@@ -5,8 +5,8 @@ import Home from './pages/Home';
 import GuideDashboard from './pages/Guide'
 import Admin from './pages/Admin';
 import StudentDashboard from './pages/StudentDashboard';
-import CreateStudent from './pages/components/admin/CreateStudent';
-import CreateTeacher from './pages/components/admin/CreateTeacher';
+import ForgotPassword from './pages/components/common/ForgotPassword';
+
 import EachGroup from './pages/components/common/Eachgroup';
 import VITlogo from './assets/logo_vit.png';
 import VIT from './assets/VIT.png';
@@ -76,6 +76,7 @@ const App = () => {
         
             <Routes>
               <Route path="/" element={<Home />} /> 
+              <Route path="/ForgotPassword" element={<ForgotPassword />} /> 
               <Route path="/Eachgroup" element={<EachGroup />} />        
               <Route path={`admin/*`} element={<Admin />} />
  

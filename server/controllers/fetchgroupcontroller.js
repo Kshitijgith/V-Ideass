@@ -69,7 +69,21 @@ const Insertchat = async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 };
+const searchGroups = async (req,res) => {
+  try {
+    const { query } = req.body; // Get query from body
+    const results = await Project.find({
+      status:true,
+      $text: { $search: query }
+    });
+    res.json({ success: true, data: results });
+  } catch (error) {
+    console.error('Error in search:', error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+};
 
 
 
-module.exports = {Showgroups,IDgroups,GroupChat,Insertchat};
+
+module.exports = {Showgroups,IDgroups,GroupChat,Insertchat,searchGroups};

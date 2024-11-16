@@ -10,6 +10,7 @@ import { Menu, X, Search, User, Key, LogOut } from 'lucide-react';
 import UpdateProfile from './components/teacher/UpdateProfile';
 import Department from './components/common/Departments';
 import  TeacherBoard  from './components/common/TeacherInfo';
+import SearchProjects from './components/common/SearchProjects';
 const GuideDashboard = () => {
   const navigate=useNavigate();
   const go=()=>{
@@ -17,7 +18,7 @@ const GuideDashboard = () => {
 navigate('/');
   }
   const [username, setUsername] = useState('');
-  
+  const [searchText, setSearchText] = useState('');
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -39,7 +40,13 @@ navigate('/');
             placeholder='Search Projects' 
             className='h-100p w-100p pl-10 pr-4 text-xl font-bold text-center bg-white '
           />
-          <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400' size={24} />
+        
+      <Link
+        to='SearchResults' state={{searchText:searchText}}
+        className='absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-500 font-bold'
+      >
+        Go
+      </Link>
         </div>
         <div className='h-100p w-50p flex justify-between'>
         <button className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
@@ -75,7 +82,7 @@ navigate('/');
           <Route path="FetchGroupsT/GroupActionsT" element={<GroupActionsT />} />
           <Route path="/UpdateProfile" element={<UpdateProfile />} />
           <Route path="/TeacherInfo" element={<TeacherBoard />} />
-        
+          <Route path="/SearchResults" element={<SearchProjects />} />
         </Routes>
       </div>
     </div>

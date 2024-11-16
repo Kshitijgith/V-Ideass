@@ -8,8 +8,8 @@ import EachGroup from './components/common/Eachgroup';
 import Department from './components/common/Departments';
 import { Menu, X, Search, User, Key, LogOut } from 'lucide-react';
 import  TeacherBoard  from './components/common/TeacherInfo';
-
-
+import UpdateProfile from './components/student/Updateprofile';
+import SearchProjects from './components/common/SearchProjects';
 const StudentDashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate=useNavigate();
@@ -21,7 +21,8 @@ navigate('/');
     setIsMenuOpen
   }
   const [username, setUsername] = useState('');
-  
+  const [searchText, setSearchText] = useState('');
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -29,7 +30,7 @@ navigate('/');
       setUsername(decoded.email);
     }
   }, []);
-
+console.log(searchText)
   return (
     <div className='h-100p w-100p lg bg-blue-300 flex flex-col'>
        {isMenuOpen && (
@@ -38,7 +39,7 @@ navigate('/');
           <Link to="FetchGroups" className="flex items-center text-white py-2">
             <User size={18} className="mr-2" /> Your Group
           </Link>
-          <Link to="FetchGroups" className="flex items-center text-white py-2">
+          <Link to="UpdateProfile" state={{}} className="flex items-center text-white py-2">
             <Key size={18} className="mr-2" /> Update Password
           </Link>
           <button onClick={go} className='flex items-center text-white py-2 w-full text-left'>
@@ -55,13 +56,21 @@ navigate('/');
         </div>
         
         <div className='h-100p w-30p relative'>
-          <input 
-            type='text' 
-            placeholder='Search Projects' 
-            className='h-100p w-100p pl-10 pr-4 text-xl font-bold text-center bg-white '
-          />
-          <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400' size={24} />
-        </div>
+      <input
+        type='text'
+        placeholder='Search Projects'
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+        className='h-100p w-100p pl-10 pr-4 text-xl font-bold text-center bg-white'
+      />
+      <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400' size={24} />
+      <Link
+        to='SearchResults' state={{searchText:searchText}}
+        className='absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-500 font-bold'
+      >
+        Go
+      </Link>
+    </div>
         <div className='h-100p w-50p flex justify-between'>
         <button className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
           <Department/>
@@ -71,7 +80,7 @@ navigate('/');
           Your Group
         </Link>
         
-        <Link to="UpdateProfile" className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
+        <Link to="UpdateProfile" state={{Email:username}} className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
           Update Profile
         </Link>
         
@@ -98,10 +107,12 @@ navigate('/');
         <Routes>
         <Route path="/" element={<FetchAll />} />
         <Route path="/EachGroup" element={< EachGroup/>} />
+        
           <Route path="FetchGroups" element={<FetchGroups />} />
           <Route path="FetchGroups/GroupActions" element={<GroupActions />} />
           <Route path="/TeacherInfo" element={<TeacherBoard />} />
-        
+          <Route path="/UpdateProfile" element={<UpdateProfile />} />
+          <Route path="/SearchResults" element={<SearchProjects />} />
         </Routes>
       </div>
     </div>

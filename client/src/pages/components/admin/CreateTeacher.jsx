@@ -4,12 +4,28 @@ import axios from 'axios';
 const CreateTeacher = () => {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    email: '@vit.edu.in',
     password: '',
     qualification: '',
     branch: '',
   });
+  const genratePassword=(length)=> {
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?';
+    let Password = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      Password += characters[randomIndex];
+    }
+    setFormData((prevState) => ({
+      ...prevState,      
+      password:Password,
+    }));
+  }
+  
 
+  
+  
   const [message, setMessage] = useState('');
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,10 +33,12 @@ const CreateTeacher = () => {
       ...prevData,
       [name]: value,
     }));
+    genratePassword(8);
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     const t = `Bearer ${localStorage.getItem('token')}`;
     try {
       const response = await axios({
@@ -30,6 +48,7 @@ const CreateTeacher = () => {
         headers: { Authorization: t },
       });
       setMessage(response.data.message);
+
       setFormData({
         name: '',
         email: '',
@@ -72,33 +91,11 @@ const CreateTeacher = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-3 py-2 mt-1 text-black border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
           
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-gray-700">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
           
-          <div className="mb-4">
-            <label htmlFor="qualification" className="block text-gray-700">Qualification</label>
-            <input
-              type="text"
-              name="qualification"
-              value={formData.qualification}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
           
           <div className="mb-4">
             <label htmlFor="branch" className="block text-gray-700">Branch</label>
@@ -111,6 +108,7 @@ const CreateTeacher = () => {
               className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
+          
 
           
           

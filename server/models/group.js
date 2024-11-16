@@ -25,6 +25,10 @@ const groupSchema = new mongoose.Schema({
     type: String,
     required: false
   },
+  tags: {
+    type: [String],
+    required: false
+  },
   guideName: {
     type: String,
     required: true
@@ -76,6 +80,13 @@ const groupSchema = new mongoose.Schema({
     default: []  // Initialize as an empty array by default
 }
 
+});
+groupSchema.index({
+  groupName: 'text',
+  projectName: 'text',
+  projectTechnology: 'text',
+  tags: 'text',
+  projectinfo: 'text'
 });
 
 module.exports = mongoose.model('Group', groupSchema);

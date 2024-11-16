@@ -3,18 +3,18 @@
 const Teacher = require('../models/teacher');
 const Student = require('../models/student');
 const SendEmail=require('./Message')
+const bcrypt = require('bcryptjs');
 // @desc    Create a new Teacher account
 // @route   POST /api/admin/create-teacher
 // @access  Private/Admin
 exports.createTeacher = async (req, res) => {
-  const { name, email, password, qualification, branch } = req.body;
+  const { name, email, password, branch } = req.body;
         console.log(name)
         console.log(email)
         console.log(password)
-        console.log(qualification)
         console.log(branch)
   // Basic validation
-  if (!name || !email || !password || !qualification || !branch) {
+  if (!name || !email || !password  || !branch) {
     return res.status(400).json({ message: 'Please provide all required fields' });
   }
 
@@ -30,7 +30,6 @@ exports.createTeacher = async (req, res) => {
       name,
       email,
       password,
-      qualification,
       branch,
     });
 
@@ -39,7 +38,11 @@ exports.createTeacher = async (req, res) => {
     await SendEmail(
       email,  // recipient email
       'Update Your Password',  // subject
-      `Update Your Password by Logging In. Your Credentials are: Email: ${email}, Password: ${password}`  // dynamic email content
+      `Update Your Password by Logging In 
+   
+  Your Credentials are: 
+  <br>Email: ${email}
+  <br>Password: ${password}`  // dynamic email content
   );
   await teacher.save();
     //Respond with the created Teacher details (excluding password)
@@ -49,7 +52,6 @@ exports.createTeacher = async (req, res) => {
         id: teacher._id,
         name: teacher.name,
         email: teacher.email,
-        qualification: teacher.qualification,
         branch: teacher.branch,
       },
     });
@@ -120,3 +122,41 @@ exports.createStudent = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+const genratePassword=(length)=> {
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?';
+  let Password = '';
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    Password += characters[randomIndex];
+  }
+  return Password
+}
+exports.ForgotPassword=async(req,res)=>{
+try{
+  const salt = await bcrypt.genSalt(10);
+  const Password=genratePassword(8)
+  const Pass=await bcrypt.hash(Password, salt);
+const {role,email}=req.body;
+const Model = role === 'Student' ? Student : Teacher;
+const response=await Model.findOneAndUpdate(
+  {email:email},
+  {password:Pass},
+  {new:true}
+
+);
+await SendEmail(
+  email,  // recipient email
+  'Reset Your Password',  // subject
+  `Update Your Password by Logging In V-Ideas  
+Your Credentials are: 
+<br>Email: ${email}
+<br>Password: ${Password}`  // dynamic email content
+);
+res.json({success:true,message:'Link Shared in email'})
+}
+catch(error){
+console.error(error,'Error while Reseting Password');
+res.status(500).json({success:false,message:'Internal Server Error'})
+}
+}

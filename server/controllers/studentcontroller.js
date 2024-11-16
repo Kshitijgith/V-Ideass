@@ -1,5 +1,6 @@
 const Student = require('../models/student'); // Import your Student model
 const Project = require('../models/group'); // Import your Project model
+const bcrypt = require('bcryptjs');
 
 
 // Configure Multer to store files temporarily
@@ -46,7 +47,7 @@ const getProjectGroup= async (req, res) => {
 const UpdateGroup = async (req, res) => {
   try {
     // Extract project information from the request
-    const { groupid, projectname, projecttechnology, projectinfo,photos,ppt,report} = req.body;
+    const { groupid, projectname, projecttechnology, projectinfo,photos,ppt,report,tags} = req.body;
     
     // Convert uploaded files to base64 strings
     
@@ -61,6 +62,7 @@ const UpdateGroup = async (req, res) => {
         projectinfo: projectinfo,
         PPT:ppt,
         Report:report,
+        tags:tags,
 
         $set: { photos }, // Add photos array to existing ones
       },
@@ -80,6 +82,44 @@ const UpdateGroup = async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 };
+const UpdateProfile = async (req, res) => {
+  try {
+    const { Email, oldPassword, newPassword } = req.body;
+      //  console.log(Email);
+      //  console.log(oldPassword);
+      //  console.log(newPassword);
+    // Find the user by email
+    const user = await Student.findOne({ email: Email });
+    console.log(user)
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+    // Compare the provided old password with the stored password
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ success: false, message: 'Old password is incorrect' });
+    }
 
+    // Hash the new password
+    const salt = await bcrypt.genSalt(10);
+    const hashedNewPassword = await bcrypt.hash(newPassword, salt);
 
-module.exports={getProjectGroup,UpdateGroup}
+    // Update the password
+    const response = await Student.findOneAndUpdate(
+      { email: Email }, // Query to find the document
+      { password: hashedNewPassword }, // Update object
+      { new: true } // Options, to return the updated document
+    );
+
+    if (response) {
+      return res.json({ success: true, data: 'Profile updated successfully' });
+    }
+
+    return res.status(500).json({ success: false, message: 'Failed to update profile' });
+  } catch (error) {
+    console.error('Error Updating Profile:', error);
+    return res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+};
+
+module.exports={getProjectGroup,UpdateGroup,UpdateProfile}

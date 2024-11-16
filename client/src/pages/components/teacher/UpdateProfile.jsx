@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
+// "name":"Anna Nete",
+// "email":"workkshitij16@gmail.com",
+
 const UpdateProfile = () => {
   const location = useLocation();
   const { email } = location.state || {};
   console.log(email);
-  var token
+  const token=localStorage.getItem('token');
   const [profileData, setProfileData] = useState({
     Name: email ,
     password: '',
@@ -18,13 +21,7 @@ const UpdateProfile = () => {
   const [photoPreview, setPhotoPreview] = useState('');
 
   // Fetch token from local storage
-  useEffect(() => {
-    token = localStorage.getItem('token');
-   
-    
-    console.log(token)
-
-  }, []);
+  
 
   
     const fetchProfileData = async () => {
@@ -86,17 +83,21 @@ useEffect(()=>{
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios({
-        method: 'POST',
-        url: 'http://192.168.29.220:3000/teacher/Update-Profile', // Replace with the correct URL
-        headers: { Authorization: `Bearer ${token}` },
-        data: profileData,
-        
-      });
-      setprofile(profile)
+      console.log(token);
+      
+      const response = await axios.post(
+         'http://192.168.29.220:3000/teacher/Update-Profile', 
+   profileData,
+        {headers:{ Authorization: `Bearer ${token}` },}
+      );
+      //setprofile(profile)
       alert('Profile updated successfully!');
     } catch (error) {
       console.error('Error updating profile:', error);
+      console.log(profileData.Name)
+      console.log(profileData.Photo)
+      console.log(profileData.Qualification)
+      console.log(profileData.journe)
       alert('Failed to update profile.');
     }
   };

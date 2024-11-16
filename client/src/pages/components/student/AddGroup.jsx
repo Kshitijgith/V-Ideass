@@ -8,6 +8,7 @@ const AddProject = ({ id }) => {
   const [projecttechnology, setProjectTechnology] = useState('');
   const [projectinfo, setProjectInfo] = useState('');
   const [ppt, setppt] = useState('');
+  const [tags, settags] = useState('');
   const [report, setreport] = useState('');
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState('');
@@ -47,7 +48,7 @@ const AddProject = ({ id }) => {
       console.log(Array.isArray(photos)); // Confirm `photos` is an array
       console.log(photos); // Log `photos` to check content
 
-      const result = await updateGroup(groupid, projectname, projecttechnology, projectinfo, photos,ppt,report);
+      const result = await updateGroup(groupid, projectname, projecttechnology, projectinfo, photos,ppt,report,tags);
       setSuccessMessage('Group updated successfully!');
       console.log(result);
       
@@ -57,6 +58,7 @@ const AddProject = ({ id }) => {
       setProjectTechnology('');
       setProjectInfo('');
       setppt('');
+      settags('')
       setreport('');
       setPhotos([]);
     } catch (err) {
@@ -136,6 +138,19 @@ const AddProject = ({ id }) => {
             id="report"
             value={report}
             onChange={(e) => setreport(e.target.value)}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="tags">
+            Add Tags
+          </label>
+          <input
+            type="text"
+            id="tags"
+            value={tags}
+            onChange={(e) => settags(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             required
           />

@@ -9,7 +9,7 @@ const sendEmail = async (toEmail, subject, message) => {
   const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
   const emailData = {
-    sender: { email: 'kshitijkamble30@gmail.com', name: 'Videas' },
+    sender: { email: process.env.email, name: 'V-Ideas' },
     to: [{ email: toEmail }],
     subject: subject,
     htmlContent: `<p>${message}</p>`, // You can use HTML here
