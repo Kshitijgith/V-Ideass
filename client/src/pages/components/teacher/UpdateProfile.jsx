@@ -105,7 +105,7 @@ useEffect(()=>{
   return (
     <div className="h-100p w-100p flex items-center justify-center overflow-y-auto bg-gray-300">
       <form
-        className="flex flex-col  overflow-y-auto items-center  rounded-xl justify-center h-90p w-40p bg-white"
+        className="flex flex-col  overflow-y-auto items-center  rounded-xl justify-center h-90p w-40p sm:w-90p sm:h-80p bg-white"
         onSubmit={handleUpdateProfile}
       >
         {/* Circular Photo Placeholder */}

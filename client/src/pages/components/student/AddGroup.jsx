@@ -68,9 +68,9 @@ const AddProject = ({ id }) => {
   };
 
   return (
-    <div className="h-90p w-100p ">
-      <div  className="h-10p w-full bg-blue-500  flex items-center justify-center font-semibold">Add Project</div>
-      <div className='h-90p w-full flex flex-col overflow-y-auto'>
+    <div className="h-92p w-100p ">
+      <div  className="h-10p sm:hidden w-full bg-blue-500  flex items-center justify-center font-semibold">Add Project</div>
+      <div className='h-100p w-full flex flex-col overflow-y-auto'>
       {error && <p className="text-red-500">{error}</p>}
       {successMessage && <p className="text-green-500">{successMessage}</p>}
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ">

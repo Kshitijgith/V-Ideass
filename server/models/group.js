@@ -82,6 +82,7 @@ const groupSchema = new mongoose.Schema({
 
 });
 groupSchema.index({
+  guideName:'text',
   groupName: 'text',
   projectName: 'text',
   projectTechnology: 'text',

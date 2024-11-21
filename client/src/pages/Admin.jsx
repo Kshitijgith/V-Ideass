@@ -27,8 +27,8 @@ useEffect(() => {
 
   return (
     <div className='h-100p w-100p lg bg-blue-300 flex flex-col'>
-      <div className='h-8p w-100p bg-yellow-400  md:flex  justify-center items-center'>
-      <p className="text-lg  flex justify-center">Welcome,{username} You can manage users here.</p>
+      <div className='h-8p sm:h-2p w-100p bg-yellow-400  flex  justify-center items-center'>
+      <p className="text-lg  sm:text-sm items-center h-50p   flex justify-center">Welcome,{username} You can manage users here.</p>
       </div>
       <div className='h-92p w-100p   flex justify-center items-center'>
       <Routes>

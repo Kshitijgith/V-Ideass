@@ -47,7 +47,7 @@ const EachGroup = () => {
       {error && <p className="text-red-500 font-semibold text-lg">{error}</p>}
 
       {groupInfo ? (
-        <div className="bg-gray-200 h-100p w-80p rounded-lg shadow-md flex flex-col   overflow-y-auto">
+        <div className="bg-gray-200 h-90p w-70p sm:w-100p rounded-lg shadow-md flex flex-col   overflow-y-auto">
           <h2 className="text-3xl font-bold  mb-4 px-4 pt-4">{groupInfo.projectName}</h2>
           
           <div className="bg-white rounded-md shadow mx-4 mb-4 p-4">
@@ -60,7 +60,7 @@ const EachGroup = () => {
             </span>
           </div>
 
-          <div className="bg-white rounded-md shadow mx-4 mb-4 p-4">
+          <div className="bg-white  rounded-md shadow mx-4 mb-4 p-4">
             <h3 className="text-lg font-semibold mb-2">Project Overview</h3>
             <p className="text-gray-700">{groupInfo.projectinfo}</p>
           </div>
@@ -78,9 +78,9 @@ const EachGroup = () => {
               ))}
             </ul>
           </div>
-          <div className="bg-white rounded-md shadow mx-4 mb-4 p-4 flex items-center justify-evenly">
-          <a href={groupInfo.PPT} className='h-100p w-30p bg-gray-400 text-center font-bold rounded-full'> Download PPT</a>
-          <a href={groupInfo.Report} className='h-100p w-30p bg-gray-400 text-center font-bold rounded-full'>Download Report</a>
+          <div className="bg-white rounded-md shadow mx-4 mb-4 p-4 flex  items-center justify-evenly">
+          <a href={groupInfo.PPT} className='h-100p w-30p sm:w-40p bg-gray-400 text-center font-bold rounded-full'> Download PPT</a>
+          <a href={groupInfo.Report} className='h-100p w-30p sm:w-40p bg-gray-400 text-center font-bold rounded-full'>Download Report</a>
           </div>
           <div className='h-20p w-full'></div>
           <div className="bg-white rounded-md shadow mx-4 mb-4 p-4 flex flex-col  ">

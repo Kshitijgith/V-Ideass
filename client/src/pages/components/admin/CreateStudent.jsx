@@ -51,11 +51,11 @@ const CreateStudent = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-100p w-100p bg-blue-300 ">
-      <div className='h-10p w-50p flex justify-center items-center font-medium'>
-      <h2>Create Student</h2>
+      <div className='h-10p sm:h-2p  w-50p   sm:w-80p flex justify-center items-center font-medium'>
+      <h3>Create Student</h3>
       </div>
       
-      <div className="w-50p h-80p bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center ">
+      <div className="w-50p h-80p sm:w-90p sm:h-80p bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center ">
   
   {message && <p className="mb-4 text-center text-green-500">{message}</p>}
   

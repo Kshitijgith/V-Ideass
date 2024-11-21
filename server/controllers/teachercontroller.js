@@ -139,7 +139,7 @@ const UpdateProfile=async(req,res)=>{
     const response = await Teacher.findOneAndUpdate(
       { email: Name }, // Query to find the document
       { 
-        password: Password, 
+        password: Password,
         qualification: Qualification, 
         journey: journe, 
         photo: Photo 
@@ -157,6 +157,7 @@ console.error('Error Updating Profile',error);
 res.status(500).json({success:false,message:'Internal Server Error'})
 }  
 }
+
 const Teacherinfo=async(req,res)=>{
   try{
       const {Name}=req.body;

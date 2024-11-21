@@ -10,39 +10,9 @@ import ForgotPassword from './pages/components/common/ForgotPassword';
 import EachGroup from './pages/components/common/Eachgroup';
 import VITlogo from './assets/logo_vit.png';
 import VIT from './assets/VIT.png';
-const PageTransition = ({ children }) => {
-  const location = useLocation();
-  return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={location.pathname}
-        initial={{ opacity: 0, x: 200 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: 200 }}
-        transition={{ duration: 0.3 }}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
-  );
-};
 
-const NavLink = ({ to, children }) => {
-  const [isHovered, setIsHovered] = useState(false);
 
-  return (
-    <Link
-      to={to}
-      className={`text-white  rounded transition-all duration-300 ease-in-out transform ${
-        isHovered ? 'bg-purple-700 scale-105' : ''
-      }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {children}
-    </Link>
-  );
-};
+
 const token = localStorage.getItem('token');
 var decoded='a'
 if(token){
@@ -57,13 +27,13 @@ const App = () => {
 
     <Router>
       
-      <div className='h-screen w-100p bg-white flex flex-col'>
+      <div className='h-screen w-screen bg-white flex flex-col'>
       <div className='h-10p w-100p bg-blue-950 flex justify-evenly '>
         <div className='w-30p h-100p flex items-center'>
-        <img className='h-60p w-40p ' src={VITlogo} alt="Toyota Background" />
+        <img className='h-60p w-40p sm:h-60p sm:w-100p ' src={VITlogo} alt="Toyota Background" />
         </div>
         <div className='h-100p w-50p flex justify-end items-center '>
-        <img className='h-60p w-40p ' src={VIT} alt="Toyota Background" />
+        <img className='h-60p w-40p sm:h-50p sm:w-60p' src={VIT} alt="Toyota Background" />
         </div>
       
 </div>
@@ -72,9 +42,9 @@ const App = () => {
      <img className='h-100p w-50p bg-cover' src={sampleImage}  /> 
      
 </div> */}
-        <div className='h-90p w-100p  bg-red-100  flex flex-col'>
+        <div className='h-90p w-100p  bg-red-100  flex flex-col justify-center items-center overflow-y-auto '>
         
-            <Routes>
+            <Routes >
               <Route path="/" element={<Home />} /> 
               <Route path="/ForgotPassword" element={<ForgotPassword />} /> 
               <Route path="/Eachgroup" element={<EachGroup />} />        

@@ -67,7 +67,7 @@ const CreateTeacher = () => {
         <h2>Create Teacher</h2>
       </div>
 
-      <div className="w-50p h-80p bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
+      <div className="w-50p sm:h-60p sm:w-60p h-80p bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
         {message && <p className="mb-4 text-center text-green-500">{message}</p>}
 
         <form className="w-100p space-y-4 overflow-y-auto" onSubmit={handleSubmit}>
@@ -91,7 +91,7 @@ const CreateTeacher = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 mt-1 text-black border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-3 py-2 mt-1  text-black border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
           

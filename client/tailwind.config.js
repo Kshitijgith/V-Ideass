@@ -36,7 +36,10 @@ export default {
         '92p':'92%',
         '100p': '100%',
       },
+      screens: {
+        sm: { min: '300px', max: '600px' },
     },
   },
   plugins: [],
+}
 }

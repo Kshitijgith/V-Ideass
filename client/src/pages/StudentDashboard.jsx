@@ -6,23 +6,35 @@ import FetchAll from './components/common/Allgroups';
 import GroupActions from './components/student/GroupAction';
 import EachGroup from './components/common/Eachgroup';
 import Department from './components/common/Departments';
-import { Menu, X, Search, User, Key, LogOut } from 'lucide-react';
+import { Menu, X, Search, User, Key, LogOut,House } from 'lucide-react';
+
 import  TeacherBoard  from './components/common/TeacherInfo';
 import UpdateProfile from './components/student/Updateprofile';
 import SearchProjects from './components/common/SearchProjects';
+import MobileDepartment from './components/common/MobileDepartment';
+import TeacherMobile from './components/common/TeacherMObile';
 const StudentDashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  var[dept,setdept]=useState(true)
   const navigate=useNavigate();
   const go=()=>{
     localStorage.removeItem('token');
 navigate('/');
   }
   const toggle=()=>{
-    setIsMenuOpen
+    setIsMenuOpen(!isMenuOpen)
   }
+  
   const [username, setUsername] = useState('');
   const [searchText, setSearchText] = useState('');
+  const setSearch=(text)=>{
+    setSearchText(text);
+    <Link
+        to='SearchResults' state={{searchText:searchText}}
+        className='absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-500 font-bold'
+      />
 
+  }
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -32,30 +44,81 @@ navigate('/');
   }, []);
 console.log(searchText)
   return (
-    <div className='h-100p w-100p lg bg-blue-300 flex flex-col'>
+    <div className='h-100p w-100p lg bg-blue-300 flex flex-col items-center justify-center  '>
        {isMenuOpen && (
-        <div className='h-100p w-100p bg-slate-500 flex items-center z-30'>
-          <div className='absolute  left-0 right-0 bg-slate-500 shadow-lg p-4 md:hidden '>
-          <Link to="FetchGroups" className="flex items-center text-white py-2">
-            <User size={18} className="mr-2" /> Your Group
-          </Link>
-          <Link to="UpdateProfile" state={{}} className="flex items-center text-white py-2">
-            <Key size={18} className="mr-2" /> Update Password
-          </Link>
-          <button onClick={go} className='flex items-center text-white py-2 w-full text-left'>
-            <LogOut size={18} className="mr-2" /> Logout
+        <div className='h-60p w-80p bg-blue-950 flex flex-col items-center  absolute z-10'>
+           <div className=' h-10p w-20p font-extrabold text-white  flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
+          {username}
+        </div>
+        <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+        &nbsp;&nbsp;
+          <House size={20} className="h-70p w-10p text-white" />
+          <Link
+              to="/StudentDashBoard"
+               className='h-100p w-90p text-start flex items-center'
+            >
+              
+              
+              &nbsp;&nbsp;Home
+            </Link>
+          </button>
+          <div className='h-10p w-100p'></div>
+          <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+          &nbsp;&nbsp;
+          <User size={20} className="h-70p w-10p text-white" />
+          <Link
+              to="FetchGroups"
+               className='h-100p w-90p text-start flex items-center'
+            >
+              
+              
+              &nbsp;&nbsp;Your Group
+            </Link>
           </button>
           
-        </div>
-        </div>
+            <div className='h-10p w-100p'></div>
+            <button onClick={()=>{setdept(!dept)}} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+            &nbsp;&nbsp;
+            <MobileDepartment toggle={toggle} role={'studentdashboard'} />
+
+          </button>
+          <div className='h-10p w-100p'></div>
+          <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+          &nbsp;&nbsp;&nbsp;
+          <Key size={20} className="mr-3 text-white" />
+          <Link
+              to="UpdateProfile"
+              state={{}}
+             className='h-100p w-90p text-start flex items-center'
+            >
+              
+              Update Password
+            </Link>
+          </button>
+          
+          
+            <div className='h-10p w-100p'></div>
+            <button
+            onClick={go}
+            className="flex items-center text-white h-10p w-80p px-4 rounded-lg bg-red-600 hover:bg-red-700 transition duration-200"
+          >
+            <LogOut size={20} className="mr-3 text-white" />
+            Logout
+          </button>
+          <div className='h-10p w-100p'></div>
+        
+
+        
+      </div>
+      
         
       )}
-        <div className='h-8p w-100p bg-yellow-400 hidden md:flex items-center'>
+        <div className='h-8p w-100p bg-yellow-400 sm:hidden md:flex items-center'>
         <div className=' h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
           {username}
         </div>
         
-        <div className='h-100p w-30p relative'>
+        <div className='h-100p w-30p relative '>
       <input
         type='text'
         placeholder='Search Projects'
@@ -72,9 +135,9 @@ console.log(searchText)
       </Link>
     </div>
         <div className='h-100p w-50p flex justify-between'>
-        <button className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
+        <div className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
           <Department/>
-        </button>
+        </div>
         
         <Link to="FetchGroups" className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
           Your Group
@@ -93,7 +156,29 @@ console.log(searchText)
        
       
       
-        <div className='h-10p w-100p flex items-end justify-end md:hidden '>
+        <div className='h-10p w-100p bg-yellow-400 flex items-end justify-end md:hidden '>
+        <div className='h-100p w-90p flex justify-center items-center   '>
+        <div className='h-80p w-90p border rounded-xl bg-white flex'>
+        <input
+        type='text'
+        placeholder='Search Projects'
+        value={searchText}
+        onChange={(e) => setSearch(e.target.value)
+          
+        }
+        className='h-100p w-90p pl-10 pr-4 text-xl font-bold text-center border rounded-xl bg-white'
+      />
+       <Link
+        to='SearchResults'  state={{searchText:searchText}}
+        className=' h-100p w-10p flex justify-center items-center'
+      >
+       <Search  size={24} className='color-black' />
+      </Link>
+        </div>
+      
+      
+     
+    </div>
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className='text-white focus:outline-none h-100p w-10p'
@@ -102,7 +187,7 @@ console.log(searchText)
         </button>
       </div>
   
-      <div className='h-92p w-100p bg-slate-200 flex flex-col'>
+      <div className='h-92p w-100p bg-slate-200 flex flex-col '>
       
         <Routes>
         <Route path="/" element={<FetchAll />} />
@@ -113,6 +198,9 @@ console.log(searchText)
           <Route path="/TeacherInfo" element={<TeacherBoard />} />
           <Route path="/UpdateProfile" element={<UpdateProfile />} />
           <Route path="/SearchResults" element={<SearchProjects />} />
+          <Route path="/Teachers" element={<TeacherMobile />} />
+          <Route path="/MTeacherInfo" element={<TeacherBoard />} />
+          <Route path="/SearchResults/EachGroup" element={< EachGroup/>} />
         </Routes>
       </div>
     </div>

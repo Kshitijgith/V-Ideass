@@ -17,11 +17,11 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="h-100p w-100p bg-gradient-to-r from-blue-100 to-blue-200 flex flex-col overflow-y-auto items-center justify-center">
+    <div className="h-100p w-100p  bg-gradient-to-r from-blue-100 to-blue-200 flex flex-col overflow-y-auto items-center justify-center">
   <h2 className="text-3xl font-extrabold text-black mb-6 shadow-sm">Forgot Password</h2>
   <form
     onSubmit={handleSendResetLink}
-    className="flex flex-col items-center bg-white h-70p shadow-2xl rounded-lg w-40p p-8"
+    className="flex flex-col items-center bg-white h-70p sm:w-80p sm:h-50p shadow-2xl rounded-lg w-40p p-8"
   >
     <div className="mb-6 w-full">
       <label

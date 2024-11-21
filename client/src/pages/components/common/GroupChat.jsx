@@ -86,13 +86,13 @@ const ChatRoom = ({ groupId, yourName,role }) => {
   }, [messages]);
 
   return (
-    <div className="h-90p w-100p bg-gray-100 flex flex-col overflow-y-auto">
-      <div className="h-10p w-full bg-blue-500   flex items-center justify-center font-semibold">
+    <div className="h-92p w-100p bg-gray-100 flex flex-col ">
+      <div className="h-10p w-full bg-blue-500 sm:hidden  flex items-center justify-center font-semibold">
         Chat Room
       </div>
 
       {/* Chat Messages Section */}
-      <div className="h-70p w-full p-2 flex flex-col gap-2 overflow-y-auto">
+      <div className="h-70p sm:h-100p w-full p-2 flex flex-col gap-2 overflow-y-auto">
         {messages.map((msg, index) => (
           <div
             key={index}
@@ -126,7 +126,7 @@ const ChatRoom = ({ groupId, yourName,role }) => {
           value={newMessage}
           onChange={handleInputChange}
         />
-        <button className="bg-blue-600 text-white px-4 py-2 rounded" onClick={sendMessage}>
+        <button className="bg-blue-600 text-white h-60p w-20p rounded" onClick={sendMessage}>
           Send
         </button>
       </div>

@@ -61,22 +61,24 @@ const CreateGroup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-100p w-100p  ">
-      <div className="w-full max-w-lg p-8 bg-white rounded-lg shadow-lg">
+    <div className="flex items-center justify-center h-100p w-100p overflow-y-auto  ">
+      <div className="w-40p h-90p sm:w-90p sm:h-80p bg-white rounded-lg shadow-lg flex flex-col  items-center justify-center">
+        <div className='sm:h-10p sm:w-100p'></div>
         <h2 className="text-2xl font-semibold text-center text-gray-800">Create Project Group</h2>
+        <div className='sm:h-8p sm:w-100p'></div>
         
         {message && <p className="mt-4 text-center text-green-500">{message}</p>}
         
-        <form className="mt-6" onSubmit={handleSubmit}>
+        <form className="h-90p w-80p rounded-lg " onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="groupId" className="block text-gray-700">Group ID</label>
+            <label htmlFor="groupId" className="block text-gray-700 ">Group ID</label>
             <input
               type="text"
               name="groupId"
               value={formData.groupId}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-3 py-2 mt-1 text-gray-700 rounded border border-gray-300 focus:outline focus:outline-indigo-500 focus:ring-2 focus:ring-indigo-500"
             />
           </div>
           
@@ -90,7 +92,7 @@ const CreateGroup = () => {
               value={formData.year}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-3 py-2 mt-1 text-gray-700 rounded border border-gray-300 focus:outline focus:outline-indigo-500 focus:ring-2 focus:ring-indigo-500"
             />
           </div>
 
@@ -101,7 +103,7 @@ const CreateGroup = () => {
               name="newMember"
               value={newMember}
               onChange={(e) => setNewMember(e.target.value)}
-              className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-3 py-2 mt-1 text-gray-700 rounded border border-gray-300 focus:outline focus:outline-indigo-500 focus:ring-2 focus:ring-indigo-500"
               placeholder="Add a group member"
             />
             <button

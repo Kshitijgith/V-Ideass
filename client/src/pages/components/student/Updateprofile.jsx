@@ -38,11 +38,11 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className="h-100p w-100p flex flex-col justify-center items-center">
+    <div className="h-100p w-100p  flex flex-col justify-center items-center">
       
       <form 
       onSubmit={handleSubmit} 
-      className="flex flex-col items-center justify-center bg-white shadow-lg rounded-lg p-8 w-96 mx-auto"
+      className="flex flex-col items-center sm:h-60p sm:w-80p justify-center bg-white shadow-lg rounded-lg p-8 w-96 mx-auto"
     >
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Update Password</h2>
 
