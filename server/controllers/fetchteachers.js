@@ -7,7 +7,7 @@ const Teachers=await Teacher.find({branch:dept})
 res.json({success:true,data:Teachers})
    }
    catch(error){
-console.error("Error occured",error);
+
 res.status(500).json({success:false,message:'Internal Server Error'})
    }
 };
@@ -23,7 +23,7 @@ const TeacherName=async(req,res)=>{
         }
     }
     catch(error){
-        console.error('Error ocured',error);
+        
         res.status(500).json({success:false,message:'Internal Server Error'})
 
     }
@@ -42,7 +42,7 @@ const FindProjects=async(req,res)=>{
 
     }
     catch(error){
-        console.error('Error Finding Project',error);
+       
         res.status(500).json({success:false,message:"Internal Server Error"})
     }
 

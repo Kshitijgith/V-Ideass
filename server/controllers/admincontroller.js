@@ -69,11 +69,11 @@ exports.createStudent = async (req, res) => {
 
   // Basic validation
   if (!studentName || !email || !password ) {
-    console.log(studentName)
-    console.log(email)
-    console.log(password)
-    console.log(rollNo)
-    console.log('provide all')
+    // console.log(studentName)
+    // console.log(email)
+    // console.log(password)
+    // console.log(rollNo)
+    // console.log('provide all')
     return res.status(400).json({ message: 'Please provide all required fields' });
   }
 

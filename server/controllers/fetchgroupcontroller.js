@@ -8,7 +8,7 @@ const Showgroups = async (req, res) => {
     // Send the response with the list of active groups
     res.json({ success: true, data: activeGroups });
   } catch (error) {
-    console.error("Error fetching active groups:", error);
+    
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
@@ -22,7 +22,7 @@ const IDgroups = async (req, res) => {
     // Send the response with the list of active groups
     res.json({ success: true, data: activeGroups });
   } catch (error) {
-    console.error("Error fetching active groups:", error);
+    
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
@@ -39,7 +39,7 @@ const GroupChat = async (req, res) => {
     res.json({ success: true, data: group.Chats });
   } catch (error) {
     console.log('not done')
-    console.error('Error fetching group chats:', error);
+    
     res.status(500).json({ success: false, message: 'Server error' });
   }
 };
@@ -65,7 +65,7 @@ const Insertchat = async (req, res) => {
       data: group.Chats // Return updated chat array or entire group, as needed
     });
   } catch (error) {
-    console.error('Error adding chat message:', error);
+    
     return res.status(500).json({ message: 'Server error' });
   }
 };
@@ -78,7 +78,7 @@ const searchGroups = async (req,res) => {
     });
     res.json({ success: true, data: results });
   } catch (error) {
-    console.error('Error in search:', error);
+    
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };

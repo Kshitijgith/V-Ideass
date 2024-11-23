@@ -73,7 +73,7 @@ const createGroup = async (req, res) => {
   
 }
    catch (error) {
-    console.error('Error creating group:', error);
+   
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -110,7 +110,7 @@ const Getgroups = async (req, res) => {
       data: projects,
     });
   } catch (error) {
-    console.error('Error fetching project groups:', error);
+    
     return res.status(500).json({ message: 'Server error' });
   }
   
@@ -126,7 +126,7 @@ const Approve = async (req, res) => {
       res.status(404).json({ success: false, message: "Group not found" });
     }
   } catch (error) {
-    console.error("Error toggling status:", error);
+   
     res.status(500).json({ success: false, message: "Server error" });
   }
   
@@ -153,7 +153,7 @@ const UpdateProfile=async(req,res)=>{
     
   }
 catch(error){
-console.error('Error Updating Profile',error);
+
 res.status(500).json({success:false,message:'Internal Server Error'})
 }  
 }
@@ -170,7 +170,7 @@ const Teacherinfo=async(req,res)=>{
       }
   }
   catch(error){
-      console.error('Error ocured',error);
+    
       res.status(500).json({success:false,message:'Internal Server Error'})
 
   }

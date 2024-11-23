@@ -38,7 +38,7 @@ const getProjectGroup= async (req, res) => {
       data: projects,
     });
   } catch (error) {
-    console.error('Error fetching project groups:', error);
+   
     return res.status(500).json({ message: 'Server error' });
   }
   
@@ -51,8 +51,7 @@ const UpdateGroup = async (req, res) => {
     
     // Convert uploaded files to base64 strings
     
-      console.log(typeof(photos));
-      console.log(typeof(groupid));
+      
     // Update the group in MongoDB
     const group = await Project.findOneAndUpdate(
       { groupId: groupid },
@@ -78,7 +77,7 @@ const UpdateGroup = async (req, res) => {
       data: group,
     });
   } catch (error) {
-    console.error('Error updating project group:', error);
+    
     return res.status(500).json({ message: 'Server error' });
   }
 };
@@ -117,7 +116,7 @@ const UpdateProfile = async (req, res) => {
 
     return res.status(500).json({ success: false, message: 'Failed to update profile' });
   } catch (error) {
-    console.error('Error Updating Profile:', error);
+    
     return res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };

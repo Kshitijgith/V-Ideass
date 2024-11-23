@@ -50,7 +50,7 @@ const protect = async (req, res, next) => {
     req.user.userType = decoded.userType; // Add userType for authorization
     next();
   } catch (error) {
-    console.error('Token verification failed:', error);
+    
 
     // Differentiate errors for better debugging
     if (error.name === 'TokenExpiredError') {

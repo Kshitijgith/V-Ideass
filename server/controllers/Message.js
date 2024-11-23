@@ -19,7 +19,7 @@ const sendEmail = async (toEmail, subject, message) => {
     const response = await apiInstance.sendTransacEmail(emailData);
     console.log('Email sent successfully:', response);
   } catch (error) {
-    console.error('Error sending email:', error.response?.text || error.message);
+   
   }
 };
 module.exports=sendEmail;
