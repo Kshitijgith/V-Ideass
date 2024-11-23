@@ -48,7 +48,7 @@ const SearchProjects = () => {
   }, [location.state]);
 
   return (
-    <div className="h-100p w-100p flex flex-col justify-center items-start overflow-y-auto bg-red-100">
+    <div className="h-100p w-100p flex flex-col justify-center items-start overflow-y-auto bg-paleBlue">
       {/* Loading Indicator */}
       {loading ? (
         <div className="h-100p w-100p flex justify-center items-center">

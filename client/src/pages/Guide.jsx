@@ -39,6 +39,9 @@ navigate('/');
   
   useEffect(() => {
     const token = localStorage.getItem('token');
+    if(!token){
+      navigate('/')
+    }
     if (token) {
       const decoded = JSON.parse(atob(token.split('.')[1]));
       setUsername(decoded.email);
@@ -48,7 +51,7 @@ navigate('/');
   return (
     
 
-    <div className='h-100p w-100p bg-blue-300 flex flex-col  justify-center items-center'>
+    <div className='h-100p w-100p  flex flex-col  justify-center items-center'>
       {isMenuOpen && (
         <div className='h-60p w-80p bg-blue-900 bg-opacity-70 flex flex-col items-center  absolute z-10'>
            <div className=' h-10p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
@@ -110,7 +113,7 @@ navigate('/');
       
         
       )}
-<div className='h-8p w-100p bg-yellow-400 sm:hidden md:flex items-center'>
+<div className='h-8p w-100p bg-yellow-400 sm:hidden md:flex items-center '>
         <div className=' h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
           {username}
         </div>
@@ -181,7 +184,7 @@ navigate('/');
         </button>
       </div>
 
-      <div className='h-90p w-100p bg-blue-400 flex flex-col'>
+      <div className='h-90p w-100p bg-paleBlue flex flex-col'>
         
         <Routes>
         <Route path="/" element={<FetchAll />} />

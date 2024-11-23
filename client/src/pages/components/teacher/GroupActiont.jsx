@@ -74,7 +74,7 @@ setdrop(!drop)
       {error && <p className="text-red-500 font-semibold text-lg">{error}</p>}
 
       {/* Menu button for smaller screens */}
-      <div className="h-10p w-100p   flex items-center  sm:flex md:hidden">
+      <div className="h-8p w-100p   flex items-center  sm:flex md:hidden">
       <div className='h-100p w-90p text-white text-2xl font-bold   flex items-center justify-center'>
         <div className='h-100p w-20p'></div>
         <div className='h-100p w-90p flex items-center justify-center'>{menu=='groupinfo' ? 'YourGroups' :'Chatbox' }</div>

@@ -22,7 +22,9 @@ const GroupActions = () => {
       setUsername(decoded.email);
     }
   }, []);
-
+  if(username==='guest@vit.edu.in'){
+    navigate('/')
+  }
   const toggleDrop = () => {
     setDrop(!drop);
   };
@@ -63,7 +65,7 @@ const GroupActions = () => {
   return (
     <div className="h-100p w-100p bg-blue-500 flex sm:flex-col items-center sm:items-start sm:justify-start justify-center overflow-y-auto">
       {error && <p className="text-red-500 font-semibold text-lg">{error}</p>}
-      <div className="h-10p w-100p flex items-center sm:flex md:hidden">
+      <div className="h-8p w-100p flex items-center sm:flex md:hidden">
         <div className="h-100p w-90p text-white text-2xl font-bold flex items-center justify-center">
           <div className="h-100p w-10p"></div>
           <div className="h-100p w-90p flex items-center justify-center">
@@ -179,11 +181,11 @@ const GroupActions = () => {
           menu === 'chatbox' ? 'sm:flex' : 'sm:hidden'
         } md:flex h-100p w-40p sm:w-100p bg-gray-100 flex flex-col overflow-y-auto`}
       >
-        <div className="h-8p w-full flex justify-center bg-blue-300">
+        <div className="h-8p w-full flex justify-center ">
           <button
             onClick={() => setVal(!val)}
             className={`h-100p w-50p ${
-              val ? 'bg-blue-500' : 'bg-blue-300'
+              val ? 'bg-deepBlue' : 'bg-skyBlue'
             } text-white font-bold`}
           >
             Update Group
@@ -191,7 +193,7 @@ const GroupActions = () => {
           <button
             onClick={() => setVal(!val)}
             className={`h-100p w-50p ${
-              !val ? 'bg-blue-500' : 'bg-blue-300'
+              !val ? 'bg-deepBlue' : 'bg-skyBlue'
             } text-white font-bold`}
           >
             Chat

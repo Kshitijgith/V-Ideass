@@ -67,8 +67,8 @@ useEffect(()=>{
 },[])
 
   return (
-    <div className="h-100p w-100p flex flex-col   ">
-      <div className="h-10p w-100p   flex items-center  sm:flex md:hidden bg-blue-500 ">
+    <div className="h-100p w-100p md:flex md:flex-row     ">
+      <div className="h-8p w-100p   flex items-center  sm:flex md:hidden bg-blue-500 ">
       <div className='h-100p w-90p text-white text-2xl font-bold   flex items-center justify-center'>
         <div className='h-100p w-20p'></div>
         <div className='h-100p w-90p flex items-center justify-center'>{menu=='Teacherinfo' ? 'TeacherInfo' :'Projects' }</div>
@@ -86,7 +86,7 @@ useEffect(()=>{
       </div>
       {drop ===true && (
         
-        <div className="absolute   h-20p w-80p flex flex-row items-end   p-2 z-50">
+        <div className="absolute   h-20p w-80p flex flex-row items-end  md:hidden p-2 z-50">
           <div className='h-100p w-40p'></div>
           <div className='h-100p w-70p flex flex-col items-end '>
           <button
@@ -106,11 +106,11 @@ useEffect(()=>{
           
         </div>
       )}
-      <div className={`bg-gray-200 h-100p ${menu==='Teacherinfo'?'sm:flex':'sm:hidden'}  overflow-y-auto w-60p sm:w-100p  rounded-lg shadow-md flex flex-col items-center justify-center p-6`}>
+      <div className={`bg-paleBlue h-100p ${menu==='Teacherinfo'?'sm:flex':'sm:hidden'}   w-60p  sm:w-100p  rounded-lg shadow-md flex flex-col  `}>
   {info ? (
-    <>
-      {/* Display the teacher's photo in a circular frame */}
-      <div className="w-100p  h-100p flex flex-col items-center justify-start bg-gray-50 shadow-2xl rounded-xl p-6 overflow-auto space-y-6">
+   
+      
+      <div className="w-100p  h-100p flex flex-col items-center justify-start bg-gray-50 shadow-1xl rounded-xl p-6 overflow-auto ">
   {/* Teacher Photo */}
   <div className="w-40p h-40p rounded-full border-4 border-white shadow-lg  bg-blue-600">
     <img
@@ -146,7 +146,7 @@ useEffect(()=>{
 </div>
 
 
-    </>
+    
   ) : (
     <p className="">Loading teacher information...</p>
   )}
@@ -155,19 +155,19 @@ useEffect(()=>{
       <div className='h-100p w-2p sm:hidden'>
 
       </div>
-      <div className={`h-100p w-60p sm:w-100p  ${menu==='project'?'sm:flex':'sm:hidden'} flex overflow-y-auto bg-white `}>
+      <div className={`h-100p w-60p bg-zinc-300  sm:w-100p  ${menu==='project'?'sm:flex':'sm:hidden'} flex flex-col overflow-y-auto bg-white sm:overflow-x-hidden `}>
       {groupInfo.length === 0 ? (
   <p className="text-red-500 font-semibold text-lg">{error}</p>
 ) : (
   groupInfo && groupInfo.length > 0 ? (
     <>
-      <div className="flex flex-row  flex-wrap justify-around h-100p w-100p">
+      <div className="flex flex-row   flex-wrap justify-around h-100p w-100p">
         {groupInfo.map((group, index) => (
           <Link 
           to="/EachGroup" 
           state={{ groupId: group.groupId }} // Pass groupId in the state
           key={index} 
-          className="h-90p w-40p sm:w-100p  flex-wrap rounded-lg flex flex-col items-center justify-center p-4 m-4 bg-white shadow-lg hover:shadow-xl transition-shadow"
+          className="h-70p sm:h-90p  w-50p sm:w-90p  flex-wrap rounded-lg flex sm:flex-col items-center justify-center p-4 m-4 bg-white shadow-lg hover:shadow-xl transition-shadow"
         >
           <div className="bg-slate-200 h-100p w-full rounded-lg p-6 flex flex-col items-center justify-between transition-transform transform hover:scale-105">
             <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">{group.projectName}</h2>

@@ -86,7 +86,7 @@ const ChatRoom = ({ groupId, yourName,role }) => {
   }, [messages]);
 
   return (
-    <div className="h-92p w-100p bg-gray-100 flex flex-col ">
+    <div className="h-100p w-100p bg-gray-100 flex flex-col ">
       <div className="h-10p w-full bg-blue-500 sm:hidden  flex items-center justify-center font-semibold">
         Chat Room
       </div>

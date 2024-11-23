@@ -57,7 +57,7 @@ const CreateTeacher = () => {
         branch: '',
       });
     } catch (error) {
-      setMessage('Failed to create teacher. Please try again.');
+      setMessage(error.response.data.message);
     }
   };
 

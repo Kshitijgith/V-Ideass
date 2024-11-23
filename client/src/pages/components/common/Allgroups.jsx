@@ -20,12 +20,8 @@ const FetchAll = () => {
       } else {
         setError('Failed to fetch group information.');
       }
-    } catch (err) {
-      if (err.response && err.response.status === 404) {
-        setError('Not Part of any Group');
-      } else {
-        console.error('Error fetching groups:', err);
-      }
+    } catch (error) {
+      setError(error.response.data.message);
     } finally {
       setLoading(false); // Stop loading once fetch completes
     }
@@ -45,7 +41,7 @@ const FetchAll = () => {
   }, [loading]);
 
   return (
-    <div className="h-100p w-100p flex flex-col justify-center items-start overflow-y-auto bg-red-100">
+    <div className="h-100p w-100p flex flex-col justify-center items-start overflow-y-auto">
       {loading ? (
         <div className="h-100p w-100p flex justify-center items-center">
           <div className="h-50p w-50p flex space-x-2 justify-center items-center">

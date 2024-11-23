@@ -12,7 +12,7 @@ const ForgotPassword = () => {
       alert('Reset link sent successfully!');
     } catch (error) {
       console.error('Error sending reset link:', error);
-      alert('Failed to send reset link. Please try again.');
+      alert(error.response.data.message);
     }
   };
 

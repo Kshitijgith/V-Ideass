@@ -14,7 +14,7 @@ exports.createTeacher = async (req, res) => {
         console.log(password)
         console.log(branch)
   // Basic validation
-  if (!name || !email || !password  || !branch) {
+  if (!name || !email || !password ) {
     return res.status(400).json({ message: 'Please provide all required fields' });
   }
 
@@ -65,15 +65,13 @@ exports.createTeacher = async (req, res) => {
 // @route   POST /api/admin/create-student
 // @access  Private/Admin
 exports.createStudent = async (req, res) => {
-  const { studentName, email, password, branch, div, rollNo } = req.body;
+  const { studentName, email, password,rollNo } = req.body;
 
   // Basic validation
-  if (!studentName || !email || !password || !branch || !div ||!rollNo) {
+  if (!studentName || !email || !password ) {
     console.log(studentName)
     console.log(email)
     console.log(password)
-    console.log(branch)
-    console.log(div)
     console.log(rollNo)
     console.log('provide all')
     return res.status(400).json({ message: 'Please provide all required fields' });
@@ -85,23 +83,29 @@ exports.createStudent = async (req, res) => {
     if (student) {
       return res.status(400).json({ message: 'Student already exists with this email' });
     }
-
+    
     // Check if Roll Number is unique
     student = await Student.findOne({ rollNo });
     if (student) {
       return res.status(400).json({ message: 'Roll number already in use' });
     }
-
+    console.log('done')
     // Create new Student instance
     student = new Student({
       studentName,
       email,
       password,
-      branch,
-      div,
       rollNo,
     });
-
+    await SendEmail(
+      email,  // recipient email
+      'Update Your Password',  // subject
+      `Update Your Password by Logging In 
+   
+  Your Credentials are: 
+  <br>Email: ${email}
+  <br>Password: ${password}`  // dynamic email content
+  );
     // Save Student to the database (password hashing is handled in the schema)
     await student.save();
 
@@ -112,8 +116,6 @@ exports.createStudent = async (req, res) => {
         id: student._id,
         studentName: student.studentName,
         email: student.email,
-        branch: student.branch,
-        div: student.div,
         rollNo: student.rollNo,
       },
     });

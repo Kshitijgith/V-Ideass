@@ -49,7 +49,7 @@ const FetchGroups = () => {
   
 
   return (
-    <div className="h-100p w-100p flex flex-col justify-center items-center sm:items-center bg-red-100 overflow-y-auto">
+    <div className="h-100p w-100p flex flex-col justify-center items-center sm:items-center overflow-y-auto">
       
   {groupInfo.length > 0 ? (
     <div className="flex   h-100p w-100p flex-wrap justify-around overflow-y-auto">

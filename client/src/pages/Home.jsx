@@ -69,32 +69,35 @@ console.log(nemail);
   };
 
   return (
-    <div className="h-80p w-30p sm:w-90p sm:h-70p   border rounded-xl flex flex-col justify-center items-center ">
+    <div className="h-80p  w-30p sm:w-90p sm:h-70p   border rounded-xl flex flex-col justify-center items-center ">
 
 <div className="bg-gray-100 border  rounded-lg shadow-xl w-100p h-100p flex flex-col">
-  <div className="h-10p w-100p text-3xl font-bold text-center bg-blue-900 text-white">
+  <div className="h-10p w-100p text-3xl flex items-center justify-center font-bold text-center bg-blue-900 text-white">
     Welcome to Videas
   </div>
   
-  <form className="h-90p w-100 ">
-  <h1 className="text-xl font-bold text-center text-gray-700 ">
+  <form onSubmit={(e) => {
+    e.preventDefault(); // Prevents default form submission
+    handleLogin(role); // Calls your login logic
+  }}className="h-90p w-100 ">
+  <h1 className="text-xl font-bold h-10p flex items-center justify-center text-center text-gray-700 bg-skyBlue ">
     Login as {role}
   </h1>
     <div className="h-60p w-100p flex flex-col justify-center items-center ">
       <div
         className={`w-100p h-100p d flex flex-col items-center justify-center  ${
           role === 'student'
-            ? 'bg-blue-400'
+            ? 'bg-lightCream'
             : role === 'teacher'
-            ? 'bg-yellow-400'
-            : 'bg-purple-400'
+            ? 'bg-lightCream'
+            : 'bg-lightCream'
         }`}
       >
         <div className="h-10p w-100p"></div>
         <div className="h-30p w-80p flex flex-col">
           <label
             htmlFor="email"
-            className="h-10p w-full text-sm font-medium text-gray-700 flex items-center"
+            className="h-10p w-full text-1xl font-medium text-gray-700 flex items-center"
           >
             Email
           </label>
@@ -112,7 +115,7 @@ console.log(nemail);
         <div className="h-30p w-80p flex flex-col">
           <label
             htmlFor="password"
-            className="h-10p w-full text-sm font-medium text-gray-700 flex items-center"
+            className="h-10p w-full text-1xl font-medium text-gray-700 flex items-center"
           >
             Password
           </label>
@@ -130,9 +133,8 @@ console.log(nemail);
         <div className="h-8p"></div>
         <div className="h-20p w-80p flex items-center justify-center">
           <button
-            type="button"
-            onClick={() => handleLogin(role)}
-            className="h-100p w-full bg-blue-900 text-white font-medium rounded-md shadow-sm hover:bg-blue-950 focus:outline-none focus:ring-1 focus:ring-gray-400"
+            type="submit"
+            className="h-100p w-full bg-blue-500 text-white font-medium rounded-md shadow-sm hover:bg-blue-950 focus:outline-none focus:ring-1 focus:ring-gray-400"
           >
             Login
           </button>
@@ -142,10 +144,10 @@ console.log(nemail);
     <div
       className={`w-100p h-40p  flex flex-col items-center justify-center  ${
         role === 'student'
-          ? 'bg-blue-400'
+          ? 'bg-lightCream'
           : role === 'teacher'
-          ? 'bg-yellow-400'
-          : 'bg-purple-400'
+          ? 'bg-lightCream'
+          : 'bg-lightCream'
       }`}
     >
       <div className="h-10p"></div>
@@ -156,7 +158,7 @@ console.log(nemail);
             type="button"
             onClick={() => setrole('student')}
             disabled={isLoading}
-            className="w-30p h-100p flex justify-center items-center shadow-sm text-sm font-medium text-gray-800 bg-blue-500 hover:bg-blue-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-30p h-100p flex justify-center items-center shadow-sm text-sm font-medium  bg-blue-500 hover:bg-blue-950 text-white focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? 'Loading...' : ' Student'}
           </button>
@@ -164,7 +166,7 @@ console.log(nemail);
             type="button"
             onClick={() => setrole('teacher')}
             disabled={isLoading}
-            className="w-30p h-100p flex justify-center items-center shadow-sm text-sm font-medium text-gray-800 bg-yellow-500 hover:bg-yellow-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-30p h-100p flex justify-center items-center shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-950  focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? 'Loading...' : ' Teacher'}
           </button>
@@ -172,7 +174,7 @@ console.log(nemail);
             type="button"
             onClick={() => setrole('admin')}
             disabled={isLoading}
-            className="w-30p h-100p flex justify-center items-center shadow-sm text-sm font-medium text-gray-800 bg-purple-500 hover:bg-purple-300 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-30p h-100p flex justify-center items-center shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-950 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? 'Loading...' : 'Admin'}
           </button>
@@ -182,7 +184,7 @@ console.log(nemail);
       <div className="h-20p w-full flex  justify-center items-center">
         <Link to="ForgotPassword"
           disabled={isLoading}
-          className="w-50p sm:w-100p h-100p text-xl flex justify-center items-center shadow-sm sm:text-sm font-medium text-gray-800  focus:ring-gray-400 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-100p sm:w-100p h-100p text-1xl flex justify-center items-center shadow-sm sm:text-sm font-medium text-gray-800  focus:ring-gray-400 disabled:opacity-50 disabled:cursor-not-allowed"
         >
            Click here to Forgot Password
         </Link>

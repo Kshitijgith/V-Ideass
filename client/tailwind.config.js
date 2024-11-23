@@ -14,6 +14,7 @@ export default {
         '30p': '30%',
         '40p': '40%',
         '50p': '50%',
+        '59p':'59%',
         '60p': '60%',
         '70p': '70%',
         '80p': '80%',
@@ -29,6 +30,7 @@ export default {
         '30p': '30%',
         '40p': '40%',
         '50p': '50%',
+        '59p':'59%',
         '60p': '60%',
         '70p': '70%',
         '80p': '80%',
@@ -38,6 +40,12 @@ export default {
       },
       screens: {
         sm: { min: '300px', max: '600px' },
+    },
+    colors: {
+      lightCream: '#F3F3E0',
+      deepBlue: '#133E87',
+      skyBlue: '#608BC1',
+      paleBlue: '#CBDCEB',
     },
   },
   plugins: [],

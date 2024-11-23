@@ -37,6 +37,9 @@ navigate('/');
   }
   useEffect(() => {
     const token = localStorage.getItem('token');
+    if(!token){
+      navigate('/')
+    }
     if (token) {
       const decoded = JSON.parse(atob(token.split('.')[1]));
       setUsername(decoded.email);
@@ -44,9 +47,9 @@ navigate('/');
   }, []);
 console.log(searchText)
   return (
-    <div className='h-100p w-100p lg bg-blue-300 flex flex-col items-center justify-center  '>
+    <div className='h-100p w-100p lg bg-customBlue flex flex-col items-center justify-center bg-paleBlue  '>
        {isMenuOpen && (
-        <div className='h-60p w-80p bg-blue-950 flex flex-col items-center  absolute z-10'>
+        <div className={`${username==='guest@vit.edu.in'?'justify-normal':'justify-between'} h-60p w-80p bg-blue-950 flex flex-col items-center  absolute z-10`}>
            <div className=' h-10p w-20p font-extrabold text-white  flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
           {username}
         </div>
@@ -63,7 +66,7 @@ console.log(searchText)
             </Link>
           </button>
           <div className='h-10p w-100p'></div>
-          <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+          <button onClick={toggle} className={`${username==='guest@vit.edu.in'?'hidden':''} flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200`}>
           &nbsp;&nbsp;
           <User size={20} className="h-70p w-10p text-white" />
           <Link
@@ -76,14 +79,14 @@ console.log(searchText)
             </Link>
           </button>
           
-            <div className='h-10p w-100p'></div>
+            <div className={`h-10p w-100p ${username==='guest@vit.edu.in'?'hidden':''}`}></div>
             <button onClick={()=>{setdept(!dept)}} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
             &nbsp;&nbsp;
             <MobileDepartment toggle={toggle} role={'studentdashboard'} />
 
           </button>
-          <div className='h-10p w-100p'></div>
-          <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+          <div className={`h-10p w-100p ${username==='guest@vit.edu.in'?'hidden':''}`}></div>
+          <button onClick={toggle} className={`flex items-center ${username==='guest@vit.edu.in'?'hidden':''} text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200`}>
           &nbsp;&nbsp;&nbsp;
           <Key size={20} className="mr-3 text-white" />
           <Link
@@ -100,7 +103,7 @@ console.log(searchText)
             <div className='h-10p w-100p'></div>
             <button
             onClick={go}
-            className="flex items-center text-white h-10p w-80p px-4 rounded-lg bg-red-600 hover:bg-red-700 transition duration-200"
+            className={`flex items-center text-white h-10p w-80p px-4 rounded-lg bg-red-600 hover:bg-red-700 transition duration-200`}
           >
             <LogOut size={20} className="mr-3 text-white" />
             Logout
@@ -113,7 +116,7 @@ console.log(searchText)
       
         
       )}
-        <div className='h-8p w-100p bg-yellow-400 sm:hidden md:flex items-center'>
+        <div className={`h-8p w-100p bg-yellow-400 sm:hidden md:flex items-center`}>
         <div className=' h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
           {username}
         </div>
@@ -134,16 +137,16 @@ console.log(searchText)
         Go
       </Link>
     </div>
-        <div className='h-100p w-50p flex justify-between'>
+        <div className={`h-100p w-50p  ${username==='guest@vit.edu.in'?'justify-end':'justify-between'} flex `}>
         <div className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
           <Department/>
         </div>
         
-        <Link to="FetchGroups" className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
+        <Link to="FetchGroups" className={` ${username==='guest@vit.edu.in'?'hidden':''} h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950`}>
           Your Group
         </Link>
         
-        <Link to="UpdateProfile" state={{Email:username}} className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
+        <Link to="UpdateProfile" state={{Email:username}} className={`h-100p w-20p font-extrabold ${username==='guest@vit.edu.in'?'hidden':''}   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950`}>
           Update Profile
         </Link>
         
@@ -187,7 +190,7 @@ console.log(searchText)
         </button>
       </div>
   
-      <div className='h-92p w-100p bg-slate-200 flex flex-col '>
+      <div className='h-92p w-100p bg-paleBlue flex flex-col '>
       
         <Routes>
         <Route path="/" element={<FetchAll />} />

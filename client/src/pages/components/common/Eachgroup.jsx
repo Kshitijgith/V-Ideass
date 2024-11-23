@@ -24,13 +24,8 @@ const EachGroup = () => {
       } else {
         setError('Failed to fetch group information.');
       }
-    } catch (err) {
-      if (err.response && err.response.status === 404) {
-        setError('Group not found.');
-      } else {
-        console.error('Error fetching group:', err);
-        setError('An error occurred while fetching the group.');
-      }
+    } catch (error) {
+      setError(error.response.data.message);
     }
   };
 
@@ -43,11 +38,11 @@ const EachGroup = () => {
   
 
   return (
-    <div className="h-100p w-100p bg-slate-100 flex items-center justify-center overflow-y-auto">
+    <div className="h-100p w-100p bg-paleBlue flex items-center justify-center overflow-y-auto">
       {error && <p className="text-red-500 font-semibold text-lg">{error}</p>}
 
       {groupInfo ? (
-        <div className="bg-gray-200 h-90p w-70p sm:w-100p rounded-lg shadow-md flex flex-col   overflow-y-auto">
+        <div className="bg-gray-200 h-100p w-100p sm:w-100p rounded-lg shadow-md flex flex-col   overflow-y-auto">
           <h2 className="text-3xl font-bold  mb-4 px-4 pt-4">{groupInfo.projectName}</h2>
           
           <div className="bg-white rounded-md shadow mx-4 mb-4 p-4">

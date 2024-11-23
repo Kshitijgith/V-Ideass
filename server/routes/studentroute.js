@@ -10,7 +10,7 @@ router.post('/find-group', protect, authorize('student'), getProjectGroup);
 router.post('/update-group', protect, authorize('student'), UpdateGroup);
 router.post('/GroupChat', protect, authorize('student'), GroupChat);
 router.post('/InsertChat',protect,authorize('student'),Insertchat);
-router.post('/Update-profile',protect,authorize('student'),UpdateProfile)
+router.post('/Update-profile',UpdateProfile)
 // router.post('/Run',protect,authorize('student'),initializeSocketServer);
 
 module.exports = router;

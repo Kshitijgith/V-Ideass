@@ -7,15 +7,26 @@ const CreateStudent = () => {
     studentName: '',
     email: '',
     password: '',
-    branch: '',
-    div: '',
     rollNo: '',
   });
   
   const [message, setMessage] = useState('');
-
+  const genratePassword=(length)=> {
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?';
+    let Password = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      Password += characters[randomIndex];
+    }
+    setFormData((prevState) => ({
+      ...prevState,      
+      password:Password,
+    }));
+  }
   const handleChange = (e) => {
     const { name, value } = e.target;
+    genratePassword(8)
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -44,7 +55,8 @@ const CreateStudent = () => {
         rollNo: '',
       });
     } catch (error) {
-      setMessage('Failed to create student. Please try again.');
+      console.log(error)
+      setMessage(error.response.data.message);
     }
   };
   
@@ -84,42 +96,6 @@ const CreateStudent = () => {
       />
     </div>
     
-    <div>
-      <label htmlFor="password" className="block text-gray-700">Password</label>
-      <input
-        type="password"
-        name="password"
-        value={formData.password}
-        onChange={handleChange}
-        required
-        className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-      />
-    </div>
-    
-    <div>
-      <label htmlFor="branch" className="block text-gray-700">Branch</label>
-      <input
-        type="text"
-        name="branch"
-        value={formData.branch}
-        onChange={handleChange}
-        required
-        className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-      />
-    </div>
-
-    <div>
-      <label htmlFor="div" className="block text-gray-700">Division</label>
-      <input
-        type="text"
-        name="div"
-        value={formData.div}
-        onChange={handleChange}
-        required
-        className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-      />
-    </div>
-
     <div>
       <label htmlFor="rollNo" className="block text-gray-700">Roll No</label>
       <input

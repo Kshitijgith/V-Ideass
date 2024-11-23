@@ -61,8 +61,8 @@ const AddProject = ({ id }) => {
       settags('')
       setreport('');
       setPhotos([]);
-    } catch (err) {
-      setError('Failed to update group. Please try again.');
+    } catch (error) {
+      setError(error.response.data.message);
       console.error(err);
     }
   };
@@ -73,7 +73,7 @@ const AddProject = ({ id }) => {
       <div className='h-100p w-full flex flex-col overflow-y-auto'>
       {error && <p className="text-red-500">{error}</p>}
       {successMessage && <p className="text-green-500">{successMessage}</p>}
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
+      <form onSubmit={handleSubmit} className="bg-paleBlue shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
         
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="projectName">

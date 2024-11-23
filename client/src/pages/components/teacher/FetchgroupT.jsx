@@ -48,7 +48,7 @@ const FetchGroupsT = () => {
   
 
   return (
-    <div className="h-100p w-100p flex flex-col justify-center items-start sm:items-center bg-red-100 overflow-y-auto">
+    <div className="h-100p w-100p flex flex-col justify-center items-start sm:items-center bg-paleBlue overflow-y-auto">
   {error && <p className="text-red-500 font-semibold text-lg">{error}</p>}
 
   <div className="flex flex-wrap h-90p w-90p">

@@ -42,7 +42,7 @@ const App = () => {
      <img className='h-100p w-50p bg-cover' src={sampleImage}  /> 
      
 </div> */}
-        <div className='h-90p w-100p  bg-red-100  flex flex-col justify-center items-center overflow-y-auto '>
+        <div className='h-90p w-100p bg-paleBlue  flex flex-col justify-center items-center overflow-y-auto '>
         
             <Routes >
               <Route path="/" element={<Home />} /> 
