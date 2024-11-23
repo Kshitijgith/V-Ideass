@@ -40,7 +40,7 @@ const CreateStudent = () => {
     try {
       const response = await axios({
         method: 'POST',
-        url: 'http://192.168.29.220:3000/admin/create-student',
+        url: 'https://v-ideass.onrender.com/admin/create-student',
         data: formData,
         headers: { 'Authorization': t }
       });

@@ -17,7 +17,7 @@ const UpdateGroup = async (groupid, projectname, projecttechnology, projectinfo,
     };
 
     // Make the POST request to the server
-    const response = await axios.post('http://192.168.29.220:3000/student/update-group', data, {
+    const response = await axios.post('https://v-ideass.onrender.com/student/update-group', data, {
       headers: {
         Authorization: `Bearer ${token}`, // Set the authorization header with the token
       },

@@ -24,7 +24,7 @@ const set=()=>{
   // console.log(Name);
 const teacherinfo=async()=>{
   try{
-    const response=await axios.post('http://192.168.29.220:3000/all/Teacher',{
+    const response=await axios.post('https://v-ideass.onrender.com/all/Teacher',{
       teachername:Name
     })
     if(response){
@@ -38,7 +38,7 @@ console.error('Error getting info',error);
 }
 const projectinfo=async()=>{
 try{
-const response=await axios.post('http://192.168.29.220:3000/all/Find-Projects',{
+const response=await axios.post('https://v-ideass.onrender.com/all/Find-Projects',{
   teachername:Name
 })
 if(response.data.data.length>0){

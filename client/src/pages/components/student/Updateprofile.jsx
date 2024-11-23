@@ -26,7 +26,7 @@ const UpdateProfile = () => {
 
     try {
       const response = await axios.post(
-        'http://192.168.29.220:3000/student/Update-profile',
+        'https://v-ideass.onrender.com/student/Update-profile',
         { Email, oldPassword, newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );

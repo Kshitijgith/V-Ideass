@@ -27,7 +27,7 @@ const UpdateProfile = () => {
     const fetchProfileData = async () => {
       try {
         const response = await axios.post(
-            'http://192.168.29.220:3000/teacher/Teacherinfo',{
+            'https://v-ideass.onrender.com/teacher/Teacherinfo',{
             Name:email,
             },
             {
@@ -86,7 +86,7 @@ useEffect(()=>{
       console.log(token);
       
       const response = await axios.post(
-         'http://192.168.29.220:3000/teacher/Update-Profile', 
+         'https://v-ideass.onrender.com/teacher/Update-Profile', 
    profileData,
         {headers:{ Authorization: `Bearer ${token}` },}
       );

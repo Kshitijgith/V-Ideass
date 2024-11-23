@@ -47,7 +47,7 @@ const initializeSocketServer = (req,res) => {
       console.log('User disconnected:', socket.id);
     });
   });
-  const SOCKET_PORT =  5001;
+  const SOCKET_PORT =  3000;
   server.listen(SOCKET_PORT, () => {
     console.log(`Socket.IO server running on port ${SOCKET_PORT}`);
     // res.json('Socket.IO server running on port ${SOCKET_PORT}')

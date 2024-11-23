@@ -43,7 +43,7 @@ const CreateTeacher = () => {
     try {
       const response = await axios({
         method: 'POST',
-        url: 'http://192.168.29.220:3000/admin/create-teacher',
+        url: 'https://v-ideass.onrender.com/admin/create-teacher',
         data: formData,
         headers: { Authorization: t },
       });

@@ -8,7 +8,7 @@ const ForgotPassword = () => {
   const handleSendResetLink = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://192.168.29.220:3000/admin/Forgot-Password', { role, email });
+      const response = await axios.post('https://v-ideass.onrender.com/admin/Forgot-Password', { role, email });
       alert('Reset link sent successfully!');
     } catch (error) {
       console.error('Error sending reset link:', error);

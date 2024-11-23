@@ -11,7 +11,7 @@ const EachGroup = () => {
 
   const fetchGroupById = async () => {
     try {
-      const response = await axios.post(`http://192.168.29.220:3000/all/Id`, {
+      const response = await axios.post(`https://v-ideass.onrender.com/all/Id`, {
         id: groupId, // Send the groupId in the request body
       });
 

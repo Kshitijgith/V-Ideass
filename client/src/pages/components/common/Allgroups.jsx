@@ -12,7 +12,7 @@ const FetchAll = () => {
     try {
       const response = await axios({
         method: 'POST',
-        url: `http://192.168.29.220:3000/all/all-groups`,
+        url: `https://v-ideass.onrender.com/all/all-groups`,
       });
 
       if (response.data.success) {

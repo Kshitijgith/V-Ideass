@@ -31,7 +31,7 @@ setdrop(!drop)
     const token = localStorage.getItem('token');
     try {
       const response = await axios.post(
-        'http://192.168.29.220:3000/teacher/Approve-group',
+        'https://v-ideass.onrender.com/teacher/Approve-group',
         { groupid: groupId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -43,7 +43,7 @@ setdrop(!drop)
 
   const fetchGroupById = async () => {
     try {
-      const response = await axios.post('http://192.168.29.220:3000/all/Id', {
+      const response = await axios.post('https://v-ideass.onrender.com/all/Id', {
         id: groupId,
       });
 
