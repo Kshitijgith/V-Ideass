@@ -15,10 +15,7 @@ Chat();
 
 const app = express();
 
-app.use(cors({
-  origin: 'http://192.168.29.220:5173', // Step 3: Allow your frontend origin
-  credentials: true, // Optional: If you are using cookies
-}));
+app.use(cors());
 
 // Middleware
 app.use(express.json({ limit: '10mb' })); // Adjust the limit as needed
@@ -38,10 +35,9 @@ app.get('/', (req, res) => {
 
 // Start Server
 const PORT = process.env.PORT || 5000;
-const LOCALIP = process.env.LOCAL_IP
- ; // Example local IP address
 
-app.listen(PORT, LOCALIP, () => {
-  console.log(`Server running at http://${LOCALIP}:${PORT}`);
+
+app.listen(PORT,  () => {
+  console.log(`Server running at ${PORT}`);
 });
 
