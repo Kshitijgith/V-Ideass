@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { io } from 'socket.io-client';
-
+import 
 const ChatRoom = ({ groupId, yourName, role }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -30,7 +30,7 @@ const ChatRoom = ({ groupId, yourName, role }) => {
     const token = localStorage.getItem('token');
     console.log(token);
 
-    const newSocket = io('https://v-ideass.onrender.com:5001', {
+    const newSocket = io('https://v-ideass.onrender.com', {
       path: '/socket.io/',
       auth: {
         token: `Bearer ${token}`,  // Make sure the token is properly interpolated

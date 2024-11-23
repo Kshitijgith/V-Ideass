@@ -2,6 +2,7 @@
 
 const express = require('express');
 const connectDB = require('./config/db');
+const Project = require('./models/group');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const http = require('http'); // Import http to create server
@@ -58,7 +59,7 @@ io.on('connection', (socket) => {
       io.to(groupId).emit('newMessage', { senderName, message, Date });
 
       // Save the message to the database
-      const Project = require('../models/group'); // Import the Project model
+       // Import the Project model
       await Project.findOneAndUpdate(
         { groupId: groupId },
         { $push: { Chats: { senderName, message, Date } } }
