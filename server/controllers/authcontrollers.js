@@ -31,7 +31,7 @@ exports.adminLogin = async (req, res) => {
   try {
     // Check for admin
     const admin = await Admin.findOne({ email }).select('+password');
-        console.log(admin);
+       // console.log(admin);
     if (!admin) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
@@ -56,7 +56,7 @@ exports.adminLogin = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('Admin login error:', error);
+    
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -102,7 +102,7 @@ exports.teacherLogin = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('Teacher login error:', error);
+   
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -150,7 +150,7 @@ exports.studentLogin = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error('Student login error:', error);
+    
     res.status(500).json({ message: 'Server error' });
   }
 };
