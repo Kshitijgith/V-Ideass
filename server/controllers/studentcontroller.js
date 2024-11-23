@@ -1,4 +1,4 @@
-const Student = require('../models/student'); // Import your Student model
+const Student = require('../models/Student'); // Import your Student model
 const Project = require('../models/group'); // Import your Project model
 const bcrypt = require('bcryptjs');
 

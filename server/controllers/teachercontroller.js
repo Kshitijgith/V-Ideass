@@ -1,7 +1,7 @@
 // backend/controllers/teacherController.js
 
 const Group = require('../models/group');
-const Student = require('../models/student'); // Import the student model
+const Student = require('../models/Student'); // Import the student model
 const Teacher=require('../models/teacher')
 const bcrypt = require('bcryptjs');
 /**

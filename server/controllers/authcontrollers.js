@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const Admin = require('../models/admin');
 const Teacher = require('../models/teacher');
-const Student = require('../models/student');
+const Student = require('../models/Student');
 const bcrypt = require('bcryptjs');
 dotenv.config();
 

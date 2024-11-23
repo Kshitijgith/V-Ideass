@@ -1,7 +1,7 @@
 // backend/controllers/adminController.js
 
 const Teacher = require('../models/teacher');
-const Student = require('../models/student');
+const Student = require('../models/Student');
 const SendEmail=require('./Message')
 const bcrypt = require('bcryptjs');
 // @desc    Create a new Teacher account
