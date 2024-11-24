@@ -1,17 +1,30 @@
 const http = require('http');
+const express = require('express');
 const { Server } = require('socket.io');
- const Project = require('../server/models/group'); // Import the Project model
 const connectDb = require('../server/config/db');
+const Project = require('../server/models/group'); // Import your Project model
 const dotenv = require('dotenv');
 dotenv.config();
 
-const server = http.createServer();
- connectDb();
+const app = express();
+
+// Connect to MongoDB
+connectDb();
+
+// Create HTTP server using Express
+const server = http.createServer(app);
+
+// Create Socket.IO instance attached to the HTTP server
 const io = new Server(server, {
   cors: {
-    origin: '*',  // Allow requests from any origin
-    methods: ['GET', 'POST']
-  }
+    origin: '*',
+    methods: ['GET', 'POST'],
+  },
+});
+
+// Basic HTTP route
+app.get('/', (req, res) => {
+  res.send('Socket.IO and Express server running!');
 });
 
 io.on('connection', (socket) => {
@@ -19,7 +32,7 @@ io.on('connection', (socket) => {
 
   socket.on('joinGroup', (groupId) => {
     socket.join(groupId);
-    console.log('User joined group: ${groupId}');
+    console.log(`User joined group: ${groupId}`);
   });
 
   socket.on('groupMessage', async ({ groupId, senderName, message, timestamp }) => {
@@ -27,7 +40,7 @@ io.on('connection', (socket) => {
       // Emit the message to the group
       io.to(groupId).emit('newMessage', { senderName, message, timestamp });
 
-      //Save the message to the database
+      // Save the message to the database
       await Project.findOneAndUpdate(
         { groupId: groupId },
         { $push: { Chats: { senderName, message, timestamp } } }
@@ -42,7 +55,8 @@ io.on('connection', (socket) => {
   });
 });
 
-const SOCKET_PORT = 5001;
-server.listen(SOCKET_PORT, '0.0.0.0', () => {  // Explicitly specify '0.0.0.0' to listen on all interfaces
-  console.log(`Socket.IO server running on port ${SOCKET_PORT}`);
+// Ensure you use an open HTTP port (e.g., 5001)
+const PORT = process.env.PORT || 5001;
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
