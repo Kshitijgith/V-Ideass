@@ -119,11 +119,13 @@ navigate('/');
         </div>
         
         <div className='h-100p w-30p relative'>
-          <input 
-            type='text' 
-            placeholder='Search Projects' 
-            className='h-100p w-100p pl-10 pr-4 text-xl font-bold text-center bg-white '
-          />
+        <input
+        type='text'
+        placeholder='Search Projects'
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+        className='h-100p w-100p pl-10 pr-4 text-xl font-bold text-center bg-white'
+      />
         
       <Link
         to='SearchResults' state={{searchText:searchText}}
@@ -195,10 +197,10 @@ navigate('/');
           <Route path="FetchGroupsT/GroupActionsT" element={<GroupActionsT />} />
           <Route path="/UpdateProfile" element={<UpdateProfile />} />
           <Route path="/TeacherInfo" element={<TeacherBoard />} />
-         
+          <Route path="/SearchResults" element={<SearchProjects />} />
           <Route path="/Teachers" element={<TeacherMobile />} />
           <Route path="/SearchResults/EachGroup" element={< EachGroup/>} />
-          <Route path="/SearchResults" element={<SearchProjects />} />
+          
         </Routes>
       </div>
     </div>
