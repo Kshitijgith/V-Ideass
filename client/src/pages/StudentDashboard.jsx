@@ -12,7 +12,7 @@ import  TeacherBoard  from './components/common/TeacherInfo';
 import UpdateProfile from './components/student/Updateprofile';
 import SearchProjects from './components/common/SearchProjects';
 import MobileDepartment from './components/common/MobileDepartment';
-import TeacherMobile from './components/common/TeacherMObile';
+import TeacherMobile from './components/common/TeacherMobile';
 const StudentDashboard = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   var[dept,setdept]=useState(true)
