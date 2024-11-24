@@ -43,7 +43,6 @@ io.on('connection', (socket) => {
 });
 
 const SOCKET_PORT = 5001;
-server.listen(SOCKET_PORT, () => {
-  console.log('Socket.IO server running on porhkjhkt ${SOCKET_PORT}');
-
-})
+server.listen(SOCKET_PORT, '0.0.0.0', () => {  // Explicitly specify '0.0.0.0' to listen on all interfaces
+  console.log(`Socket.IO server running on port ${SOCKET_PORT}`);
+});
