@@ -197,7 +197,7 @@ navigate('/');
           <Route path="/TeacherInfo" element={<TeacherBoard />} />
          
           <Route path="/Teachers" element={<TeacherMobile />} />
-          
+          <Route path="/SearchResults/EachGroup" element={< EachGroup/>} />
           <Route path="/SearchResults" element={<SearchProjects />} />
         </Routes>
       </div>

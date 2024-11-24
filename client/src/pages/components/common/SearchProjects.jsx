@@ -28,8 +28,10 @@ const SearchProjects = () => {
           );
 
           if (response.data.success) {
+            
             setSearchResults(response.data.data);
           } else {
+
             setError('Failed to fetch group information.');
           }
         } else {
@@ -39,6 +41,7 @@ const SearchProjects = () => {
         clearTimeout(timeout); // Clear timeout if data loads in time
       } catch (err) {
         setError('Failed to fetch search results. Please try again.');
+        console.log('hi')
       } finally {
         setLoading(false);
       }
