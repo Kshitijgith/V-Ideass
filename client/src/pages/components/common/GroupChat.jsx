@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { io } from 'socket.io-client';
-import 
+
 const ChatRoom = ({ groupId, yourName, role }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -12,7 +12,7 @@ const ChatRoom = ({ groupId, yourName, role }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        `https://v-ideass.onrender.com/${role}/Groupchat`,
+        `http://localhost:3000/${role}/Groupchat`,
         { groupid: groupId },
         {
           headers: {
@@ -26,6 +26,7 @@ const ChatRoom = ({ groupId, yourName, role }) => {
     }
   };
 
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     console.log(token);
@@ -33,14 +34,14 @@ const ChatRoom = ({ groupId, yourName, role }) => {
     const newSocket = io('https://v-ideass.onrender.com', {
       path: '/socket.io/',
       auth: {
-        token: `Bearer ${token}`,  // Make sure the token is properly interpolated
+        token: `Bearer ${token}`,
       },
     });
-    
 
     newSocket.emit('joinGroup', groupId);
 
     newSocket.on('newMessage', (message) => {
+      console.log('Received new message:', message);  // Log message to ensure correct data
       setMessages((prevMessages) => [...prevMessages, message]);
     });
 
@@ -57,25 +58,31 @@ const ChatRoom = ({ groupId, yourName, role }) => {
 
   const sendMessage = () => {
     if (!newMessage.trim()) return;
-
+  
+    const timestamp = Date.now();
     const messageData = {
       groupId,
       senderName: yourName,
       message: newMessage,
-      timestamp: Date.now(),
+      timestamp,
     };
-
+  
+    // Emit the message to the server
     socket.emit('groupMessage', messageData);
-
+  
+    // Clear the message input
     setNewMessage('');
   };
+  
+  
 
   useEffect(() => {
+    // Scroll to the bottom whenever messages change
     messagesEndRef.current?.scrollIntoView({ behavior: 'auto' });
   }, [messages]);
 
   return (
-    <div className="h-100p w-100p bg-gray-100 flex flex-col ">
+    <div className="h-92p w-100p bg-gray-100 flex flex-col ">
       <div className="h-10p w-full bg-blue-500 sm:hidden flex items-center justify-center font-semibold">
         Chat Room
       </div>
@@ -84,11 +91,7 @@ const ChatRoom = ({ groupId, yourName, role }) => {
         {messages.map((msg, index) => (
           <div
             key={index}
-            className={`p-2 rounded-md max-w-80p ${
-              msg.senderName === yourName
-                ? 'self-end bg-green-200'
-                : 'self-start bg-blue-200'
-            }`}
+            className={`p-2 rounded-md max-w-80p ${msg.senderName === yourName ? 'self-end bg-green-200' : 'self-start bg-blue-200'}`}
           >
             <p className="text-sm font-semibold">{msg.senderName}</p>
             <p>{msg.message}</p>
@@ -102,7 +105,7 @@ const ChatRoom = ({ groupId, yourName, role }) => {
                     minute: 'numeric',
                     hour12: true,
                   })
-                : 'Invalid timestamp'}
+                : 'Invalid timestamp'}  {/* Handle undefined or loading state */}
             </p>
           </div>
         ))}

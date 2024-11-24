@@ -9,10 +9,10 @@ const bcrypt = require('bcryptjs');
 // @access  Private/Admin
 exports.createTeacher = async (req, res) => {
   const { name, email, password, branch } = req.body;
-        console.log(name)
-        console.log(email)
-        console.log(password)
-        console.log(branch)
+        // console.log(name)
+        // console.log(email)
+        // console.log(password)
+        // console.log(branch)
   // Basic validation
   if (!name || !email || !password ) {
     return res.status(400).json({ message: 'Please provide all required fields' });
@@ -158,7 +158,7 @@ Your Credentials are:
 res.json({success:true,message:'Link Shared in email'})
 }
 catch(error){
-console.error(error,'Error while Reseting Password');
+// console.error(error,'Error while Reseting Password');
 res.status(500).json({success:false,message:'Internal Server Error'})
 }
 }

@@ -28,8 +28,8 @@ const getProjectGroup= async (req, res) => {
     });
   
     if (!projects || projects.length === 0) {
-      console.log(typeof(groupid));
-      console.log(groupid);
+      // console.log(typeof(groupid));
+      // console.log(groupid);
       return res.status(404).json({ message: 'No projects found for this student' });
     }
   

@@ -42,9 +42,9 @@ console.log(nemail);
     else{
       setIsLoading(true);
       const loginUrlMap = {
-        student: 'https://v-ideass.onrender.com/auth/student/login',
-        teacher: 'https://v-ideass.onrender.com/auth/teacher/login',
-        admin: 'https://v-ideass.onrender.com/auth/admin/login',
+        student: 'http://localhost:3000/auth/student/login',
+        teacher: 'http://localhost:3000/auth/teacher/login',
+        admin: 'http://localhost:3000/auth/admin/login',
       };
   
       try {

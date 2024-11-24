@@ -29,7 +29,7 @@ const IDgroups = async (req, res) => {
 const GroupChat = async (req, res) => {
   try {
     const  {groupid}  = req.body;
-    console.log(groupid);
+    // console.log(groupid);
     const group = await Project.findOne({ groupId: groupid });
 
     if (!group) {
@@ -38,7 +38,7 @@ const GroupChat = async (req, res) => {
        
     res.json({ success: true, data: group.Chats });
   } catch (error) {
-    console.log('not done')
+    // console.log('not done')
     
     res.status(500).json({ success: false, message: 'Server error' });
   }

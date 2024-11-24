@@ -1,0 +1,14 @@
+{
+  "name": "socket-server",
+  "version": "1.0.0",
+  "description": "Socket.IO Server",
+  "main": "Sserver.js",
+  "scripts": {
+    "Socket": "node Sserver.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mongoose": "^5.10.9",
+    "socket.io": "^4.0.0"
+  }
+}

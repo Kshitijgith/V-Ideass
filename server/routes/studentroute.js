@@ -4,7 +4,7 @@ const router = express.Router();
 const { GroupChat, Insertchat } = require('../controllers/fetchgroupcontroller');
 const { getProjectGroup, UpdateGroup,UpdateProfile } = require('../controllers/studentcontroller');
 const { protect, authorize } = require('../middleware/auth');
-const {initializeSocketServer}=require('../SocketServer/Sserver')
+
 
 router.post('/find-group', protect, authorize('student'), getProjectGroup);
 router.post('/update-group', protect, authorize('student'), UpdateGroup);
