@@ -13,7 +13,7 @@ import Department from './components/common/Departments';
 import  TeacherBoard  from './components/common/TeacherInfo';
 import SearchProjects from './components/common/SearchProjects';
 import MobileDepartment from './components/common/MobileDepartment';
-import TeacherMobile from './components/common/TeacherMObile';
+import TeacherMobile from './components/common/TeacherMobile';
 const GuideDashboard = () => {
   const navigate=useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
