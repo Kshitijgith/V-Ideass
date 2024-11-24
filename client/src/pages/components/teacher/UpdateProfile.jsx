@@ -104,70 +104,90 @@ useEffect(()=>{
 
   return (
     <div className="h-100p w-100p flex items-center justify-center overflow-y-auto bg-gray-300">
-      <form
-        className="flex flex-col  overflow-y-auto items-center  rounded-xl justify-center h-90p w-40p sm:w-90p sm:h-80p bg-white"
-        onSubmit={handleUpdateProfile}
-      >
-        {/* Circular Photo Placeholder */}
-        <div className="h-60p w-30p rounded-full overflow-hidden border border-gray-300 flex items-center justify-center">
-          {photoPreview ? (
-            <img src={photoPreview} alt="Profile" className="h-full w-full object-cover" />
-          ) : (
-            <span className="text-gray-500">No Photo</span>
-          )}
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Photo">
-            Upload Photo
-          </label>
-          <input
-            type="file"
-            id="Photo"
-            name="Photo"
-            onChange={handlePhotoChange}
-            accept="image/*"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-slate-200"
-          />
-        </div>
-<div className='h-8p'></div>
-        {/* Name Input */}
-    
-        {/* Password Input */}
-        <textarea
-          name="password"
-          value={profileData.password}
-          onChange={handleInputChange}
-          placeholder="Password"
-          className="border h-20p w-[80%]  bg-slate-200"
-        />
-<div className='h-8p'></div>
-        {/* Qualification Input */}
-        <textarea
-          name="Qualification"
-          value={profileData.Qualification}
-          onChange={handleInputChange}
-          placeholder={profile.qualification}
-          className="border h-20p w-[80%]  bg-slate-200"
-        />
-<div className='h-8p'></div>
-        {/* Journey Input */}
-        <textarea 
-          name="journe"
-          value={profileData.journe}
-          onChange={handleInputChange}
-          placeholder={profile.journey}
-          className="border h-40p w-[80%] bg-slate-200"
-        />
-<div className='h-8p'></div>
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Update Profile
-        </button>
-      </form>
+  <form
+    className="flex flex-col overflow-y-auto items-center rounded-xl justify-center h-90p w-40p sm:w-90p sm:h-80p bg-white"
+    onSubmit={handleUpdateProfile}
+  >
+    {/* Circular Photo Placeholder */}
+    <div className="h-60p w-30p rounded-full overflow-hidden border border-gray-300 flex items-center justify-center">
+      {photoPreview ? (
+        <img src={photoPreview} alt="Profile" className="h-full w-full object-cover" />
+      ) : (
+        <span className="text-gray-500">No Photo</span>
+      )}
     </div>
+
+    {/* Photo Upload */}
+    <div className="mb-4">
+      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="Photo">
+        Upload Photo
+      </label>
+      <input
+        type="file"
+        id="Photo"
+        name="Photo"
+        onChange={handlePhotoChange}
+        accept="image/*"
+        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-slate-200"
+      />
+    </div>
+
+    <div className="h-8p"></div>
+
+    {/* Name Input */}
+    <textarea
+      name="password"
+      value={profileData.password}
+      onChange={handleInputChange}
+      placeholder="Password"
+      className="border h-20p w-[80%] bg-slate-200"
+    />
+
+    <div className="h-8p"></div>
+
+    {/* Qualification Input */}
+    <textarea
+      name="Qualification"
+      value={profileData.Qualification}
+      onChange={handleInputChange}
+      placeholder={profile.qualification || "Add Qualification"}
+      className="border h-20p w-[80%] bg-slate-200"
+    />
+
+    <div className="h-8p"></div>
+
+    {/* Branch Input */}
+    <textarea
+      name="branch"
+      value={profileData.branch}
+      onChange={handleInputChange}
+      placeholder={profile.branch || "Add Branch"}
+      className="border h-20p w-[80%] bg-slate-200"
+    />
+
+    <div className="h-8p"></div>
+
+    {/* Journey Input */}
+    <textarea
+      name="journey"
+      value={profileData.journey}
+      onChange={handleInputChange}
+      placeholder={profile.journey || "Add Journey"}
+      className="border h-40p w-[80%] bg-slate-200"
+    />
+
+    <div className="h-8p"></div>
+
+    {/* Submit Button */}
+    <button
+      type="submit"
+      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+    >
+      Update Profile
+    </button>
+  </form>
+</div>
+
   );
 };
 
