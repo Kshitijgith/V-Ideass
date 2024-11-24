@@ -67,7 +67,7 @@ setdrop(!drop)
     if (groupId) {
       fetchGroupById();
     }
-  }, [groupId]);
+  }, [groupInfo]);
 
   return (
     <div className="h-100p w-100p bg-blue-500 flex sm:flex-col items-center sm:items-start sm:justify-start justify-center overflow-y-auto">
@@ -187,6 +187,16 @@ setdrop(!drop)
                 )}
               </div>
             </div>
+            {/* Approve/Reject Button */}
+<div className="bg-white rounded-md shadow mx-4 mb-4 p-4">
+  <button
+    className="bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded w-full"
+    onClick={ApproveGroup}
+  >
+    {groupInfo.status ? 'Reject Group' : 'Approve Group'}
+  </button>
+</div>
+
           </>
         ) : (
           <div className="flex justify-center items-center w-full h-screen">
