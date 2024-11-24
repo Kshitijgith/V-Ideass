@@ -40,7 +40,7 @@ const CreateStudent = () => {
     try {
       const response = await axios({
         method: 'POST',
-        url: 'https://v-ideass.onrender.com/admin/create-student',
+        url: 'https://v-ideass-1.onrender.com/admin/create-student',
         data: formData,
         headers: { 'Authorization': t }
       });
@@ -55,7 +55,7 @@ const CreateStudent = () => {
         rollNo: '',
       });
     } catch (error) {
-      console.log(error)
+     
       setMessage(error.response.data.message);
     }
   };

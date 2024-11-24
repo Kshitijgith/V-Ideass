@@ -43,7 +43,7 @@ const CreateGroup = () => {
     try {
       const response = await axios({
         method: 'POST',
-        url: 'https://v-ideass.onrender.com/teacher/create-group',
+        url: 'https://v-ideass-1.onrender.com/teacher/create-group',
         data: groupData,
         headers: { 'Authorization': t },
       });

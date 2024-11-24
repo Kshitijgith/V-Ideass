@@ -1,6 +1,6 @@
 import React, { useEffect, useState,  } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import FetchGroups from './components/student/FetchGroups';
+import FetchGroups from './components/student/Fetchgroups';
 import { useNavigate } from 'react-router-dom';
 import FetchAll from './components/common/Allgroups';
 import GroupActions from './components/student/GroupAction';
@@ -45,7 +45,7 @@ navigate('/');
       setUsername(decoded.email);
     }
   }, []);
-console.log(searchText)
+// console.log(searchText)
   return (
     <div className='h-100p w-100p lg bg-customBlue flex flex-col items-center justify-center bg-paleBlue  '>
        {isMenuOpen && (

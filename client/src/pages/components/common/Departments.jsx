@@ -9,12 +9,12 @@ const Department = () => {
   const [info,setinfo]=useState();
   const fetchResult = async (deptName) => {
     try {
-      const response = await axios.post('https://v-ideass.onrender.com/all/Find-Teacher', {
+      const response = await axios.post('https://v-ideass-1.onrender.com/all/Find-Teacher', {
         dept: deptName,
       });
       if (response.data.success) {
         setResult(response.data.data);
-        console.log(response.data.data);
+       
       }
     } catch (error) {
       console.error(error);
@@ -37,12 +37,12 @@ const Department = () => {
   };
   const teacherinfo=async(val)=>{
     try{
-      const response=await axios.post('https://v-ideass.onrender.com/all/Teacher',{
+      const response=await axios.post('https://v-ideass-1.onrender.com/all/Teacher',{
         teachername:val
       })
       if(response){
         setinfo(response.data.data)
-        console.log(response.data.data)
+       
       }
     }
     catch(error){

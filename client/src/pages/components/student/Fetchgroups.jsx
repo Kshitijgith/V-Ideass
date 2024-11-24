@@ -21,14 +21,14 @@ const FetchGroups = () => {
       const t = `Bearer ${localStorage.getItem('token')}`;
       const response = await axios({
         method: 'POST',
-        url: `http://localhost:3000/student/find-group`, // Use the email in the route
+        url: `https://v-ideass-1.onrender.com/student/find-group`, // Use the email in the route
         headers: {
           'Authorization': t
         }
       });
 
       if (response.data.success) {
-        console.log(typeof(response.data.data));
+        // console.log(typeof(response.data.data));
         setGroupInfo(response.data.data);
       } else {
         setError('Failed to fetch group information.');

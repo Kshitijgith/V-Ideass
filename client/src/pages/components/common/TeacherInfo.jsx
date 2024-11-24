@@ -8,8 +8,8 @@ const TeacherBoard=()=>{
   const { Name } = location.state||0
   const [menu, setMenu] = useState('Teacherinfo'); // Default menu state
   const[drop,setdrop]=useState(false)
-  console.log(Name);
-  console.log(Name)
+  
+
   const [info,setinfo]=useState('');
   const [groupInfo,setgroupInfo]=useState([]);
 const [error,seterror]=useState('')
@@ -21,10 +21,10 @@ const set=()=>{
       setdrop(!drop)
   
     }
-  // console.log(Name);
+  
 const teacherinfo=async()=>{
   try{
-    const response=await axios.post('https://v-ideass.onrender.com/all/Teacher',{
+    const response=await axios.post('https://v-ideass-1.onrender.com/all/Teacher',{
       teachername:Name
     })
     if(response){
@@ -38,12 +38,12 @@ console.error('Error getting info',error);
 }
 const projectinfo=async()=>{
 try{
-const response=await axios.post('https://v-ideass.onrender.com/all/Find-Projects',{
+const response=await axios.post('https://v-ideass-1.onrender.com/all/Find-Projects',{
   teachername:Name
 })
 if(response.data.data.length>0){
   setgroupInfo(response.data.data);
-//   console.log(response.data.data);
+// 
  }
  else{
   setgroupInfo([])
@@ -55,7 +55,7 @@ catch(error){
 console.error('Error Occured',error)
 }
 }
-console.log(error);
+
 if(Name!=info.name){
     teacherinfo()
  projectinfo()

@@ -21,7 +21,7 @@ const FetchGroupsT = () => {
       const t = `Bearer ${localStorage.getItem('token')}`;
       const response = await axios({
         method: 'POST',
-        url: `https://v-ideass.onrender.com/teacher/find-group`, // Use the email in the route
+        url: `https://v-ideass-1.onrender.com/teacher/find-group`, // Use the email in the route
         headers: {
           'Authorization': t
         }

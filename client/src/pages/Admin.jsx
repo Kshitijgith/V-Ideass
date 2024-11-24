@@ -20,7 +20,7 @@ useEffect(() => {
     if (token) {
       
       const decoded = JSON.parse(atob(token.split('.')[1]));
-      console.log(decoded.email);
+      // console.log(decoded.email);
       setUsername(decoded.email);
     }
   }, []);

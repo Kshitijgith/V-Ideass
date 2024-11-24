@@ -8,19 +8,19 @@ const TeacherMobile = () => {
     const navigate=useNavigate();
   const { department } = location.state || {};
   const {Role}=location.state||''
-  console.log(Role)
-  console.log(department)
+  // console.log(Role)
+  // console.log(department)
   const currentdept = department;
   const[info,setinfo]=useState([]);
     const fetchResult = async () => {
         try {
-          const response = await axios.post('https://v-ideass.onrender.com/all/Find-Teacher', {
+          const response = await axios.post('https://v-ideass-1.onrender.com/all/Find-Teacher', {
             dept: department,
           });
           
           if (response.data.success) {
             setinfo(response.data.data);
-            // console.log(response.data.data);
+            console.log(response.data.data);
           }
         } catch (error) {
           console.error(error);
@@ -33,7 +33,7 @@ const TeacherMobile = () => {
       
      
 
-   console.log(info);
+   
   return (
     <div className='h-90p w-100p flex flex-col overflow-y-auto justify-center items-center'>
         

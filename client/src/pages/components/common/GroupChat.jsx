@@ -12,7 +12,7 @@ const ChatRoom = ({ groupId, yourName, role }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        `http://localhost:3000/${role}/Groupchat`,
+        `https://v-ideass-1.onrender.com/${role}/Groupchat`,
         { groupid: groupId },
         {
           headers: {
@@ -29,9 +29,9 @@ const ChatRoom = ({ groupId, yourName, role }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log(token);
+   
 
-    const newSocket = io('https://v-ideass.onrender.com', {
+    const newSocket = io('https://v-ideass.onrender.com/', {
       path: '/socket.io/',
       auth: {
         token: `Bearer ${token}`,
@@ -41,7 +41,7 @@ const ChatRoom = ({ groupId, yourName, role }) => {
     newSocket.emit('joinGroup', groupId);
 
     newSocket.on('newMessage', (message) => {
-      console.log('Received new message:', message);  // Log message to ensure correct data
+       // Log message to ensure correct data
       setMessages((prevMessages) => [...prevMessages, message]);
     });
 

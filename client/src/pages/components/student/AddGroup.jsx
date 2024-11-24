@@ -17,7 +17,7 @@ const AddProject = ({ id }) => {
   const handleFileChange = async (event) => {
     const files = event.target.files;
     const base64Photos = [];
-    console.log(files.length); // Checking the length
+    // console.log(files.length); // Checking the length
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
@@ -26,8 +26,8 @@ const AddProject = ({ id }) => {
     }
 
     setPhotos(base64Photos);
-    console.log(Array.isArray(base64Photos)); // Confirm `base64Photos` is an array
-    console.log(base64Photos); // Log the base64 data to confirm structure
+    // console.log(Array.isArray(base64Photos)); // Confirm `base64Photos` is an array
+    // console.log(base64Photos); // Log the base64 data to confirm structure
   };
 
   const convertToBase64 = (file) => {
@@ -45,12 +45,12 @@ const AddProject = ({ id }) => {
     setSuccessMessage('');
 
     try {
-      console.log(Array.isArray(photos)); // Confirm `photos` is an array
-      console.log(photos); // Log `photos` to check content
+      // console.log(Array.isArray(photos)); // Confirm `photos` is an array
+      // console.log(photos); // Log `photos` to check content
 
       const result = await updateGroup(groupid, projectname, projecttechnology, projectinfo, photos,ppt,report,tags);
       setSuccessMessage('Group updated successfully!');
-      console.log(result);
+      // console.log(result);
       
       // Clear the form fields after submission if needed
       

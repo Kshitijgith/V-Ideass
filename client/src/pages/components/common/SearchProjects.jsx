@@ -23,7 +23,7 @@ const SearchProjects = () => {
         const { searchText } = location.state || {};
         if (searchText) {
           const response = await axios.post(
-            'https://v-ideass.onrender.com/all/Search-Groups',
+            'https://v-ideass-1.onrender.com/all/Search-Groups',
             { query: searchText }
           );
 

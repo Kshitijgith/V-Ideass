@@ -22,8 +22,8 @@ export default function LoginPage() {
         const nemail=decoded.email;
           const nrole=decoded.userType;
       if (token&&role==nrole&&email=='') {
-console.log(nemail);
-          console.log(nrole)
+// console.log(nemail);
+          // console.log(nrole)
         try {
           const routeMap = {
             student: '/StudentDashBoard',
@@ -42,9 +42,9 @@ console.log(nemail);
     else{
       setIsLoading(true);
       const loginUrlMap = {
-        student: 'http://localhost:3000/auth/student/login',
-        teacher: 'http://localhost:3000/auth/teacher/login',
-        admin: 'http://localhost:3000/auth/admin/login',
+        student: 'https://v-ideass-1.onrender.com/auth/student/login',
+        teacher: 'https://v-ideass-1.onrender.com/auth/teacher/login',
+        admin: 'https://v-ideass-1.onrender.com/auth/admin/login',
       };
   
       try {
@@ -79,8 +79,12 @@ console.log(nemail);
   <form onSubmit={(e) => {
     e.preventDefault(); // Prevents default form submission
     handleLogin(role); // Calls your login logic
-  }}className="h-90p w-100 ">
-  <h1 className="text-xl font-bold h-10p flex items-center justify-center text-center text-gray-700 bg-skyBlue ">
+  }}className="h-90p w-100  flex-col flex items-center justify-center">
+    <div className={`sm:h-100p sm:w-100p h-30p opacity-50  bg-lightCream opacity w-30p absolute  flex items-center justify-center z-10 ${isLoading ? '' : 'hidden'}`}>
+  <div className="w-12   h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+</div>
+
+  <h1 className="text-xl  font-bold h-10p w-100p flex items-center justify-center text-center text-gray-700 bg-skyBlue ">
     Login as {role}
   </h1>
     <div className="h-60p w-100p flex flex-col justify-center items-center ">
@@ -109,7 +113,7 @@ console.log(nemail);
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="h-50p w-full px-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-400"
-            required
+            
           />
         </div>
         <div className="h-30p w-80p flex flex-col">
@@ -126,7 +130,7 @@ console.log(nemail);
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="h-50p w-full px-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-gray-400"
-            required
+            
             placeholder="Enter Password"
           />
         </div>
@@ -160,7 +164,7 @@ console.log(nemail);
             disabled={isLoading}
             className="w-30p h-100p flex justify-center items-center shadow-sm text-sm font-medium  bg-blue-500 hover:bg-blue-950 text-white focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isLoading ? 'Loading...' : ' Student'}
+               Student
           </button>
           <button
             type="button"
@@ -168,7 +172,7 @@ console.log(nemail);
             disabled={isLoading}
             className="w-30p h-100p flex justify-center items-center shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-950  focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isLoading ? 'Loading...' : ' Teacher'}
+            Teacher
           </button>
           <button
             type="button"
@@ -176,7 +180,7 @@ console.log(nemail);
             disabled={isLoading}
             className="w-30p h-100p flex justify-center items-center shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-950 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isLoading ? 'Loading...' : 'Admin'}
+            Admin
           </button>
         </div>
       </div>

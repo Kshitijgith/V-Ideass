@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 const UpdateProfile = () => {
   const location = useLocation();
   const { email } = location.state || {};
-  console.log(email);
+  // console.log(email);
   const token=localStorage.getItem('token');
   const [profileData, setProfileData] = useState({
     Name: email ,
@@ -27,14 +27,14 @@ const UpdateProfile = () => {
     const fetchProfileData = async () => {
       try {
         const response = await axios.post(
-            'https://v-ideass.onrender.com/teacher/Teacherinfo',{
+            'https://v-ideass-1.onrender.com/teacher/Teacherinfo',{
             Name:email,
             },
             {
           headers: { Authorization: `Bearer ${token}` },
             
         });
-        console.log(response)
+        // console.log(response)
         setprofile(response.data.data);
         setPhotoPreview(response.data.data.photo); // Assuming photo URL comes from backend
       } catch (error) {
@@ -83,10 +83,10 @@ useEffect(()=>{
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     try {
-      console.log(token);
+      // console.log(token);
       
       const response = await axios.post(
-         'https://v-ideass.onrender.com/teacher/Update-Profile', 
+         'https://v-ideass-1.onrender.com/teacher/Update-Profile', 
    profileData,
         {headers:{ Authorization: `Bearer ${token}` },}
       );
@@ -94,10 +94,10 @@ useEffect(()=>{
       alert('Profile updated successfully!');
     } catch (error) {
       console.error('Error updating profile:', error);
-      console.log(profileData.Name)
-      console.log(profileData.Photo)
-      console.log(profileData.Qualification)
-      console.log(profileData.journe)
+      // console.log(profileData.Name)
+      // console.log(profileData.Photo)
+      // console.log(profileData.Qualification)
+      // console.log(profileData.journe)
       alert('Failed to update profile.');
     }
   };
