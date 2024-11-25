@@ -85,7 +85,7 @@ const SearchProjects = () => {
           <div className="h-10p w-100p"></div>
           {groupInfo.map((group, index) => (
             <Link
-              to="EachGroup"
+              to='/EachGroup'
               state={{ groupId: group.groupId }}
               key={index}
               className="w-30p h-80p sm:w-80p sm:h-80p"
