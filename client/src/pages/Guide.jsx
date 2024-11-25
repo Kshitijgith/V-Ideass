@@ -27,14 +27,12 @@ const GuideDashboard = () => {
 navigate('/');
   }
   const [searchText, setSearchText] = useState('');
-  const setSearch=(text)=>{
-    setSearchText(text);
-    <Link
-        to='SearchResults' state={{searchText:searchText}}
-        className='absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-500 font-bold'
-      />
-
-  }
+  useEffect(() => {
+    if (searchText.trim()) {
+      // Navigate to SearchResults page with the searchText
+      navigate('SearchResults', { state: { searchText: searchText } });
+    }
+  }, [searchText, navigate]);
   const [username, setUsername] = useState('');
   
   useEffect(() => {
@@ -124,21 +122,15 @@ navigate('/');
           {username}
         </div>
         
-        <div className='h-100p w-30p relative'>
-        <input
-        type='text'
-        placeholder='Search Projects'
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-        className='h-100p w-100p pl-10 pr-4 text-xl font-bold text-center bg-white'
-      />
-        
-      <Link
-        to='SearchResults' state={{searchText:searchText}}
-        className='absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-500 font-bold'
-      >
-        Go
-      </Link>
+        <div className='h-100p w-30p bg-blue-300 relative'>
+          <input
+            type='text'
+            placeholder='Search Projects'
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}  // Update searchText on input change
+            className='h-100p w-100p pl-10 pr-4 text-xl font-bold text-center bg-white'
+          />
+          <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400' size={24} />
         </div>
         <div className='h-100p w-50p flex justify-between'>
         <button className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
@@ -164,21 +156,19 @@ navigate('/');
         <div className='h-10p w-100p bg-yellow-400 flex items-end justify-end md:hidden '>
         <div className='h-100p w-90p flex justify-center items-center   '>
         <div className='h-80p w-90p border rounded-xl bg-white flex'>
-        <input
-        type='text'
-        placeholder='Search Projects'
-        value={searchText}
-        onChange={(e) => setSearch(e.target.value)
-          
-        }
-        className='h-100p w-90p pl-10 pr-4 text-xl font-bold text-center border rounded-xl bg-white'
-      />
-       <Link
-        to='SearchResults'  state={{searchText:searchText}}
-        className=' h-100p w-10p flex justify-center items-center'
-      >
-       <Search  size={24} className='color-black' />
-      </Link>
+        <div className='h-100p w-100p bg-blue-300 relative'>
+          <input
+            type='text'
+            placeholder='Search Projects'
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}  // Update searchText on input change
+            className='h-100p w-100p pl-10 pr-4 text-xl font-bold text-center bg-white'
+          />
+          <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400' size={24} />
+        </div>
+       
+
+      
         </div>
       
       
