@@ -6,7 +6,7 @@ import FetchGroupsT from './components/teacher/FetchgroupT';
 import { useNavigate } from 'react-router-dom';
 import FetchAll from './components/common/Allgroups';
 import EachGroup from './components/common/Eachgroup';
-import { Menu, X, Search, User, Key, LogOut,SquarePlus } from 'lucide-react';
+import { Menu, X, Search, User, Key, LogOut,SquarePlus,House,CirclePlus } from 'lucide-react';
 
 import UpdateProfile from './components/teacher/UpdateProfile';
 import Department from './components/common/Departments';
@@ -53,66 +53,72 @@ navigate('/');
 
     <div className='h-100p w-100p  flex flex-col  justify-center items-center'>
       {isMenuOpen && (
-        <div className='h-60p w-80p bg-blue-900 bg-opacity-70 flex flex-col items-center  absolute z-10'>
-           <div className=' h-10p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
-          {username}
-        </div>
-          <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
-          <User size={20} className="h-70p w-20p text-white" />
-          <Link
-              to="FetchGroupsT"
-               className='h-100p w-90p text-start flex items-center'
-            >
-              
-              
-              Your Group
-            </Link>
-          </button>
-          
-            <div className='h-10p w-100p'></div>
-            <button onClick={()=>{setdept(!dept)}} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
-              
-            <MobileDepartment toggle={toggle} role='guide' />
+  <div className='h-60p w-80p bg-blue-950 flex flex-col items-center absolute z-10'>
+    <div className='h-10p w-20p font-extrabold text-white flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
+      {username}
+    </div>
+    <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+      &nbsp;&nbsp;
+      <House size={20} className="h-70p w-10p text-white" />
+      <Link
+        to="/guide"
+        className='h-100p w-90p text-start flex items-center'
+      >
+        &nbsp;&nbsp;Home
+      </Link>
+    </button>
+    <div className='h-10p w-100p'></div>
+    <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+      &nbsp;&nbsp;
+      <User size={20} className="h-70p w-10p text-white" />
+      <Link
+        to="FetchGroupsT"
+        className='h-100p w-90p text-start flex items-center'
+      >
+        &nbsp;&nbsp;Your Group
+      </Link>
+    </button>
+    <div className='h-10p w-100p'></div>
+    <button onClick={() => { setdept(!dept); }} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+      &nbsp;
+      <MobileDepartment toggle={toggle} role='guide' />
+    </button>
+    <div className='h-10p w-100p'></div>
+    <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+      &nbsp;&nbsp;
+      <CirclePlus size={20} className="h-70p w-10p text-white" />
+      &nbsp;&nbsp;
+      <Link
+        to="CreateGroup"
+        className="h-100p w-90p text-start flex items-center"
+      >
+        Create Group
+      </Link>
+    </button>
+    <div className='h-10p w-100p'></div>
+    <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+      &nbsp;&nbsp;&nbsp;
+      <Key size={20} className="mr-3 text-white" />
+      <Link
+        to="UpdateProfile"
+        state={{ email: username }}
+        className='h-100p w-90p text-start flex items-center'
+      >
+        Update Password
+      </Link>
+    </button>
+    <div className='h-10p w-100p'></div>
+    <button
+      onClick={go}
+      className="flex items-center text-white h-10p w-80p px-4 rounded-lg bg-red-600 hover:bg-red-700 transition duration-200"
+    >
+      <LogOut size={20} className="mr-3 text-white" />
+      Logout
+    </button>
+    <div className='h-10p w-100p'></div>
+  </div>
+)}
 
-          </button>
-          <div className='h-10p w-100p'></div>
-          <button onClick={toggle}  className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
-          <SquarePlus size={20} className="h-70p w-20p text-white" />
-          <Link to="CreateGroup" className="h-100p w-90p text-start flex items-center">
-         Create Group
-        </Link>
-          </button>
-          <div className='h-10p w-100p'></div>
-          <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
-          <Key size={18} className="h-70p w-20p text-white" />
-
-          <Link
-             to="UpdateProfile" state={{email:username}}
-             className='h-100p w-90p text-start flex items-center'
-            >
-              
-              Update Password
-            </Link>
-          </button>
-          <div className='h-10p w-100p'></div>
-          
-          
-            <div className='h-10p w-100p'></div>
-            <button
-            onClick={go}
-            className="flex items-center text-white h-10p w-80p px-4 rounded-lg bg-red-600 hover:bg-red-700 transition duration-200"
-          >
-            <LogOut size={18} className="mr-3 text-white" />
-            Logout
-          </button>
-          <div className='h-10p w-100p'></div>
-        
-
-        
-      </div>
-      
-        
-      )}
 <div className='h-8p w-100p bg-yellow-400 sm:hidden md:flex items-center '>
         <div className=' h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
           {username}

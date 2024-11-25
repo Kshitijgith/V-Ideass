@@ -43,31 +43,28 @@ setdrop(!drop)
 
   const fetchGroupById = async () => {
     try {
-      const response = await axios.post('https://v-ideass-1.onrender.com/all/Id', {
+      const response = await axios.post(`https://v-ideass-1.onrender.com/all/Id`, {
         id: groupId,
       });
-
+  
       if (response.data.success) {
         const fetchedGroup = response.data.data[0];
-        setGroupInfo(fetchedGroup);
+        if (JSON.stringify(fetchedGroup) !== JSON.stringify(groupInfo)) {
+          setGroupInfo(fetchedGroup);
+        }
       } else {
         setError('Failed to fetch group information.');
       }
     } catch (err) {
-      if (err.response && err.response.status === 404) {
-        setError('Group not found.');
-      } else {
-        console.error('Error fetching group:', err);
-        setError('An error occurred while fetching the group.');
-      }
+      console.error('Error fetching group:', err);
+      setError('An error occurred while fetching the group.');
     }
   };
+  
 
   useEffect(() => {
-    if (groupId) {
-      fetchGroupById();
-    }
-  }, [groupInfo]);
+    fetchGroupById();
+  }, [groupInfo]); // Runs when groupId changes
 
   return (
     <div className="h-100p w-100p bg-blue-500 flex sm:flex-col items-center sm:items-start sm:justify-start justify-center overflow-y-auto">
