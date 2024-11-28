@@ -5,6 +5,7 @@ import axios from 'axios';
 const UpdateProfile = () => {
   const location = useLocation();
   const {Email} = location.state||0 // Assuming the email is passed through state
+console.log(Email);
 
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');

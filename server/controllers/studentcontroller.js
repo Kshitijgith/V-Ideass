@@ -88,6 +88,7 @@ const UpdateProfile = async (req, res) => {
       //  console.log(oldPassword);
       //  console.log(newPassword);
     // Find the user by email
+    console.log(Email)
     const user = await Student.findOne({ email: Email });
     console.log(user)
     if (!user) {
