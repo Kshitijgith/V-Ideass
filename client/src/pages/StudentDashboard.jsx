@@ -89,7 +89,7 @@ navigate('/');
           <Key size={20} className="mr-3 text-white" />
           <Link
               to="UpdateProfile"
-              state={{}}
+              state={{Email:username}}
              className='h-100p w-90p text-start flex items-center'
             >
               
