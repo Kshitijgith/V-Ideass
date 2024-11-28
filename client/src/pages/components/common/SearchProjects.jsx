@@ -79,13 +79,13 @@ const SearchProjects = () => {
       ) : error ? (
         <p className="text-red-500 font-semibold text-lg">{error}</p>
       ) : noGroupsFound ? (
-        <p className="text-gray-500 text-center">No groups found for the given search query.</p>
+        <div className="text-gray-500 text-center h-100p w-100p flex items-center justify-center ">No groups found for the given search query.</div>
       ) : (
         <div className="flex flex-wrap justify-around h-100p w-100p overflow-y-auto">
           <div className="h-10p w-100p"></div>
           {groupInfo.map((group, index) => (
             <Link
-              to='/EachGroup'
+              to='/ EachGroup'
               state={{ groupId: group.groupId }}
               key={index}
               className="w-30p h-80p sm:w-80p sm:h-80p"

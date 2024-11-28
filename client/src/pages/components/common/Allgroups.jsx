@@ -30,15 +30,8 @@ const FetchAll = () => {
   useEffect(() => {
     fetchGroups();
 
-    // Timeout to show a message after prolonged loading
-    const timeout = setTimeout(() => {
-      if (loading) {
-        setShowNoDataMessage(true);
-      }
-    }, 5000); // 5 seconds timeout
-
-    return () => clearTimeout(timeout); // Cleanup timeout
-  }, [loading]);
+    
+  },[]);
 
   return (
     <div className="h-100p w-100p flex flex-col justify-center items-start overflow-y-auto">
