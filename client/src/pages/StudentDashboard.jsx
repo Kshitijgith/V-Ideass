@@ -27,6 +27,7 @@ navigate('/');
   
   const [username, setUsername] = useState('');
   const [searchText, setSearchText] = useState('');
+  
   useEffect(() => {
     if (searchText.trim()) {
       // Navigate to SearchResults page with the searchText

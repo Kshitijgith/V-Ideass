@@ -57,7 +57,7 @@ setdrop(!drop)
       }
     } catch (err) {
       console.error('Error fetching group:', err);
-      setError('An error occurred while fetching the group.');
+      setError(err.response.data.message);
     }
   };
   

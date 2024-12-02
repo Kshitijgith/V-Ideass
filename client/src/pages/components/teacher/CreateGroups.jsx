@@ -56,7 +56,7 @@ const CreateGroup = () => {
         year: '',
       });
     } catch (error) {
-      setMessage('Failed to create group. Please try again.');
+      setMessage(error.response.data.message);
     }
   };
 

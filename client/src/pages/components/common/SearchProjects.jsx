@@ -1,25 +1,37 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 const SearchProjects = () => {
+  const navigate=useNavigate()
   const location = useLocation();
   const [groupInfo, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [noGroupsFound, setNoGroupsFound] = useState(false);
   const cancelTokenRef = useRef(null); // Ref for Axios cancellation
-
+  
+  
+  
+  
   useEffect(() => {
     const fetchResults = async () => {
       const { searchText } = location.state || {};
-
-      if (!searchText) {
-        setSearchResults([]);
-        setNoGroupsFound(true);
-        return;
+      console.log(searchText)
+      if (!searchText){
+        console.log('hi')
       }
+if ( searchText.length === 0) {
+ 
+  setSearchResults([]);        // Clear search results
+  setNoGroupsFound(true);      // Indicate no groups were found
+  console.log('hi')
+                 // Navigate back to the previous route
+  
+  
+}
+
 
       // Cancel any ongoing request before making a new one
       if (cancelTokenRef.current) {

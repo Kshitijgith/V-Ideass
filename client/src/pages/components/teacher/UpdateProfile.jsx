@@ -9,6 +9,7 @@ const UpdateProfile = () => {
   const location = useLocation();
   const { email } = location.state || {};
   // console.log(email);
+  const [Error,SetError]=useState('')
   const token=localStorage.getItem('token');
   const [profileData, setProfileData] = useState({
     Name: email ,
@@ -38,6 +39,7 @@ const UpdateProfile = () => {
         setprofile(response.data.data);
         setPhotoPreview(response.data.data.photo); // Assuming photo URL comes from backend
       } catch (error) {
+        SetError(error.response.data.message)
         console.error('Error fetching profile data:', error);
       }
     };
@@ -108,6 +110,7 @@ useEffect(()=>{
     className="flex flex-col overflow-y-auto items-center rounded-xl justify-center h-90p w-40p sm:w-90p sm:h-80p bg-white"
     onSubmit={handleUpdateProfile}
   >
+    {<div className='h-10p w-100p'>{Error}</div>}
     {/* Circular Photo Placeholder */}
     <div className="h-60p w-30p rounded-full overflow-hidden border border-gray-300 flex items-center justify-center">
       {photoPreview ? (

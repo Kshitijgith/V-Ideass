@@ -34,13 +34,7 @@ const FetchGroups = () => {
         setError('Failed to fetch group information.');
       }
     } catch (err) {
-      if (err.response && err.response.status === 404) {
-        setError('Not Part of any Group');
-      } else if (err.response && err.response.status === 401) {
-        setError('Not Authorized');
-      } else {
-        console.error('Error fetching groups:', err);
-      }
+      setError(err.response.data.message)
     }
   };
   useEffect(() => {

@@ -5,6 +5,7 @@ import axios from 'axios';
 const UpdateProfile = () => {
   const location = useLocation();
   const {Email} = location.state||0 // Assuming the email is passed through state
+  const [Error,setError]=useState('')
 console.log(Email);
 
   const [oldPassword, setOldPassword] = useState('');
@@ -15,8 +16,7 @@ console.log(Email);
     e.preventDefault();
 
     if (newPassword !== confirmNewPassword) {
-      alert('New passwords do not match!');
-      return;
+      setError('New Password not Match')
     }
 
     const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
@@ -33,8 +33,9 @@ console.log(Email);
       );
       alert('Password updated successfully!');
     } catch (error) {
+      setError(error.response.data.message)
       console.error('Error updating password:', error);
-      alert('Failed to update password.');
+      
     }
   };
 
@@ -43,10 +44,11 @@ console.log(Email);
       
       <form 
       onSubmit={handleSubmit} 
-      className="flex flex-col items-center sm:h-60p sm:w-80p justify-center bg-white shadow-lg rounded-lg p-8 w-96 mx-auto"
+      className="flex flex-col items-center sm:h-70p sm:w-80p justify-center bg-white shadow-lg rounded-lg p-8 w-96 mx-auto"
     >
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Update Password</h2>
-
+      
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">Update Password</h2>
+      <div className='h-10p w-100p  text-center text-red-600'>{Error}</div>
       <input
         type="password"
         placeholder="Enter old password"
@@ -89,6 +91,8 @@ console.log(Email);
       >
         Update Password
       </button>
+      
+      
     </form>
 
     </div>
