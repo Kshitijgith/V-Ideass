@@ -8,7 +8,7 @@ import ForgotPassword from './pages/components/common/ForgotPassword';
 import EachGroup from './pages/components/common/Eachgroup';
 import VITlogo from './assets/logo_vit.png';
 import VIT from './assets/VIT.png';
-
+import axios from 'axios';
 const token = localStorage.getItem('token');
 var decoded = 'a';
 if (token) {
@@ -16,6 +16,19 @@ if (token) {
 }
 
 const App = () => {
+  useEffect(() => {
+    const warmupServers = async () => {
+      try {
+        await axios.get('https://v-ideass-1.onrender.com');
+        await axios.get('https://v-ideass.onrender.com');
+        console.log('Servers warmed up successfully.');
+      } catch (error) {
+        console.log('Server is not responding:', error.message);
+      }
+    };
+
+    warmupServers();
+  }, []);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
