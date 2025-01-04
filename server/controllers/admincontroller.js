@@ -36,14 +36,17 @@ exports.createTeacher = async (req, res) => {
     // Save Teacher to the database (password hashing is handled in the schema)
    
     await SendEmail(
-      email,  // recipient email
-      'Update Your Password',  // subject
-      `Update Your Password by Logging In 
-   
-  Your Credentials are: 
-  <br>Email: ${email}
-  <br>Password: ${password}`  // dynamic email content
-  );
+      email, // recipient email
+      'Update Your Password', // subject
+      `
+        <h2>Password Reset Request</h2>
+        <p>We have received a request to reset your password. Please use the credentials below to log in and update your password:</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Password:</strong> ${password}</p>
+        <p><a href="https://v-ideass.vercel.app/reset-password" target="_blank" style="color: #4CAF50; text-decoration: none;">Login to V-Ideas to Update Password</a></p>
+        <p>If you did not request this change, please ignore this email.</p>
+      `
+    );
   await teacher.save();
     //Respond with the created Teacher details (excluding password)
     res.status(201).json({
@@ -65,10 +68,10 @@ exports.createTeacher = async (req, res) => {
 // @route   POST /api/admin/create-student
 // @access  Private/Admin
 exports.createStudent = async (req, res) => {
-  const { studentName, email, password,rollNo } = req.body;
+  const { studentName, email, password,rollNo,branch } = req.body;
 
   // Basic validation
-  if (!studentName || !email || !password ) {
+  if (!studentName || !email || !password||!branch ) {
     // console.log(studentName)
     // console.log(email)
     // console.log(password)
@@ -96,16 +99,21 @@ exports.createStudent = async (req, res) => {
       email,
       password,
       rollNo,
+      branch
     });
     await SendEmail(
-      email,  // recipient email
-      'Update Your Password',  // subject
-      `Update Your Password by Logging In 
-   
-  Your Credentials are: 
-  <br>Email: ${email}
-  <br>Password: ${password}`  // dynamic email content
-  );
+      email, // recipient email
+      'Update Your Password', // subject
+      `
+        <h2>Password Reset Request</h2>
+        <p>We have received a request to reset your password. Please use the credentials below to log in and update your password:</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Password:</strong> ${password}</p>
+        <p><a href="https://v-ideass.vercel.app/reset-password" target="_blank" style="color: #4CAF50; text-decoration: none;">Login to V-Ideas to Update Password</a></p>
+        <p>If you did not request this change, please ignore this email.</p>
+      `
+    );
+    
     // Save Student to the database (password hashing is handled in the schema)
     await student.save();
 
@@ -117,6 +125,7 @@ exports.createStudent = async (req, res) => {
         studentName: student.studentName,
         email: student.email,
         rollNo: student.rollNo,
+        branch:student.branch
       },
     });
   } catch (error) {
@@ -148,12 +157,16 @@ const response=await Model.findOneAndUpdate(
 
 );
 await SendEmail(
-  email,  // recipient email
-  'Reset Your Password',  // subject
-  `Update Your Password by Logging In V-Ideas  
-Your Credentials are: 
-<br>Email: ${email}
-<br>Password: ${Password}`  // dynamic email content
+  email, // recipient email
+  'Update Your Password', // subject
+  `
+    <h2>Password Reset Request</h2>
+    <p>We have received a request to reset your password. Please use the credentials below to log in and update your password:</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Password:</strong> ${Pass}</p>
+    <p><a href="https://v-ideass.vercel.app/reset-password" target="_blank" style="color: #4CAF50; text-decoration: none;">Login to V-Ideas to Update Password</a></p>
+    <p>If you did not request this change, please ignore this email.</p>
+  `
 );
 res.json({success:true,message:'Link Shared in email'})
 }

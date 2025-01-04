@@ -4,7 +4,7 @@ import axios from 'axios';
 const CreateTeacher = () => {
   const [formData, setFormData] = useState({
     name: '',
-    email: '@vit.edu.in',
+    email: '',
     password: '',
     qualification: '',
     branch: '',
@@ -67,7 +67,7 @@ const CreateTeacher = () => {
         <h2>Create Teacher</h2>
       </div>
 
-      <div className="w-50p sm:h-60p sm:w-60p h-80p bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
+      <div className="w-30p sm:h-60p sm:w-60p h-80p bg-gray-200 rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
         {message && <p className="mb-4 text-center text-green-500">{message}</p>}
 
         <form className="w-100p space-y-4 overflow-y-auto" onSubmit={handleSubmit}>
@@ -77,6 +77,7 @@ const CreateTeacher = () => {
               type="text"
               name="name"
               value={formData.name}
+              placeholder='Enter Teacher Name'
               onChange={handleChange}
               required
               className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -90,6 +91,7 @@ const CreateTeacher = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              placeholder='Enter Teacher Email'
               required
               className="w-full px-3 py-2 mt-1  text-black border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
@@ -102,6 +104,7 @@ const CreateTeacher = () => {
             <input
               type="text"
               name="branch"
+              placeholder='Enter Teacher Branch'
               value={formData.branch}
               onChange={handleChange}
               required

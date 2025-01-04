@@ -8,6 +8,7 @@ const CreateStudent = () => {
     email: '',
     password: '',
     rollNo: '',
+    branch:''
   });
   
   const [message, setMessage] = useState('');
@@ -51,7 +52,6 @@ const CreateStudent = () => {
         email: '',
         password: '',
         branch: '',
-        div: '',
         rollNo: '',
       });
     } catch (error) {
@@ -67,7 +67,7 @@ const CreateStudent = () => {
       <h3>Create Student</h3>
       </div>
       
-      <div className="w-50p h-80p sm:w-90p sm:h-80p bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center ">
+      <div className="w-30p h-80p sm:w-90p sm:h-80p bg-gray-200 rounded-lg shadow-lg p-6 flex flex-col items-center justify-center ">
   
   {message && <p className="mb-4 text-center text-green-500">{message}</p>}
   
@@ -78,6 +78,7 @@ const CreateStudent = () => {
         type="text"
         name="studentName"
         value={formData.studentName}
+        placeholder='Enter Student Name'
         onChange={handleChange}
         required
         className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -90,6 +91,7 @@ const CreateStudent = () => {
         type="email"
         name="email"
         value={formData.email}
+        placeholder='Enter Student Email'
         onChange={handleChange}
         required
         className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -103,6 +105,19 @@ const CreateStudent = () => {
         name="rollNo"
         value={formData.rollNo}
         onChange={handleChange}
+        placeholder='Enter Student RollNo'
+        required
+        className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+    </div>
+    <div>
+      <label htmlFor="branch" className="block text-gray-700">Branch</label>
+      <input
+        type="text"
+        name="branch"
+        value={formData.branch}
+        onChange={handleChange}
+        placeholder='Enter Student Branch'
         required
         className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
       />
