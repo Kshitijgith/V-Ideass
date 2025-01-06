@@ -151,7 +151,10 @@ const GroupActions = () => {
                 ))}
               </ul>
             </div>
-
+            <div className="bg-white rounded-md shadow h-10p mx-4 mb-4 p-4 flex  items-center justify-evenly">
+          <a href={groupInfo.PPT} className='h-100p w-30p sm:w-40p bg-gray-400 text-center font-bold rounded-full'> Download PPT</a>
+          <a href={groupInfo.Report} className='h-100p w-30p sm:w-40p bg-gray-400 text-center font-bold rounded-full'>Download Report</a>
+          </div>
             <div className="bg-white rounded-md shadow mx-4 mb-4 p-4">
               <h3 className="text-lg font-semibold mb-2">Photos</h3>
               <div className="grid grid-cols-2 gap-4">
