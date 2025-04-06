@@ -72,10 +72,12 @@ const Insertchat = async (req, res) => {
 const searchGroups = async (req,res) => {
   try {
     const { query } = req.body; // Get query from body
+    
     const results = await Project.find({
       status:true,
       $text: { $search: query }
     });
+    console.log(results);
     res.json({ success: true, data: results });
   } catch (error) {
     

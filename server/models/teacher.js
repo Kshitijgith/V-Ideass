@@ -30,9 +30,9 @@ const TeacherSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: [true, 'Please add a password'],
-      minlength: 6,
-      select: false, // Do not return password by default
+      password: { type: String, required: true, select: true },
+      minlength: 6
+      
     },
     qualification: {
       type: String,

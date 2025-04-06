@@ -24,7 +24,7 @@ const StudentSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: [true, 'Please add a password'],
+      password: { type: String, required: true, select: true },
       minlength: 6,
  
     },
