@@ -10,10 +10,13 @@ import VITlogo from './assets/logo_vit.png';
 import VIT from './assets/VIT.png';
 import axios from 'axios';
 const token = localStorage.getItem('token');
+console.log(token);
+
 var decoded = 'a';
-if (token) {
+if (token!=undefined) {
   decoded = JSON.parse(atob(token.split('.')[1]));
 }
+
 
 const App = () => {
   useEffect(() => {

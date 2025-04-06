@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import CreateStudent from './components/admin/CreateStudent';
 import CreateTeacher from './components/admin/CreateTeacher';
+import  GenerateReport from './components/admin/GenrateReport'
 const Admin = () => {
   const navigate=useNavigate();
   const go=()=>{
@@ -40,6 +41,9 @@ useEffect(() => {
         <Link to="CreateTeacher" className=" flex items-center justify-center h-20p w-100p bg-blue-800 text-white rounded-lg shadow-lg hover:bg-blue-600 transition">
           Add Guide
         </Link>
+        <Link to="GenerateReport" className=" flex items-center justify-center h-20p w-100p bg-blue-800 text-white rounded-lg shadow-lg hover:bg-blue-600 transition">
+          Genrate Report
+        </Link>
         <button onClick={go} className="h-20p w-100p bg-blue-800 text-white rounded-lg shadow-lg hover:bg-blue-600 transition">
           Logout
         </button>
@@ -48,6 +52,7 @@ useEffect(() => {
       </div>} />
       <Route path={`/CreateStudent`} element={<CreateStudent />} />
               <Route path={`/CreateTeacher`} element={<CreateTeacher />} />
+              <Route path={`/GenerateReport`} element={<GenerateReport />} />
 </Routes>
       </div>
       

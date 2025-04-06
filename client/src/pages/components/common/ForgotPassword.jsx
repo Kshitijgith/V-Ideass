@@ -8,7 +8,7 @@ const ForgotPassword = () => {
   const handleSendResetLink = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://v-ideass-1.onrender.com/admin/Forgot-Password', { role, email });
+      const response = await axios.post('http://localhost:3000/admin/Forgot-Password', { role, email });
       alert('Reset link sent successfully!');
     } catch (error) {
       console.error('Error sending reset link:', error);
@@ -38,8 +38,8 @@ const ForgotPassword = () => {
         required
       >
         <option value="" disabled>Select your role</option>
-        <option value="student">Student</option>
-        <option value="teacher">Teacher</option>
+        <option value="Student">Student</option>
+        <option value="Teacher">Teacher</option>
       </select>
     </div>
 

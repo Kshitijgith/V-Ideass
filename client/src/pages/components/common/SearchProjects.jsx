@@ -11,14 +11,21 @@ const SearchProjects = () => {
   const [error, setError] = useState('');
   const [noGroupsFound, setNoGroupsFound] = useState(false);
   const cancelTokenRef = useRef(null); // Ref for Axios cancellation
-  
+  const [click,setclick]=useState(false);
   
   
   
   useEffect(() => {
     const fetchResults = async () => {
-      const { searchText } = location.state || {};
-      console.log(searchText)
+      let searchText = '';
+
+      if (!click) {
+        searchText = location.state.searchText|| '';
+      }
+      else{
+        searchText='';
+      }
+      
       if (!searchText){
         console.log('hi')
       }
@@ -45,7 +52,7 @@ if ( searchText.length === 0) {
         setNoGroupsFound(false);
 
         const response = await axios.post(
-          'https://v-ideass-1.onrender.com/all/Search-Groups',
+          'http://localhost:3000/all/Search-Groups',
           { query: searchText },
           { cancelToken: cancelTokenRef.current.token }
         );
@@ -55,7 +62,10 @@ if ( searchText.length === 0) {
           if (results.length === 0) {
             setNoGroupsFound(true);
           }
+         
+          console.log(searchText);
           setSearchResults(results);
+          
         } else {
           setError('Failed to fetch group information.');
         }
@@ -101,6 +111,9 @@ if ( searchText.length === 0) {
               state={{ groupId: group.groupId }}
               key={index}
               className="w-30p h-80p sm:w-80p sm:h-80p"
+              onClick={()=>{setclick(true)
+                console.log('done')
+              }}
             >
               <div className="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 lg:h-[400px] sm:h-90p flex flex-col justify-between">
                 <div className="sm:h-8p flex items-center justify-center">

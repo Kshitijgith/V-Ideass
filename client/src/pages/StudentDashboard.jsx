@@ -7,13 +7,21 @@ import GroupActions from './components/student/GroupAction';
 import EachGroup from './components/common/Eachgroup';
 import Department from './components/common/Departments';
 import { Menu, X, Search, User, Key, LogOut,House } from 'lucide-react';
-
+import { useLocation } from 'react-router-dom';
 import  TeacherBoard  from './components/common/TeacherInfo';
 import UpdateProfile from './components/student/Updateprofile';
 import SearchProjects from './components/common/SearchProjects';
 import MobileDepartment from './components/common/MobileDepartment';
 import TeacherMobile from './components/common/TeacherMobile';
+import { matchPath, } from 'react-router-dom';
 const StudentDashboard = () => {
+  
+  const location = useLocation();
+  
+  console.log(location.pathname);
+  
+
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   var[dept,setdept]=useState(true)
   const navigate=useNavigate();
@@ -27,13 +35,22 @@ navigate('/');
   
   const [username, setUsername] = useState('');
   const [searchText, setSearchText] = useState('');
-  
+   // Runs every time the route changes
+   const [val, setval] = useState(false); // State to store the current path
+
   useEffect(() => {
-    if (searchText.trim()) {
-      // Navigate to SearchResults page with the searchText
-      navigate('SearchResults', { state: { searchText: searchText } });
-    }
-  }, [searchText, navigate]);
+    if (matchPath('/StudentDashBoard/SearchResults/:groupId', location.pathname)){
+      setSearchText('');
+      console.log(true);
+     }
+     else{
+      if (searchText.trim()) {
+        // Navigate to SearchResults page with the searchText
+        navigate('SearchResults', { state: { searchText: searchText } });
+      }
+     }
+    
+  }, [searchText, navigate,location.pathname]);
   useEffect(() => {
     const token = localStorage.getItem('token');
     if(!token){
