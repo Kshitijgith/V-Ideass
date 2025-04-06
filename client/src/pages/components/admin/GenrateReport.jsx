@@ -13,7 +13,7 @@ const GenerateReport = () => {
 
       const response = await axios({
         method: 'GET',
-        url: 'https://v-ideass.onrender.com/admin/genrate',
+        url: 'https://v-ideass-1.onrender.com/admin/genrate',
         headers: {
           Authorization: `Bearer ${token}`,
         },
