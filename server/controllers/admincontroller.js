@@ -7,6 +7,7 @@ const SendEmail=require('./Message')
 const bcrypt = require('bcryptjs');
 const puppeteer = require('puppeteer');
 
+
 // @desc    Create a new Teacher account
 // @route   POST /api/admin/create-teacher
 // @access  Private/Admin
@@ -186,8 +187,10 @@ res.status(500).json({success:false,message:'Internal Server Error'})
 }
 }
 const genratereport = async (projects) => {
-  const browser = await puppeteer.launch({ headless: 'new' });
-
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
   const page = await browser.newPage();
   
   const html = `
