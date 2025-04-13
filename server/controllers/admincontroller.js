@@ -231,6 +231,22 @@ const genratereport = async (projects) => {
           page-break-after: always;
           border-radius: 10px;
         }
+        .index table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+        .index th, .index td {
+          padding: 10px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        .index a {
+          color: #0077b6;
+          text-decoration: none;
+        }
+        .index a:hover {
+          text-decoration: underline;
+        }
         .project {
           background: #ffffff;
           margin: 30px auto;
@@ -247,9 +263,14 @@ const genratereport = async (projects) => {
           line-height: 1.6;
           margin: 10px 0;
         }
-        .project img {
-          margin: 10px;
-          max-width: 100%;
+        .project-images {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-top: 10px;
+        }
+        .project-images img {
+          width: calc(50% - 10px);
           border-radius: 8px;
         }
         .links a {
@@ -267,23 +288,36 @@ const genratereport = async (projects) => {
       </style>
     </head>
     <body>
-  
+
       <div class="cover">
         <img src="https://vidyalankar.edu.in/wp-content/uploads/2014/03/VIT.png" />
         <h1>V-Ideas Annual Report</h1>
         <h2>Innovative Student Projects Showcase</h2>
         <p>© ${new Date().getFullYear()} V-Ideas</p>
       </div>
-  
+
       <div class="index">
         <h2>Index</h2>
-        ${projects.map((p, i) => `
-          <p><strong>${p.projectName}</strong> — Page ${i + 3}</p>
-        `).join('')}
+        <table>
+          <thead>
+            <tr>
+              <th>Project Name</th>
+              <th>Page Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${projects.map((p, i) => `
+              <tr>
+                <td><a href="#project-${i + 1}">${p.projectName}</a></td>
+                <td><a href="#project-${i + 1}">Page ${i + 3}</a></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
       </div>
-  
-      ${projects.map((p) => `
-        <div class="project">
+
+      ${projects.map((p, i) => `
+        <div class="project" id="project-${i + 1}">
           <h2>${p.projectName}</h2>
           <p><strong>Guide:</strong> ${p.guideName}</p>
           <p><strong>Group Leader:</strong> ${p.groupLeader}</p>
@@ -291,11 +325,13 @@ const genratereport = async (projects) => {
           <p><strong>Technologies:</strong> ${p.projectTechnology}</p>
           <p><strong>Branch:</strong> ${p.branch || 'N/A'} | <strong>Year:</strong> ${p.year} ${p.semester ? `| <strong>Semester:</strong> ${p.semester}` : ''}</p>
           <p>${p.projectinfo?.slice(0, 1000) || 'No project info provided.'}</p>
-  
-          ${p.photos && p.photos.length > 0 ? p.photos.map(base64 => `
-            <img src="${base64}" />
-          `).join('') : ''}
-  
+
+          ${p.photos && p.photos.length > 0 ? `
+            <div class="project-images">
+              ${p.photos.map(base64 => `<img src="${base64}" />`).join('')}
+            </div>
+          ` : ''}
+
           <div class="links">
             ${p.PPT ? `<a href="${p.PPT}" target="_blank">View PPT</a>` : ''}
             ${p.Report ? `<a href="${p.Report}" target="_blank">View Report</a>` : ''}
@@ -303,13 +339,11 @@ const genratereport = async (projects) => {
           </div>
         </div>
       `).join('')}
-  
+
     </body>
   </html>
-  `;
-  
-  console.log(html);
-  
+`;
+
 
 
   await page.setContent(html, { waitUntil: "networkidle0" });
