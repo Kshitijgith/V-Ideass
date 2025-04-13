@@ -5,7 +5,8 @@ const Student = require('../models/Student');
 const Group=require('../models/group')
 const SendEmail=require('./Message')
 const bcrypt = require('bcryptjs');
-const puppeteer = require('puppeteer');
+const chromium = require('@sparticuz/chromium');
+const puppeteer = require('puppeteer-core');
 
 
 // @desc    Create a new Teacher account
@@ -188,195 +189,85 @@ res.status(500).json({success:false,message:'Internal Server Error'})
 }
 const genratereport = async (projects) => {
   const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
   });
+
   const page = await browser.newPage();
-  
+
   const html = `
-<html>
-  <head>
-    <style>
-      body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f9fbfc;
-        color: #333;
-        margin: 0;
-        padding: 0;
-      }
-
-      .cover-page {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-        color: white;
-        text-align: center;
-        page-break-after: always;
-        padding: 60px 20px;
-      }
-
-      .cover-image {
-        max-width: 250px;
-        height: auto;
-        border-radius: 16px;
-        margin-bottom: 30px;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-      }
-
-      .cover-page h1 {
-        font-size: 54px;
-        font-weight: bold;
-        margin-bottom: 12px;
-      }
-
-      .cover-page h2 {
-        font-size: 28px;
-        font-weight: 300;
-        color: #e0e0e0;
-      }
-
-      .footer {
-        margin-top: 40px;
-        font-size: 14px;
-        color: #ccc;
-      }
-
-      .project {
-        background-color: #ffffff;
-        max-width: 900px;
-        margin: 60px auto;
-        padding: 50px;
-        border-radius: 16px;
-        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
-        page-break-before: always;
-        transition: transform 0.3s ease;
-      }
-
-      .project:hover {
-        transform: translateY(-4px);
-      }
-
-      .project h2 {
-        font-size: 32px;
-        color: #1a3c7a;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #dbe2ef;
-        padding-bottom: 6px;
-      }
-
-      .meta-info p {
-        margin: 6px 0;
-        font-size: 16px;
-        font-weight: 500;
-      }
-
-      .section-title {
-        font-weight: 600;
-        color: #333;
-        font-size: 18px;
-        margin-top: 30px;
-        margin-bottom: 10px;
-        border-bottom: 2px solid #e2e2e2;
-        padding-bottom: 4px;
-      }
-
-      .description, .technologies {
-        font-size: 16px;
-        line-height: 1.7;
-        color: #444;
-      }
-
-      .images-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-        margin-top: 25px;
-      }
-
-      .images-grid img {
-        width: 48%;
-        border-radius: 10px;
-        border: 1px solid #ccc;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        object-fit: cover;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .images-grid img:hover {
-        transform: scale(1.03);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      @media (max-width: 768px) {
-        .images-grid img {
-          width: 100%;
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <title>V-Ideas Report</title>
+      <style>
+        body {
+          font-family: sans-serif;
+          background-color: #cceeff;
+          color: #222;
+          padding: 20px;
         }
-
+        .cover {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          text-align: center;
+          background: linear-gradient(to right, #0077b6, #023e8a);
+          color: white;
+          page-break-after: always;
+        }
+        .index {
+          background: #caf0f8;
+          padding: 20px;
+          page-break-after: always;
+        }
         .project {
-          padding: 25px;
-          margin: 30px 10px;
+          background: #0077b6;
+          margin: 30px auto;
+          padding: 20px;
+          max-width: 700px;
+          border-radius: 12px;
+          color: white;
+          page-break-before: always;
         }
+      </style>
+    </head>
+    <body>
 
-        .cover-page h1 {
-          font-size: 36px;
-        }
+      <div class="cover">
+        <img src="https://vidyalankar.edu.in/wp-content/uploads/2014/03/VIT.png" width="200" />
+        <h1>V-Ideas Annual Report</h1>
+        <h2>Innovative Student Projects Showcase</h2>
+        <p>© ${new Date().getFullYear()} V-Ideas</p>
+      </div>
 
-        .cover-page h2 {
-          font-size: 20px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="cover-page">
-      <img class="cover-image" src="https://vidyalankar.edu.in/wp-content/uploads/2014/03/VIT.png" alt="Cover Logo" />
-      <h1>V-Ideas Annual Report</h1>
-      <h2>Innovative Student Projects Showcase</h2>
-      <p class="footer">© ${new Date().getFullYear()} V-Ideas. All rights reserved.</p>
-    </div>
+      <div class="index">
+        <h2>Index</h2>
+        ${projects.map((p, i) => `
+          <p><strong>${p.title}</strong> — Page ${i + 3}</p>
+        `).join('')}
+      </div>
 
-    ${projects.map(p => `
-      <div class="project">
-        <h2>${p.title}</h2>
-        <div class="meta-info">
+      ${projects.map((p) => `
+        <div class="project">
+          <h2>${p.title}</h2>
           <p><strong>Guide:</strong> ${p.guide}</p>
           <p><strong>Members:</strong> ${p.members.join(', ')}</p>
+          <p><strong>Technologies:</strong> ${p.technologies.join(', ')}</p>
+          <p>${p.description}</p>
         </div>
-        <div class="description">
-          <div class="section-title">Description</div>
-          ${p.description}
-        </div>
-        ${p.PPT && p.Report ? `
-  <div style="margin-top: 20px;">
-    <a href="${p.PPT}" target="_blank" class="doc-link">📄 PPT</a>
-    <a href="${p.Report}" target="_blank" class="doc-link">📘 Report</a>
-  </div>
-` : ''}
-        <div class="technologies">
-          <div class="section-title">Technologies Used</div>
-          ${p.technologies.join(', ')}
-        </div>
-        ${p.images.length > 0 ? `
-          <div class="section-title">Screenshots</div>
-          <div class="images-grid">
-            ${p.images.map(img => `<img src="${img}" alt="Project image" />`).join('')}
-          </div>
-          
-        ` : ''}
-      </div>
-    `).join('')}
-  </body>
-</html>
-`;
+      `).join('')}
 
-
-
+    </body>
+  </html>
+  `;
 
   await page.setContent(html, { waitUntil: "networkidle0" });
-  const buffer = await page.pdf({ format: "A4" });
+  const buffer = await page.pdf({ format: "A4", printBackground: true });
   await browser.close();
 
   return buffer;
@@ -385,24 +276,24 @@ const genratereport = async (projects) => {
 exports.createanaulReport = async (req, res) => {
   try {
     const groups = await Group.find({ status: true });
-    
+
     const projects = groups.map(group => ({
       title: group.projectName || "No Project Title",
       description: group.projectinfo || "No Description",
       guide: group.guideName,
       members: group.groupMembers || [],
       technologies: group.projectTechnology ? [group.projectTechnology] : [],
-      images: group.photos || [] // 
+      images: group.photos || [],
     }));
-     
+
     const pdfBuffer = await genratereport(projects);
-       
+
     res.set({
       "Content-Type": "application/pdf",
       "Content-Disposition": "attachment; filename=Videas-Projects.pdf",
     });
 
-     res.end(pdfBuffer);
+    res.end(pdfBuffer);
   } catch (error) {
     console.error("PDF Generation Error:", error);
     return res.status(500).json("Failed to generate PDF");
