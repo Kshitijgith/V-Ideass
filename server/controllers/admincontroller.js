@@ -204,11 +204,10 @@ const genratereport = async (projects) => {
       <title>V-Ideas Report</title>
       <style>
         body {
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          background-color: #f0f8ff;
+          font-family: sans-serif;
+          background-color: #cceeff;
           color: #222;
-          padding: 40px;
-          margin: 0;
+          padding: 20px;
         }
         .cover {
           display: flex;
@@ -221,64 +220,26 @@ const genratereport = async (projects) => {
           color: white;
           page-break-after: always;
         }
-        .cover img {
-          width: 180px;
-          margin-bottom: 20px;
-        }
         .index {
-          background: #e0f7fa;
-          padding: 30px;
+          background: #caf0f8;
+          padding: 20px;
           page-break-after: always;
-          border-radius: 10px;
-        }
-        .index table {
-          width: 100%;
-          border-collapse: collapse;
-        }
-        .index th, .index td {
-          padding: 10px;
-          text-align: left;
-          border-bottom: 1px solid #ddd;
         }
         .project {
-          background: #ffffff;
+          background: #0077b6;
           margin: 30px auto;
-          padding: 30px;
-          max-width: 800px;
+          padding: 20px;
+          max-width: 700px;
           border-radius: 12px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-          page-break-before: always;
-        }
-        .project h2 {
-          color: #023e8a;
-        }
-        .project p {
-          line-height: 1.6;
-          margin: 10px 0;
-        }
-        .project img {
-          margin: 10px;
-          max-width: 100%;
-          border-radius: 8px;
-        }
-        .links a {
-          display: inline-block;
-          margin: 10px 10px 0 0;
-          padding: 8px 12px;
-          background-color: #0077b6;
           color: white;
-          text-decoration: none;
-          border-radius: 6px;
-        }
-        .links a:hover {
-          background-color: #023e8a;
+          page-break-before: always;
         }
       </style>
     </head>
     <body>
 
       <div class="cover">
-        <img src="https://vidyalankar.edu.in/wp-content/uploads/2014/03/VIT.png" />
+        <img src="https://vidyalankar.edu.in/wp-content/uploads/2014/03/VIT.png" width="200" />
         <h1>V-Ideas Annual Report</h1>
         <h2>Innovative Student Projects Showcase</h2>
         <p>© ${new Date().getFullYear()} V-Ideas</p>
@@ -286,50 +247,24 @@ const genratereport = async (projects) => {
 
       <div class="index">
         <h2>Index</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Project Name</th>
-              <th>Page Number</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${projects.map((p, i) => `
-              <tr>
-                <td><a href="#project-${i + 1}">${p.projectName}</a></td>
-                <td>Page ${i + 3}</td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
+        ${projects.map((p, i) => `
+          <p><strong>${p.title}</strong> — Page ${i + 3}</p>
+        `).join('')}
       </div>
 
-      ${projects.map((p, i) => `
-        <div class="project" id="project-${i + 1}">
-          <h2>${p.projectName}</h2>
-          <p><strong>Guide:</strong> ${p.guideName}</p>
-          <p><strong>Group Leader:</strong> ${p.groupLeader}</p>
-          <p><strong>Members:</strong> ${p.groupMembers.join(', ')}</p>
-          <p><strong>Technologies:</strong> ${p.projectTechnology}</p>
-          <p><strong>Branch:</strong> ${p.branch || 'N/A'} | <strong>Year:</strong> ${p.year} ${p.semester ? `| <strong>Semester:</strong> ${p.semester}` : ''}</p>
-          <p>${p.projectinfo?.slice(0, 1000) || 'No project info provided.'}</p>
-
-          ${p.photos && p.photos.length > 0 ? p.photos.map(base64 => `
-            <img src="${base64}" />
-          `).join('') : ''}
-
-          <div class="links">
-            ${p.PPT ? `<a href="${p.PPT}" target="_blank">View PPT</a>` : ''}
-            ${p.Report ? `<a href="${p.Report}" target="_blank">View Report</a>` : ''}
-            ${p.groupMaterial ? `<a href="${p.groupMaterial}" target="_blank">Group Material</a>` : ''}
-          </div>
+      ${projects.map((p) => `
+        <div class="project">
+          <h2>${p.title}</h2>
+          <p><strong>Guide:</strong> ${p.guide}</p>
+          <p><strong>Members:</strong> ${p.members.join(', ')}</p>
+          <p><strong>Technologies:</strong> ${p.technologies.join(', ')}</p>
+          <p>${p.description}</p>
         </div>
       `).join('')}
 
     </body>
   </html>
-`;
-
+  `;
 
   await page.setContent(html, { waitUntil: "networkidle0" });
   const buffer = await page.pdf({ format: "A4", printBackground: true });
