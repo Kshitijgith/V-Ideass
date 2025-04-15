@@ -7,9 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import FetchAll from './components/common/Allgroups';
 import EachGroup from './components/common/Eachgroup';
 import { Menu, X, Search, User, Key, LogOut,SquarePlus,House,CirclePlus } from 'lucide-react';
-
+import GenerateReport from './components/teacher/GenrateReport';
 import UpdateProfile from './components/teacher/UpdateProfile';
 import Department from './components/common/Departments';
+ 
 import  TeacherBoard  from './components/common/TeacherInfo';
 import SearchProjects from './components/common/SearchProjects';
 import MobileDepartment from './components/common/MobileDepartment';
@@ -136,7 +137,9 @@ navigate('/');
         <button className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
           <Department/>
         </button>
-        
+        <button className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
+          <GenerateReport/>
+        </button>
         <Link to="FetchGroupsT" className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
           Your Group
         </Link>
@@ -147,6 +150,8 @@ navigate('/');
         <Link to="UpdateProfile" state={{email:username}}  className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
           Update Profile
         </Link>
+        
+
         <button onClick={go} className='h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
           Logout
         </button>

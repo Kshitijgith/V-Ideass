@@ -14,6 +14,7 @@ import SearchProjects from './components/common/SearchProjects';
 import MobileDepartment from './components/common/MobileDepartment';
 import TeacherMobile from './components/common/TeacherMobile';
 import { matchPath, } from 'react-router-dom';
+import GenerateReport from './components/student/GenrateReport';
 const StudentDashboard = () => {
   
   const location = useLocation();
@@ -154,7 +155,9 @@ navigate('/');
         <div className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
           <Department/>
         </div>
-        
+        <button className="h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950">
+          <GenerateReport/>
+        </button>
         <Link to="FetchGroups" className={` ${username==='guest@vit.edu.in'?'hidden':''} h-100p w-20p font-extrabold   flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950`}>
           Your Group
         </Link>

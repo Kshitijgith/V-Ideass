@@ -3,7 +3,8 @@
 
 const express = require('express');
 const router = express.Router();
-const { createTeacher, createStudent,ForgotPassword,createanaulReport } = require('../controllers/admincontroller');
+const { createTeacher, createStudent,ForgotPassword, } = require('../controllers/admincontroller');
+const {createanaulReport}=require('../controllers/GenrateReport');
 const { protect, authorize } = require('../middleware/auth');
 
 // @route   POST /api/admin/create-teacher
@@ -16,5 +17,5 @@ router.post('/create-teacher', protect, authorize('admin'), createTeacher);
 // @access  Private/Admin
 router.post('/create-student', protect, authorize('admin'), createStudent);
 router.post('/Forgot-Password',ForgotPassword)
-router.get('/genrate',protect, authorize('admin'),createanaulReport)
+router.post('/genrate',protect, authorize('admin'),createanaulReport)
 module.exports = router;

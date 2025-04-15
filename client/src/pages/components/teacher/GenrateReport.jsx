@@ -14,7 +14,7 @@ const GenerateReport = () => {
 
       const response = await axios({
         method: 'POST',
-        url: 'https://v-ideass-1.onrender.com/admin/genrate',
+        url: 'https://v-ideass-1.onrender.com/teacher/genrate',
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -44,15 +44,14 @@ const GenerateReport = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <label className="mb-2 text-lg font-semibold text-gray-700">
-        Select Year to Generate Report
-      </label>
+    <div className="relative inline-block h-full w-full">
+      
       <select
         value={year}
         onChange={handleChange}
-        className="p-3 rounded-md border border-gray-400 bg-blue-500 text-white font-semibold text-center cursor-pointer hover:bg-blue-600 transition"
+        className="h-full w-full bg-yellow-400 hover:bg-blue-950 font-extrabold text-center cursor-pointer  "
       >
+        <option value="">Report</option>
         <option value="2020-2021">2020-2021</option>
         <option value="2021-2022">2021-2022</option>
         <option value="2022-2023">2022-2023</option>
