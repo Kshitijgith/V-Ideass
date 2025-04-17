@@ -6,7 +6,7 @@ import FetchAll from './components/common/Allgroups';
 import GroupActions from './components/student/GroupAction';
 import EachGroup from './components/common/Eachgroup';
 import Department from './components/common/Departments';
-import { Menu, X, Search, User, Key, LogOut,House } from 'lucide-react';
+import { Menu, X, Search, User, Key, LogOut,House,ClipboardMinus } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import  TeacherBoard  from './components/common/TeacherInfo';
 import UpdateProfile from './components/student/Updateprofile';
@@ -82,6 +82,12 @@ navigate('/');
               &nbsp;&nbsp;Home
             </Link>
           </button>
+          
+          <div className={`h-10p w-100p ${username==='guest@vit.edu.in'?'hidden':''}`}></div>
+          <div className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+            &nbsp;&nbsp;
+            <GenerateReport/>
+          </div>
           <div className='h-10p w-100p'></div>
           <button onClick={toggle} className={`${username==='guest@vit.edu.in'?'hidden':''} flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200`}>
           &nbsp;&nbsp;
@@ -102,6 +108,7 @@ navigate('/');
             <MobileDepartment toggle={toggle} role={'studentdashboard'} />
 
           </button>
+          
           <div className={`h-10p w-100p ${username==='guest@vit.edu.in'?'hidden':''}`}></div>
           <button onClick={toggle} className={`flex items-center ${username==='guest@vit.edu.in'?'hidden':''} text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200`}>
           &nbsp;&nbsp;&nbsp;

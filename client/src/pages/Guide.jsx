@@ -50,9 +50,9 @@ navigate('/');
   return (
     
 
-    <div className='h-100p w-100p  flex flex-col  justify-center items-center'>
+    <div className={'h-100p w-100p flex flex-col justify-center items-center '}>
       {isMenuOpen && (
-  <div className='h-60p w-80p bg-blue-950 flex flex-col items-center absolute z-10'>
+  <div className='h-60p w-80p bg-blue-950 flex flex-col items-center absolute z-10 opacity-100'>
     <div className='h-10p w-20p font-extrabold text-white flex items-center justify-center transition text-center hover:text-white hover:bg-blue-950'>
       {username}
     </div>
@@ -66,7 +66,13 @@ navigate('/');
         &nbsp;&nbsp;Home
       </Link>
     </button>
-    <div className='h-10p w-100p'></div>
+    
+    <div className={`h-10p w-100p ${username==='guest@vit.edu.in'?'hidden':''}`}></div>
+              <div className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
+                &nbsp;&nbsp;
+                <GenerateReport/>
+              </div>
+              <div className='h-10p w-100p'></div>
     <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
       &nbsp;&nbsp;
       <User size={20} className="h-70p w-10p text-white" />
@@ -82,6 +88,7 @@ navigate('/');
       &nbsp;
       <MobileDepartment toggle={toggle} role='guide' />
     </button>
+    
     <div className='h-10p w-100p'></div>
     <button onClick={toggle} className="flex items-center text-white h-10p w-80p rounded-lg bg-blue-600 hover:bg-blue-700 transition duration-200">
       &nbsp;&nbsp;
