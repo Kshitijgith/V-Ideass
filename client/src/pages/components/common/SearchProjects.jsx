@@ -52,7 +52,7 @@ if ( searchText.length === 0) {
         setNoGroupsFound(false);
 
         const response = await axios.post(
-          'http://localhost:3000/all/Search-Groups',
+          'https://v-ideass-1.onrender.com/all/Search-Groups',
           { query: searchText },
           { cancelToken: cancelTokenRef.current.token }
         );

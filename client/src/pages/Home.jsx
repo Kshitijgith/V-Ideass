@@ -42,7 +42,7 @@ export default function LoginPage() {
     else{
       setIsLoading(true);
       const loginUrlMap = {
-        student: 'http://localhost:3000/auth/student/login',
+        student: 'https://v-ideass-1.onrender.com/auth/student/login',
         teacher: 'https://v-ideass-1.onrender.com/auth/teacher/login',
         admin: 'https://v-ideass-1.onrender.com/auth/admin/login',
       };
