@@ -9,7 +9,7 @@ const CreateGroup = () => {
     year: '',
   });
 
-  const [newMember, setNewMember] = useState(''); // For adding members
+  const [newMember, setNewMember] = useState('');
   const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
@@ -30,11 +30,17 @@ const CreateGroup = () => {
     }
   };
 
+  const handleRemoveMember = (index) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      groupMembers: prevData.groupMembers.filter((_, i) => i !== index),
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const t = `Bearer ${localStorage.getItem('token')}`;
 
-    // Automatically set groupLeader as the first member in groupMembers
     const groupData = {
       ...formData,
       groupLeader: formData.groupMembers[0] || '',
@@ -45,7 +51,7 @@ const CreateGroup = () => {
         method: 'POST',
         url: 'https://v-ideass-1.onrender.com/teacher/create-group',
         data: groupData,
-        headers: { 'Authorization': t },
+        headers: { Authorization: t },
       });
 
       setMessage(response.data.message || 'Group created successfully!');
@@ -56,22 +62,22 @@ const CreateGroup = () => {
         year: '',
       });
     } catch (error) {
-      setMessage(error.response.data.message);
+      setMessage(error.response?.data?.message || 'Error occurred');
     }
   };
 
   return (
-    <div className="flex items-center justify-center h-100p w-100p overflow-y-auto  ">
-      <div className="w-40p h-90p sm:w-90p sm:h-80p bg-white rounded-lg shadow-lg flex flex-col  items-center justify-center">
+    <div className="flex items-center justify-center h-100p w-100p overflow-y-auto">
+      <div className="w-40p h-90p sm:w-90p sm:h-80p bg-white rounded-lg shadow-lg flex flex-col items-center justify-center">
         <div className='sm:h-10p sm:w-100p'></div>
         <h2 className="text-2xl font-semibold text-center text-gray-800">Create Project Group</h2>
         <div className='sm:h-8p sm:w-100p'></div>
-        
+
         {message && <p className="mt-4 text-center text-green-500">{message}</p>}
-        
-        <form className="h-90p w-80p rounded-lg " onSubmit={handleSubmit}>
+
+        <form className="h-90p w-80p rounded-lg" onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="groupId" className="block text-gray-700 ">Group ID</label>
+            <label htmlFor="groupId" className="block text-gray-700">Group ID</label>
             <input
               type="text"
               name="groupId"
@@ -81,8 +87,6 @@ const CreateGroup = () => {
               className="w-full px-3 py-2 mt-1 text-gray-700 rounded border border-gray-300 focus:outline focus:outline-indigo-500 focus:ring-2 focus:ring-indigo-500"
             />
           </div>
-          
-          
 
           <div className="mb-4">
             <label htmlFor="year" className="block text-gray-700">Year</label>
@@ -113,14 +117,23 @@ const CreateGroup = () => {
             >
               Add Member
             </button>
-            <div className="mt-2">
+            <div className="mt-2 flex flex-wrap gap-2">
               {formData.groupMembers.map((member, index) => (
-                <span key={index} className="inline-block px-2 py-1 mr-2 text-white bg-gray-500 rounded-full">
+                <div key={index} className="flex items-center bg-gray-500 text-white px-2 py-1 rounded-full">
                   {member}
-                </span>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveMember(index)}
+                    className="ml-2 text-sm font-bold hover:text-red-300"
+                    title="Remove"
+                  >
+                    ✕
+                  </button>
+                </div>
               ))}
             </div>
           </div>
+
           <button
             type="submit"
             className="w-full px-4 py-2 mt-4 font-semibold text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
