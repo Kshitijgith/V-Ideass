@@ -46,25 +46,36 @@ const getProjectGroup= async (req, res) => {
 
 const UpdateGroup = async (req, res) => {
   try {
-    // Extract project information from the request
-    const { groupid, projectname, projecttechnology, projectinfo,photos,ppt,report,tags} = req.body;
-    
-    // Convert uploaded files to base64 strings
-    
-      
-    // Update the group in MongoDB
+    const {
+      groupid,
+      projectname,
+      projecttechnology,
+      projectinfo,
+      photos,
+      ppt,
+      report,
+      tags,
+      branch
+    } = req.body;
+
+    if (!groupid) {
+      return res.status(400).json({ message: 'Group ID is required' });
+    }
+
+    const updateFields = {};
+
+    if (projectname && projectname.trim() !== '') updateFields.projectName = projectname;
+    if (projecttechnology && projecttechnology.trim() !== '') updateFields.projectTechnology = projecttechnology;
+    if (projectinfo && projectinfo.trim() !== '') updateFields.projectinfo = projectinfo;
+    if (ppt && ppt.trim() !== '') updateFields.PPT = ppt;
+    if (report && report.trim() !== '') updateFields.Report = report;
+    if (tags && tags.length > 0) updateFields.tags = tags;
+    if (branch && branch.trim() !== '') updateFields.branch = branch;
+    if (photos && Array.isArray(photos) && photos.length > 0) updateFields.photos = photos;
+
     const group = await Project.findOneAndUpdate(
       { groupId: groupid },
-      {
-        projectName: projectname,
-        projectTechnology: projecttechnology,
-        projectinfo: projectinfo,
-        PPT:ppt,
-        Report:report,
-        tags:tags,
-
-        $set: { photos }, // Add photos array to existing ones
-      },
+      { $set: updateFields },
       { new: true }
     );
 
@@ -77,7 +88,6 @@ const UpdateGroup = async (req, res) => {
       data: group,
     });
   } catch (error) {
-    
     return res.status(500).json({ message: 'Server error' });
   }
 };

@@ -10,6 +10,7 @@ const AddProject = ({ id }) => {
   const [ppt, setppt] = useState('');
   const [tags, settags] = useState('');
   const [report, setreport] = useState('');
+  const [branch,setbranch]=useState('');
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -48,7 +49,7 @@ const AddProject = ({ id }) => {
       // console.log(Array.isArray(photos)); // Confirm `photos` is an array
       // console.log(photos); // Log `photos` to check content
 
-      const result = await updateGroup(groupid, projectname, projecttechnology, projectinfo, photos,ppt,report,tags);
+      const result = await updateGroup(groupid, projectname, projecttechnology, projectinfo, photos,ppt,report,tags,branch);
       setSuccessMessage('Group updated successfully!');
       // console.log(result);
       
@@ -61,6 +62,7 @@ const AddProject = ({ id }) => {
       settags('')
       setreport('');
       setPhotos([]);
+      setbranch('');
     } catch (error) {
       setError(error.response.data.message);
       console.error(err);
@@ -85,10 +87,22 @@ const AddProject = ({ id }) => {
             value={projectname}
             onChange={(e) => setProjectName(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
+            
           />
         </div>
-        
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="projectName">
+            Branch
+          </label>
+          <input
+            type="text"
+            id="branch"
+            value={branch}
+            onChange={(e) => setbranch(e.target.value)}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            
+          />
+        </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="projectTechnology">
             Project Technology
@@ -99,7 +113,7 @@ const AddProject = ({ id }) => {
             value={projecttechnology}
             onChange={(e) => setProjectTechnology(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
+          
           />
         </div>
 
@@ -113,7 +127,7 @@ const AddProject = ({ id }) => {
             onChange={(e) => setProjectInfo(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             rows="4"
-            required
+          
           />
         </div>
         <div className="mb-4">
@@ -126,7 +140,7 @@ const AddProject = ({ id }) => {
             value={ppt}
             onChange={(e) => setppt(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
+        
           />
         </div>
         <div className="mb-4">
@@ -139,7 +153,7 @@ const AddProject = ({ id }) => {
             value={report}
             onChange={(e) => setreport(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
+        
           />
         </div>
         <div className="mb-4">
@@ -152,7 +166,7 @@ const AddProject = ({ id }) => {
             value={tags}
             onChange={(e) => settags(e.target.value)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            required
+          
           />
         </div>
         

@@ -100,17 +100,23 @@ const CreateTeacher = () => {
           
           
           <div className="mb-4">
-            <label htmlFor="branch" className="block text-gray-700">Branch</label>
-            <input
-              type="text"
-              name="branch"
-              placeholder='Enter Teacher Branch'
-              value={formData.branch}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
+  <label htmlFor="branch" className="block text-gray-700">Branch</label>
+  <select
+    name="branch"
+    value={formData.branch}
+    onChange={handleChange}
+    required
+    className="w-full px-3 py-2 mt-1 text-gray-700 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+  >
+    <option value="">Select Branch</option>
+    <option value="Computer Science">Computer Science</option>
+    <option value="Information Technology">Information Technology</option>
+    <option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
+    <option value="Electronics">Electronics</option>
+    <option value="BioMedical">BioMedical</option>
+  </select>
+</div>
+
           
 
           

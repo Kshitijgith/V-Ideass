@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const UpdateGroup = async (groupid, projectname, projecttechnology, projectinfo,photos,ppt,report,tags) => {
+const UpdateGroup = async (groupid, projectname, projecttechnology, projectinfo,photos,ppt,report,tags,branch) => {
   try {
     const token = localStorage.getItem('token'); // Retrieve token from local storage
 
@@ -13,7 +13,9 @@ const UpdateGroup = async (groupid, projectname, projecttechnology, projectinfo,
       tags,
       photos,
       ppt,
-      report
+      report,
+      branch
+
     };
 
     // Make the POST request to the server
